@@ -1,22 +1,22 @@
 {
-  "name": "@better/aql-result-table",
-  "version": "0.0.1",
-  "description": "Component for rendering AQL result table",
-  "keywords": [
-    "angular",
-    "component",
-    "aql",
-    "openEHR"
-  ],
-  "license": "Apache-2.0",
-  "peerDependencies": {
-    "@angular/common": "^10.1.6",
-    "@angular/core": "^10.1.6",
-    "@angular/localize": "^10.1.6",
-    "bootstrap": "^4.6.0",
-    "@ng-bootstrap/ng-bootstrap": "~8.0.4"
-  },
-  "dependencies": {
-    "tslib": "^2.0.0"
-  }
+    "name": "@better/aql-result-table",
+    "version": "1.0.0",
+    "description": "Component for rendering AQL result table",
+    "keywords": [
+        "angular",
+        "component",
+        "aql",
+        "openEHR"
+    ],
+    "license": "Apache-2.0",
+    "peerDependencies": {
+        "@angular/common": "^10.1.6",
+        "@angular/core": "^10.1.6",
+        "@angular/localize": "^10.1.6",
+        "bootstrap": "^4.6.0",
+        "@ng-bootstrap/ng-bootstrap": "~8.0.4"
+    },
+    "dependencies": {
+        "tslib": "^2.0.0"
+    }
 }
