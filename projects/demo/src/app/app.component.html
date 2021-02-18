@@ -1,0 +1,20 @@
+<h1 class="text-center mt-3">AQL Result table DEMO</h1>
+
+<div class="col-12" *ngIf="serverConfig?.url">
+  <div class="action mb-2">
+    <button class="btn btn-primary" (click)="runQuery()">Run query</button>
+  </div>
+  <textarea #aql (change)="changeAqlCode(aql.value)" placeholder="Provide aql for execution"></textarea>
+</div>
+
+<div class="col-12">
+  <div class="btn-wrapper float-right mb-2">
+    <button class="btn btn-sm btn-primary" (click)="togglePresentation(TablePresentation.COMPACT)">Compact view</button>
+    <button class="btn btn-sm btn-secondary ml-1 mr-2" (click)="togglePresentation(TablePresentation.DETAILED)">Detailed view</button>
+  </div>
+
+  <bui-aql-result-table
+    [aqlResultMetadata]="aqlResultMetadata"
+    [tablePresentation]="tablePresentation">
+  </bui-aql-result-table>
+</div>
