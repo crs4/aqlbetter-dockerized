@@ -16,7 +16,7 @@
 import { Component } from '@angular/core';
 import { resultWithDataMock } from './mocks/result-with-data.mock';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AqlResultMetadata, TablePresentation } from '@better/aql-result-table';
+import { AqlResultMetadata, TablePresentation } from '@bettercare/aql-result-table';
 
 @Component({
   selector: 'app-root',

@@ -1,5 +1,5 @@
 {
-  "name": "better-ui-components",
+  "name": "@bettercare/better-ui-components",
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
@@ -13,7 +13,7 @@
     "release:patch": "npm run release -- --release-as patch",
     "release:minor": "npm run release -- --release-as minor",
     "release:major": "npm run release -- --release-as major",
-    "publish": "npm run build:all && npm run publish:all",
+    "publish:aql-result-table": "cd /dist/aql-result-table && npm publish --access=public",
     "test:aql-result-table": "ng test aql-result-table --watch=false --browsers=ChromeHeadlessCustom",
     "test": "npm run test:aql-result-table",
     "build:ci": "npm run clean && npm run test"
@@ -83,5 +83,19 @@
     "scripts": {
       "postbump": "node scripts/syncVersions.js && git add **/package.json"
     }
-  }
+  },
+  "main": "commitlint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/better-care/better-ui-components.git"
+  },
+  "author": {
+    "name": "Benjamin Muhic",
+    "email": "benjamin.muhic@better.care"
+  },
+  "contributors": [],
+  "bugs": {
+    "url": "https://github.com/better-care/better-ui-components/issues"
+  },
+  "homepage": "https://github.com/better-care/better-ui-components#readme"
 }

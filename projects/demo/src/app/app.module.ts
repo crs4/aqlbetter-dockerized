@@ -20,7 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { AqlResultTableModule } from '@better/aql-result-table';
+import { AqlResultTableModule } from '@bettercare/aql-result-table';
 
 @NgModule({
   declarations: [

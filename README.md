@@ -14,7 +14,7 @@ It is based on Angular(10+) framework.
 To install this library run:
 
 ```
-npm install @better/aql-result-table
+npm install @bettercare/aql-result-table
 ```
 
 Once you have installed the library, include library to your project module:
@@ -88,11 +88,11 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-#Contributing
+## Contributing
 
 See our [CONTRIBUTING.md](/CONTRIBUTING.md) guide
 
-#Licence
+## Licence
 
 Feel free to use our library in your commercial and private applications
 

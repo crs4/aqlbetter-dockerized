@@ -7,7 +7,7 @@
       "jasmine"
     ],
     "paths": {
-      "@better/aql-result-table": [
+      "@bettercare/aql-result-table": [
         "projects/aql-result-table/src/public-api",
       ]
     }

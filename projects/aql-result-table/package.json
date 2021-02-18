@@ -1,5 +1,5 @@
 {
-    "name": "@better/aql-result-table",
+    "name": "@bettercare/aql-result-table",
     "version": "1.0.0",
     "description": "Component for rendering AQL result table",
     "keywords": [
@@ -9,6 +9,8 @@
         "openEHR"
     ],
     "license": "Apache-2.0",
+    "repository": "https://github.com/better-care/better-ui-components",
+    "homepage": "https://github.com/better-care/better-ui-components#readme",
     "peerDependencies": {
         "@angular/common": "^10.1.6",
         "@angular/core": "^10.1.6",

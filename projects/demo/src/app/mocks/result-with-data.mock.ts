@@ -14,7 +14,7 @@
  */
 
 
-import { AqlResultMetadata } from '@better/aql-result-table';
+import { AqlResultMetadata } from '@bettercare/aql-result-table';
 
 export const resultWithDataMock: AqlResultMetadata = {
   meta: {href: 'https://tools-internal.app.better.care/rest/v1/query/'},

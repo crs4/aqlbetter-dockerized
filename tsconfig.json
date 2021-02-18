@@ -17,7 +17,7 @@
       "dom"
     ],
     "paths": {
-      "@better/aql-result-table": [
+      "@bettercare/aql-result-table": [
         "dist/aql-result-table/aql-result-table",
         "dist/aql-result-table"
       ]

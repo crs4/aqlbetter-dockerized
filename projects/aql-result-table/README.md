@@ -7,7 +7,7 @@ AQL result table is a UI component written in Angular (10+) which provides logic
 To install this library run:
 
 ```
-npm install @better/aql-result-table
+npm install @bettercare/aql-result-table
 ```
 
 Once you have installed the library, include library to your project module:
@@ -49,7 +49,7 @@ enum TablePresentation {
 }
 ```
 
-## Deveopment
+## Development
 
 ### Code scaffolding
 
