@@ -1,0 +1,19 @@
+<div class="w-100 h-100">
+    <button class="btn aql-button position-absolute"
+            placement="left"
+            container="body"
+            (click)="copyToClipboard(rawData)"
+            [ngbTooltip]="'COPY_TO_CLIPBOARD'|translate"
+            [disabled]="!rawData">
+        <i class="fas fa-copy"></i>
+    </button>
+    <button style="margin-top: 3em" class="btn aql-button position-absolute"
+            placement="left"
+            container="body"
+            (click)="toggleXml()"
+            [disabled]="!rawData"
+            [ngbTooltip]="(!showAsXml ? 'SHOW_AS_XML' : 'SHOW_AS_JSON')|translate">
+        <i class="fas fa-file-code"></i>
+    </button>
+    <pre class="raw">{{rawData}}</pre>
+</div>

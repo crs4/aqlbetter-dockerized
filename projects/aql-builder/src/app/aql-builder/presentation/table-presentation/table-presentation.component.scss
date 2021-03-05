@@ -1,0 +1,96 @@
+/* Copyright 2021 Better Ltd (www.better.care)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+@import "../../../../styles/variables";
+
+.tables-wrapper {
+  height: 100%;
+  width:100%;
+
+  .direct-table-wrapper {
+    width:100%;
+    overflow: auto;
+    padding-bottom: 15px;
+  }
+
+  .table {
+    font-size: 14px;
+    margin: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+
+    .sort {
+      content: url(../../../../assets/icons/sort.svg)
+    }
+
+    .sort-up {
+      content: url(../../../../assets/icons/sort-up.svg)
+    }
+
+    .sort-down {
+      content: url(../../../../assets/icons/sort-down.svg)
+    }
+
+    .table-icons {
+      display: inline-block;
+      line-height: 1;
+      width: 14px;
+      cursor: pointer;
+    }
+
+    th, td {
+      border: 1px solid;
+      padding: 0.25rem 0.5rem;
+    }
+
+    th {
+      border-color: $very-light-border;
+    }
+
+    td {
+      border-color: $very-light-border;
+    }
+
+    thead {
+      background-color: #e3f0ff;
+      color: $black;
+      th {
+        position: sticky;
+        top: 0;
+        background-color: #e3f0ff;
+        border-color: $very-light-border;
+        z-index: 5;
+      }
+
+      .sticky {
+        position: sticky;
+        left: 0;
+        padding-left: 5px;
+      }
+    }
+
+    tbody {
+      background-color: $white;
+    }
+  }
+
+  .table + .table {
+    margin-top: 20px;
+  }
+
+  .pagination-wrapper {
+      margin: 10px;
+  }
+}

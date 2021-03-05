@@ -1,0 +1,6 @@
+{
+  "Domain Name": {
+    "apiUrl": "https://www.sample-domain.com/rest/v1",
+    "adminApiUrl": "https://www.sample-domain.com/admin/rest/v1"
+  }
+}

@@ -1,6 +1,6 @@
 # Contributing
 
-> Thank you for considering contributing to our project. Your help if very welcome!
+> Thank you for considering contributing to our project. Your help is very welcome!
 
 When contributing, it's better to first discuss the change you wish to make via issue,
 email, or any other method with the owners of this repository before making a change.

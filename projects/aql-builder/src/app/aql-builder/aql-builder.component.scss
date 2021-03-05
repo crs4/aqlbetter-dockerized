@@ -1,0 +1,87 @@
+/* Copyright 2021 Better Ltd (www.better.care)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+@import "../../styles/variables";
+
+.aql-builder-wrapper {
+  height: $container-height;
+  width: calc(100vw - #{$navbar-width});
+  position: fixed;
+  display: flex;
+
+  .sidebar-panel {
+    position: relative;
+    flex: 1 0 $history-panel-width;
+    min-width: 0;
+    border-right: 1px solid $very-light-border;
+    border-top-right-radius: 8px;
+
+
+    &.collapsed {
+      flex: 1 1 47px;
+      max-width: 47px;
+    }
+
+  }
+
+  .main-content {
+    flex: 1 1 100%;
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    border-left: 2px solid $very-light-border;
+    border-top-left-radius: 8px;
+    background-color: $white;
+    overflow: hidden;
+
+    aql-editor-tabs {
+      flex: 0 0 55px;
+      overflow-x: auto;
+    }
+
+    .editor-resize-container{
+      flex: 1 0 $aql-editor-height;
+      position: relative; // Important: Position has to be relative for correct positioning of the resize handle (::before & ::after)
+
+      aql-editor {
+        width: inherit;
+        height: inherit;
+        display: flex;
+        padding: 0 15px;
+        justify-content: space-between;
+        align-items: stretch;
+      }
+    }
+
+    aql-presentation {
+      min-height: 0;
+      flex: 1 1 100%;
+      margin: 0 15px;
+      padding: 0;
+      height: 100%;
+    }
+  }
+}
+
+
+.resize-active {
+  border: 2px $logo-color-secondary dashed;
+  background-color: lighten($primary-blue, 30%);
+  opacity: 0.7;
+  right: 15px;
+  left: auto;
+  z-index: 1000;
+  overflow: hidden;
+}

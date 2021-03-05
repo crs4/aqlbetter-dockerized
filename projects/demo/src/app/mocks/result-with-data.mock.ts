@@ -14,6 +14,7 @@
  */
 
 
+// tslint:disable
 import { AqlResultMetadata } from '@bettercare/aql-result-table';
 
 export const resultWithDataMock: AqlResultMetadata = {

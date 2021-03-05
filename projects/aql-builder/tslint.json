@@ -1,0 +1,49 @@
+{
+  "extends": "../../tslint.json",
+  "rules": {
+    "jsdoc-format": false,
+    "no-redundant-jsdoc": false,
+    "variable-name": false,
+    "prefer-for-of": false,
+    "object-literal-key-quotes": false,
+    "ban-types": false,
+    "space-before-function-paren": false,
+    "only-arrow-functions": false,
+    "arrow-return-shorthand": true,
+    "callable-types": true,
+    "class-name": true,
+    "comment-format": [true, "check-space"],
+    "curly": true,
+    "deprecation": {
+      "severity": "warn"
+    },
+    "eofline": true,
+    "forin": true,
+    "import-blacklist": [
+      true,
+      "rxjs/Rx",
+      "rxjs/index",
+      "rxjs/internal"
+    ],
+    "import-spacing": true,
+    "indent": [true, "spaces"],
+    "interface-over-type-literal": true,
+    "label-position": true,
+    "max-line-length": [true, 200],
+    "member-access": false,
+    "typedef": false,
+    "no-string-literal": false,
+    "directive-selector": [
+      true,
+      "attribute",
+      ["bui", "aql", "app"],
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      ["bui", "aql", "app"],
+      "kebab-case"
+    ]
+  }
+}

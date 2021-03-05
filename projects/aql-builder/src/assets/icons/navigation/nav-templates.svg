@@ -1,0 +1,9 @@
+<svg id="nav-templates" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
+    <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-width="2">
+        <rect width="6" height="6" x="5" y="5" rx="1"/>
+        <rect width="6" height="6" x="17" y="5" rx="1"/>
+        <rect width="6" height="6" x="11" y="17" rx="1"/>
+        <rect width="26" height="26" x="1" y="1" rx="5"/>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8 11.735V14h12v-3M14 14v2.614"/>
+    </g>
+</svg>

@@ -1,0 +1,29 @@
+<bui-navbar [logo]="logo" (switchDomain)="switchDomain.emit()">
+    <bui-menu [menuItems]="menuItems"></bui-menu>
+</bui-navbar>
+<div class="aql-builder-wrapper bg-light">
+  <aql-sidebar-content-panel class="sidebar-panel" [class.collapsed]="!isSidebarPanelOpen"
+                             [isSidebarPanelOpen]="isSidebarPanelOpen" (toggleSidebarPanel)="toggleSideBarPanel()"></aql-sidebar-content-panel>
+
+  <div class="main-content">
+    <aql-editor-tabs></aql-editor-tabs>
+    <div mwlResizable class="editor-resize-container" *ngIf="showEditor"
+           [resizeEdges]="dragToResizeSettings"
+           [allowNegativeResizes]="true"
+           [enableGhostResize]="true"
+           [ghostElementPositioning]="'absolute'"
+           [resizeCursorPrecision]="0"
+           [style.flex-basis]="editorFlexHeight + 'px'"
+           [style.height]="editorFlexHeight + 'px'"
+           (click)="preventDefaultIfResize($event)"
+           (resizeEnd)="resizeEnd($event)">
+        <div mwlResizeHandle
+               [resizeEdges]="dragToResizeSettings"
+               class="resize-handle">----</div>
+        <aql-editor [wasEditorResized]="wasEditorResized"
+                    [isSidebarPanelOpen]="isSidebarPanelOpen"
+                    (resetResizeState)="wasEditorResized = false"></aql-editor>
+      </div>
+      <aql-presentation [showEditor]="showEditor" (hideEditor)="toggleEditor()"></aql-presentation>
+  </div>
+</div>
