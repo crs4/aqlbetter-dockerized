@@ -1,0 +1,8 @@
+<button aria-label="Close" class="toast-close-button ng-star-inserted" style=""><span aria-hidden="true" (click)="dismiss($event)">×</span></button>
+<div class="toast-title" *ngIf="toastPackage?.title">
+    {{ toastPackage.title }}
+    <button class="btn text-primary float-right" (click)="copyToClipboard(toastPackage.message)">
+        <i class="fas fa-copy"></i>
+    </button>
+</div>
+<div aria-live="polite" role="alertdialog" class="toast-message ng-star-inserted" style="">{{toastPackage.message}}</div>

@@ -163,6 +163,177 @@
           }
         }
       }
+    },
+    "aql-builder": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/aql-builder",
+      "sourceRoot": "projects/aql-builder/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/aql-builder",
+            "index": "projects/aql-builder/src/index.html",
+            "main": "projects/aql-builder/src/main.ts",
+            "polyfills": "projects/aql-builder/src/polyfills.ts",
+            "tsConfig": "projects/aql-builder/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/aql-builder/src/favicon.ico",
+              "projects/aql-builder/src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-monaco-editor/assets/monaco",
+                "output": "/assets/monaco/"
+              }
+            ],
+            "styles": [
+              "projects/aql-builder/src/styles.scss"
+            ],
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "xml-beautifier",
+              "sortablejs",
+              "jszip"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/aql-builder/src/environments/environment.ts",
+                  "with": "projects/aql-builder/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "production-oauth": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/aql-builder/src/environments/environment.ts",
+                  "with": "projects/aql-builder/src/environments/environment.prod.oauth.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "oauth": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/aql-builder/src/environments/environment.ts",
+                  "with": "projects/aql-builder/src/environments/environment.oauth.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "aql-builder:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "aql-builder:build:production"
+            },
+            "oauth": {
+              "browserTarget": "aql-builder:build:oauth"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "aql-builder:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/aql-builder/src/test.ts",
+            "polyfills": "projects/aql-builder/src/polyfills.ts",
+            "tsConfig": "projects/aql-builder/tsconfig.spec.json",
+            "karmaConfig": "projects/aql-builder/karma.conf.js",
+            "assets": [
+              "projects/aql-builder/src/favicon.ico",
+              "projects/aql-builder/src/assets"
+            ],
+            "styles": [
+              "projects/aql-builder/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/aql-builder/tsconfig.app.json",
+              "projects/aql-builder/tsconfig.spec.json",
+              "projects/aql-builder/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/aql-builder/e2e/protractor.conf.js",
+            "devServerTarget": "aql-builder:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "aql-builder:serve:production"
+            }
+          }
+        }
+      }
     }},
   "cli": {
     "analytics": false

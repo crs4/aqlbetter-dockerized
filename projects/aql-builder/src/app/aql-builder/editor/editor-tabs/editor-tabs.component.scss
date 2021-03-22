@@ -1,0 +1,75 @@
+/* Copyright 2021 Better Ltd (www.better.care)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+@import "../../../../styles/variables";
+
+  .tab-group {
+    padding: 10px 15px 0px 55px;
+    background-color: white;
+    white-space: nowrap;
+    overflow-y: visible;
+    overflow-x: auto;
+
+    .editor-tab--item {
+      display: inline-block;
+      padding: 0.03rem 0.15rem;
+      margin: 0 0.5rem;
+      cursor: pointer;
+      max-width: 200px;
+      white-space: nowrap;
+      font-size: 0.9rem;
+      border-bottom: 2px solid transparent;
+      color: $bluish-grey-text;
+      font-weight: 600;
+
+      &:hover {
+        color: $black;
+      }
+
+      &.active {
+        border-bottom: 2px solid $primary-blue;
+        color: black;
+      }
+
+      .editor-tab--remove-btn {
+        font-size: 1rem;
+        padding: 0;
+        margin: 0;
+        color: $bluish-grey-text;
+
+        &:hover {
+          color: $black;
+        }
+      }
+
+      .editor-tab--input {
+        border: 0;
+        border-radius: 4px;
+        bottom: 1px solid $very-light-border;
+        padding: 0;
+        width: min-content;
+
+        &:focus {
+          border: 0;
+          box-shadow: none;
+          outline: none;
+        }
+      }
+    }
+  }
+
+.dropdown-toggle::after {
+  display: none;
+}

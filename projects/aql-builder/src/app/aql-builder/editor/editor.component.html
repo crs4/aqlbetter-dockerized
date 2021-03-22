@@ -1,0 +1,34 @@
+<aql-editor-menu class="editor-menu-vertical mr-1"
+                 (menuClick)="handleMenuAction($event)"
+                 (formatDocument)="onFormatDocument()"
+                 [code]="code"
+                 [codePresentation]="codePresentation"
+                 [tab]="tab"
+                 [debuggerEnabled]="debuggerEnabled"
+                 [isSidebarPanelOpen]="isSidebarPanelOpen"></aql-editor-menu>
+<div class="monaco-wrapper d-flex flex-column h-100" #monacoWrapper>
+    <ngx-monaco-editor class="flex-grow-1" [options]="editorOptions"
+                       [ngModel]="code"
+                       (ngModelChange)="codeChanged($event)"
+                       (onInit)="editorInit($event)"></ngx-monaco-editor>
+</div>
+
+<div class="params-container d-flex flex-column"
+     *ngIf="editorData.aqlParameters.size > 0" [ngClass]="{'view-params': tab.view?.type === EhrViewType.JS}">
+    <aql-view-params class="view-params" *ngIf="tab.view?.type === EhrViewType.JS" [tab]="tab"
+                     (paramsChanged)="checkEditorContainerSizeAndResize()"></aql-view-params>
+    <ng-container *ngIf="tab.view?.type !== EhrViewType.JS">
+        <h2 class="property-title">{{'PARAMETER_VALUES' | translate}}</h2>
+        <div *ngFor="let entry of editorData.aqlParameters | keyvalue" class="form-control-group parameters mt-1">
+            <div class="param-row">
+            <label class="aql-params-label" [for]="entry.key">{{entry.key}}</label>
+            <input #val class="form-control fb-input param"
+                        type="text"
+                        [id]="entry.key"
+                        (change)="changeValue(entry.key, val.value)"
+                        [value]="entry.value"
+                        (input)="validateInput(val)">
+            </div>
+        </div>
+    </ng-container>
+</div>

@@ -1,0 +1,39 @@
+<ng-container *ngIf="tables">
+    <div #tablesWrapper class="tables-wrapper">
+        <ng-container *ngFor="let table of tables">
+            <div class="direct-table-wrapper">
+                <table  class="table table-bordered table-striped" >
+                    <thead>
+                        <tr *ngFor="let row of table.headers">
+                            <th *ngFor="let content of row.content"
+                                class="{{content.classes.join(' ')}}"
+                                [attr.colspan]="content?.attributes?.colspan"
+                                [attr.rowspan]="content?.attributes?.rowspan"
+                                [attr.path]="content?.attributes?.path"
+                                [attr.nowrap]="content?.attributes?.nowrap"
+                                (click)="sort(content?.attributes?.path)"
+                            >
+                                <span class="{{content?.value?.class}}">
+                                    {{content?.value?.text}}
+                                    <ng-container *ngIf="content?.icons?.length">
+                                        <i *ngFor="let icon of content.icons" class="{{icon['classes'].join(' ')}}"></i>
+                                    </ng-container>
+                                </span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of table.body | slice: (table.page - 1) * pageSize : (table.page - 1) * pageSize + pageSize">
+                            <td *ngFor="let content of row.content" [attr.nowrap]="content?.attributes?.nowrap">
+                                {{content?.value?.text}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination-wrapper">
+                <ngb-pagination class="mt-2 float-right" [collectionSize]="table.body.length" [pageSize]="pageSize" [(page)]="table.page" [maxSize]="7" [rotate]="true"></ngb-pagination>
+            </div>
+        </ng-container>
+    </div>
+</ng-container>

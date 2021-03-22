@@ -1,0 +1,31 @@
+<div class="presentation-container d-flex flex-column flex-start fs-exclude">
+    <aql-presentation-toolbar class="flex-grow-0" [tab]="tab" [showEditor]="showEditor" (hideEditor)="toggleEditor()"></aql-presentation-toolbar>
+    <ng-container *ngIf="(showSpinner$ | async) === false; else spinner">
+        <aql-table-presentation [data]="tab?.result"
+                                [tab]="tab"
+                                *ngIf="tab?.view?.type !== EhrViewType.JS && (currentPresentation | async) !== TablePresentation.RAW"></aql-table-presentation>
+        <aql-raw-presentation [rawData]="rawData"
+                              [showAsXml]="showAsXml|async"
+                              (toggleDataType)="toggleXmlView()"
+                              *ngIf="tab?.view?.type !== EhrViewType.JS && (currentPresentation | async) === TablePresentation.RAW"></aql-raw-presentation>
+        <ng-container *ngIf="tab?.result?.resultSet && !tab.result?.resultSet.length && tab?.queryIsValid === true">
+            <div class="no-results position-center">
+                {{'NO_RESULTS_FOUND' | translate}}
+            </div>
+        </ng-container>
+        <ng-container *ngIf="tab?.result?.resultSet && !tab.result?.resultSet.length && tab?.queryIsValid === false">
+            <div class="no-results position-center text-center">
+                {{'QUERY_IS_INVALID' | translate}}
+                <div class="error-message" *ngIf="tab.errorMessage">{{tab.errorMessage}}</div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="tab?.type === TabType.VIEW && tab?.view?.type === EhrViewType.JS">
+               <div class="console-view h-100">
+                    <div id="js-console-wrapper"></div>
+                </div>
+        </ng-container>
+    </ng-container>
+    <ng-template #spinner>
+        <aql-spinner class="position-center"></aql-spinner>
+    </ng-template>
+</div>

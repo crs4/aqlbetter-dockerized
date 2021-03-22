@@ -1,0 +1,10 @@
+<svg id="nav-history" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
+    <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-width="2">
+        <rect width="26" height="26" x="1" y="1" rx="5"/>
+        <path d="M6 6.861h16.555"/>
+        <path d="M6 10.861h16.555" opacity=".821"/>
+        <path d="M6 14.861h16.555" opacity=".521"/>
+        <path d="M6 18.861h16.555" opacity=".411"/>
+        <path d="M6 22.861h16.555" opacity=".299"/>
+    </g>
+</svg>

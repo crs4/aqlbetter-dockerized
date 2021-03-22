@@ -1,0 +1,10 @@
+<div *ngFor="let button of menuItems">
+  <button class="btn btn-nav btn-sm"
+          [ngClass]="((selectedItem$ | async) === button.name) ? 'active' : ''"
+          ngbTooltip="{{ button.translationName || button.name | translate }}"
+          (click)="selectPanel(button.name)">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28">
+      <use attr.xlink:href="assets/icons/navigation/{{button.icon}}.svg#{{button.icon}}"></use>
+    </svg>
+  </button>
+</div>

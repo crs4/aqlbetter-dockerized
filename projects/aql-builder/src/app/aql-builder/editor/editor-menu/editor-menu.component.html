@@ -1,0 +1,56 @@
+<div class="d-flex flex-column">
+    <button *ngIf="tab?.view?.type !== EhrViewType.JS"
+            class="btn aql-button m-0" type="button"
+            (click)="dispatchEvent(EditorMenuAction.RUN_QUERY)"
+            [ngbTooltip]="'EXECUTE_QUERY' | translate"
+            [container]="'body'"
+            [placement]="isSidebarPanelOpen ? 'left' : 'right'"
+            [disabled]="!code">
+        <i class="fas fa-play m-1"></i>
+    </button>
+    <ng-container *ngIf="tab?.view?.type === EhrViewType.JS">
+        <button class="btn aql-button m-0" type="button" (click)="dispatchEvent(EditorMenuAction.RUN_JS_VIEW)"
+                [ngbTooltip]="'EXECUTE_VIEW' | translate"
+                [container]="'body'"
+                [placement]="isSidebarPanelOpen ? 'left' : 'right'"
+                [disabled]="!code">
+            <i class="fas fa-play m-1"></i>
+        </button>
+        <button class="btn aql-button m-0" type="button"
+                (click)="dispatchEvent(EditorMenuAction.DEBUG_VIEW)"
+                [ngbTooltip]="'DEBUG' | translate"
+                [container]="'body'"
+                [placement]="isSidebarPanelOpen ? 'left' : 'right'"
+                [disabled]="!code">
+            <i class="fas fa-bug m-1" [ngClass]="{'text-success': debuggerEnabled}"></i>
+        </button>
+    </ng-container>
+    <button class="btn aql-button m-0"
+            [ngbTooltip]="'COPY_PLAIN_TO_CLIPBOARD' | translate"
+            [container]="'body'"
+            [placement]="isSidebarPanelOpen ? 'left' : 'right'"
+            (click)="copyToClipboard(code)"
+            [disabled]="!code">
+        <i class="fas fa-copy m-1"></i>
+    </button>
+    <aql-save [tab]="tab" [code]="code" [name]="tab?.name" (viewUpdate)="onViewUpdate()"></aql-save>
+    <button class="btn aql-button m-0"
+            (click)="dispatchEvent(EditorMenuAction.SWITCH_CODE_PRESENTATION)"
+            [ngbTooltip]="codePresentation === ViewType.BEAUTIFY ? ('PLAIN' | translate) : ('BEAUTIFY' | translate)"
+            [container]="'body'"
+            [placement]="isSidebarPanelOpen ? 'left' : 'right'"
+            [disabled]="!code" [ngClass]="{'active': codePresentation === ViewType.BEAUTIFY}"
+            [ngSwitch]="codePresentation">
+        <i class="far fa-eye" *ngSwitchCase="ViewType.BEAUTIFY"></i>
+        <i class="far fa-eye-slash" *ngSwitchCase="ViewType.PLAIN"></i>
+    </button>
+
+    <button class="btn aql-button m-0"
+            type="button"
+            [ngbTooltip]="'FORMAT' | translate"
+            [container]="'body'"
+            [placement]="isSidebarPanelOpen ? 'left' : 'right'"
+            (click)="onFormatDocumentClick()">
+        <i class="fas fa-indent"></i>
+    </button>
+</div>

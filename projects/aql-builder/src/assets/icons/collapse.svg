@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" id="collapse">
+  <g fill="none" fill-rule="evenodd" stroke-linecap="round">
+    <path stroke="currentColor" d="M7 1L2.5 1M7.25 1L7.25 5.5M7 1L.5 7.5" transform="translate(2 10)"/>
+    <path stroke="currentColor" d="M7 1L2.5 1M7.25 1L7.25 5.5M7 1L.5 7.5" transform="rotate(-180 9 5)"/>
+  </g>
+</svg>

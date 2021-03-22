@@ -1,0 +1,4440 @@
+{
+  "name": "openehr",
+  "version": "1.0.3",
+  "types": {
+    "OBJECT_REF": {
+      "name": "OBJECT_REF",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "id": {
+          "name": "id",
+          "targetType": "OBJECT_ID",
+          "mandatory": true
+        },
+        "namespace": {
+          "name": "namespace",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "type": {
+          "name": "type",
+          "targetType": "STRING",
+          "mandatory": true
+        }
+      }
+    },
+    "LOCATABLE_REF": {
+      "name": "LOCATABLE_REF",
+      "ancestors": [
+        "OBJECT_REF"
+      ],
+      "attributes": {
+        "id": {
+          "name": "id",
+          "targetType": "UID_BASED_ID",
+          "mandatory": true
+        },
+        "path": {
+          "name": "path",
+          "targetType": "STRING",
+          "imInfrastructure": true
+        }
+      }
+    },
+    "PARTY_REF": {
+      "name": "PARTY_REF",
+      "ancestors": [
+        "OBJECT_REF"
+      ],
+      "attributes": {}
+    },
+    "ACCESS_GROUP_REF": {
+      "name": "ACCESS_GROUP_REF",
+      "ancestors": [
+        "OBJECT_REF"
+      ],
+      "attributes": {}
+    },
+    "OBJECT_ID": {
+      "name": "OBJECT_ID",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "value": {
+          "name": "value",
+          "targetType": "STRING",
+          "mandatory": true
+        }
+      }
+    },
+    "TERMINOLOGY_ID": {
+      "name": "TERMINOLOGY_ID",
+      "ancestors": [
+        "OBJECT_ID"
+      ],
+      "attributes": {}
+    },
+    "UID_BASED_ID": {
+      "name": "UID_BASED_ID",
+      "ancestors": [
+        "OBJECT_ID"
+      ],
+      "attributes": {}
+    },
+    "GENERIC_ID": {
+      "name": "GENERIC_ID",
+      "ancestors": [
+        "OBJECT_ID"
+      ],
+      "attributes": {
+        "scheme": {
+          "name": "scheme",
+          "targetType": "STRING",
+          "mandatory": true
+        }
+      }
+    },
+    "ARCHETYPE_ID": {
+      "name": "ARCHETYPE_ID",
+      "ancestors": [
+        "OBJECT_ID"
+      ],
+      "attributes": {}
+    },
+    "ARCHETYPE_HRID": {
+      "name": "ARCHETYPE_HRID",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "namespace": {
+          "name": "namespace",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "rm_publisher": {
+          "name": "rm_publisher",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "rm_package": {
+          "name": "rm_package",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "rm_class": {
+          "name": "rm_class",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "concept_id": {
+          "name": "concept_id",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "release_version": {
+          "name": "release_version",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "version_status": {
+          "name": "version_status",
+          "targetType": "VERSION_STATUS",
+          "mandatory": true
+        },
+        "build_count": {
+          "name": "build_count",
+          "targetType": "STRING",
+          "mandatory": true
+        }
+      }
+    },
+    "TEMPLATE_ID": {
+      "name": "TEMPLATE_ID",
+      "ancestors": [
+        "OBJECT_ID"
+      ],
+      "attributes": {}
+    },
+    "OBJECT_VERSION_ID": {
+      "name": "OBJECT_VERSION_ID",
+      "ancestors": [
+        "UID_BASED_ID"
+      ],
+      "attributes": {}
+    },
+    "HIER_OBJECT_ID": {
+      "name": "HIER_OBJECT_ID",
+      "ancestors": [
+        "UID_BASED_ID"
+      ],
+      "attributes": {}
+    },
+    "VERSION_TREE_ID": {
+      "name": "VERSION_TREE_ID",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "value": {
+          "name": "value",
+          "targetType": "STRING",
+          "mandatory": true
+        }
+      }
+    },
+    "UID": {
+      "name": "UID",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "value": {
+          "name": "value",
+          "targetType": "STRING",
+          "mandatory": true
+        }
+      }
+    },
+    "INTERNET_ID": {
+      "name": "INTERNET_ID",
+      "ancestors": [
+        "UID"
+      ],
+      "attributes": {}
+    },
+    "UUID": {
+      "name": "UUID",
+      "ancestors": [
+        "UID"
+      ],
+      "attributes": {}
+    },
+    "ISO_OID": {
+      "name": "ISO_OID",
+      "ancestors": [
+        "UID"
+      ],
+      "attributes": {}
+    },
+    "VALIDITY_KIND": {
+      "name": "VALIDITY_KIND",
+      "ancestors": [
+        "STRING"
+      ],
+      "attributes": {},
+      "itemNames": [
+        "mandatory",
+        "optional",
+        "prohibited"
+      ],
+      "primitiveAmType": "C_STRING"
+    },
+    "VERSION_STATUS": {
+      "name": "VERSION_STATUS",
+      "ancestors": [
+        "STRING"
+      ],
+      "attributes": {},
+      "itemNames": [
+        "alpha",
+        "beta",
+        "release_candidate",
+        "released",
+        "build"
+      ],
+      "primitiveAmType": "C_STRING"
+    },
+    "AUTHORED_RESOURCE": {
+      "name": "AUTHORED_RESOURCE",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "original_language": {
+          "name": "original_language",
+          "targetType": "TERMINOLOGY_CODE",
+          "mandatory": true
+        },
+        "is_controlled": {
+          "name": "is_controlled",
+          "targetType": "BOOLEAN"
+        },
+        "translations": {
+          "name": "translations",
+          "targetType": "TRANSLATION_DETAILS",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "description": {
+          "name": "description",
+          "targetType": "RESOURCE_DESCRIPTION"
+        }
+      }
+    },
+    "TRANSLATION_DETAILS": {
+      "name": "TRANSLATION_DETAILS",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "language": {
+          "name": "language",
+          "targetType": "TERMINOLOGY_CODE",
+          "mandatory": true
+        },
+        "author": {
+          "name": "author",
+          "targetType": "HASH<STRING, STRING>",
+          "mandatory": true
+        },
+        "accreditation": {
+          "name": "accreditation",
+          "targetType": "STRING"
+        },
+        "other_details": {
+          "name": "other_details",
+          "targetType": "HASH<STRING, STRING>"
+        }
+      }
+    },
+    "RESOURCE_DESCRIPTION": {
+      "name": "RESOURCE_DESCRIPTION",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "original_author": {
+          "name": "original_author",
+          "targetType": "HASH<STRING, STRING>",
+          "mandatory": true
+        },
+        "other_contributors": {
+          "name": "other_contributors",
+          "targetType": "STRING",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "lifecycle_state": {
+          "name": "lifecycle_state",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "resource_package_uri": {
+          "name": "resource_package_uri",
+          "targetType": "STRING"
+        },
+        "other_details": {
+          "name": "other_details",
+          "targetType": "HASH<STRING, STRING>"
+        },
+        "parent_resource": {
+          "name": "parent_resource",
+          "targetType": "AUTHORED_RESOURCE",
+          "mandatory": true
+        },
+        "details": {
+          "name": "details",
+          "targetType": "RESOURCE_DESCRIPTION_ITEM",
+          "mandatory": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "RESOURCE_DESCRIPTION_ITEM": {
+      "name": "RESOURCE_DESCRIPTION_ITEM",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "language": {
+          "name": "language",
+          "targetType": "TERMINOLOGY_CODE",
+          "mandatory": true
+        },
+        "purpose": {
+          "name": "purpose",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "keywords": {
+          "name": "keywords",
+          "targetType": "STRING",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "use": {
+          "name": "use",
+          "targetType": "STRING"
+        },
+        "misuse": {
+          "name": "misuse",
+          "targetType": "STRING"
+        },
+        "copyright": {
+          "name": "copyright",
+          "targetType": "STRING"
+        },
+        "original_resource_uri": {
+          "name": "original_resource_uri",
+          "targetType": "LIST",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "other_details": {
+          "name": "other_details",
+          "targetType": "HASH<STRING, STRING>",
+          "mandatory": true
+        }
+      }
+    },
+    "ANY": {
+      "type": "PRIMITIVE",
+      "name": "ANY",
+      "ancestors": [],
+      "attributes": {}
+    },
+    "ORDERED": {
+      "type": "PRIMITIVE",
+      "name": "ORDERED",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {}
+    },
+    "NUMERIC": {
+      "type": "PRIMITIVE",
+      "name": "NUMERIC",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {}
+    },
+    "ORDERED_NUMERIC": {
+      "type": "PRIMITIVE",
+      "name": "ORDERED_NUMERIC",
+      "ancestors": [
+        "NUMERIC",
+        "ORDERED"
+      ],
+      "attributes": {}
+    },
+    "BYTE": {
+      "type": "PRIMITIVE",
+      "name": "BYTE",
+      "ancestors": [
+        "ORDERED"
+      ],
+      "attributes": {},
+      "primitiveAmType": "C_INTEGER"
+    },
+    "OCTET": {
+      "type": "PRIMITIVE",
+      "name": "OCTET",
+      "ancestors": [
+        "ORDERED"
+      ],
+      "attributes": {}
+    },
+    "BOOLEAN": {
+      "type": "PRIMITIVE",
+      "name": "BOOLEAN",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {},
+      "primitiveAmType": "C_BOOLEAN"
+    },
+    "INTEGER": {
+      "type": "PRIMITIVE",
+      "name": "INTEGER",
+      "ancestors": [
+        "ORDERED_NUMERIC"
+      ],
+      "attributes": {},
+      "primitiveAmType": "C_INTEGER"
+    },
+    "INTEGER64": {
+      "type": "PRIMITIVE",
+      "name": "INTEGER64",
+      "ancestors": [
+        "ORDERED_NUMERIC"
+      ],
+      "attributes": {}
+    },
+    "REAL": {
+      "type": "PRIMITIVE",
+      "name": "REAL",
+      "ancestors": [
+        "ORDERED_NUMERIC"
+      ],
+      "attributes": {},
+      "primitiveAmType": "C_REAL"
+    },
+    "DOUBLE": {
+      "type": "PRIMITIVE",
+      "name": "DOUBLE",
+      "ancestors": [
+        "ORDERED_NUMERIC"
+      ],
+      "attributes": {},
+      "primitiveAmType": "C_REAL"
+    },
+    "CHARACTER": {
+      "type": "PRIMITIVE",
+      "name": "CHARACTER",
+      "ancestors": [
+        "ORDERED"
+      ],
+      "attributes": {}
+    },
+    "STRING": {
+      "type": "PRIMITIVE",
+      "name": "STRING",
+      "ancestors": [
+        "ORDERED"
+      ],
+      "attributes": {},
+      "primitiveAmType": "C_STRING"
+    },
+    "URI": {
+      "type": "PRIMITIVE",
+      "name": "URI",
+      "ancestors": [
+        "STRING"
+      ],
+      "attributes": {},
+      "primitiveAmType": "C_STRING"
+    },
+    "TEMPORAL": {
+      "type": "PRIMITIVE",
+      "name": "TEMPORAL",
+      "ancestors": [
+        "ORDERED"
+      ],
+      "attributes": {}
+    },
+    "ISO8601_TYPE": {
+      "type": "PRIMITIVE",
+      "name": "ISO8601_TYPE",
+      "ancestors": [
+        "TEMPORAL"
+      ],
+      "attributes": {}
+    },
+    "DATE": {
+      "type": "PRIMITIVE",
+      "name": "DATE",
+      "ancestors": [
+        "ISO8601_TYPE"
+      ],
+      "attributes": {}
+    },
+    "TIME": {
+      "type": "PRIMITIVE",
+      "name": "TIME",
+      "ancestors": [
+        "ISO8601_TYPE"
+      ],
+      "attributes": {}
+    },
+    "DATE_TIME": {
+      "type": "PRIMITIVE",
+      "name": "DATE_TIME",
+      "ancestors": [
+        "ISO8601_TYPE"
+      ],
+      "attributes": {}
+    },
+    "DURATION": {
+      "type": "PRIMITIVE",
+      "name": "DURATION",
+      "ancestors": [
+        "ISO8601_TYPE"
+      ],
+      "attributes": {}
+    },
+    "ISO8601_DATE": {
+      "type": "PRIMITIVE",
+      "name": "ISO8601_DATE",
+      "ancestors": [
+        "ISO8601_TYPE"
+      ],
+      "attributes": {},
+      "primitiveAmType": "C_DATE"
+    },
+    "ISO8601_TIME": {
+      "type": "PRIMITIVE",
+      "name": "ISO8601_TIME",
+      "ancestors": [
+        "ISO8601_TYPE"
+      ],
+      "attributes": {},
+      "primitiveAmType": "C_TIME"
+    },
+    "ISO8601_DATE_TIME": {
+      "type": "PRIMITIVE",
+      "name": "ISO8601_DATE_TIME",
+      "ancestors": [
+        "ISO8601_TYPE"
+      ],
+      "attributes": {},
+      "primitiveAmType": "C_DATE_TIME"
+    },
+    "ISO8601_DURATION": {
+      "type": "PRIMITIVE",
+      "name": "ISO8601_DURATION",
+      "ancestors": [
+        "ISO8601_TYPE"
+      ],
+      "attributes": {},
+      "primitiveAmType": "C_DURATION"
+    },
+    "TERMINOLOGY_TERM": {
+      "type": "PRIMITIVE",
+      "name": "TERMINOLOGY_TERM",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {}
+    },
+    "TERMINOLOGY_CODE": {
+      "type": "PRIMITIVE",
+      "name": "TERMINOLOGY_CODE",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {}
+    },
+    "CONTAINER": {
+      "type": "PRIMITIVE",
+      "name": "CONTAINER",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {}
+    },
+    "LIST": {
+      "type": "PRIMITIVE",
+      "name": "LIST",
+      "ancestors": [
+        "CONTAINER"
+      ],
+      "attributes": {}
+    },
+    "ARRAY": {
+      "type": "PRIMITIVE",
+      "name": "ARRAY",
+      "ancestors": [
+        "CONTAINER"
+      ],
+      "attributes": {}
+    },
+    "SET": {
+      "type": "PRIMITIVE",
+      "name": "SET",
+      "ancestors": [
+        "CONTAINER"
+      ],
+      "attributes": {}
+    },
+    "INTERVAL": {
+      "type": "PRIMITIVE",
+      "name": "INTERVAL",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {}
+    },
+    "HASH": {
+      "type": "PRIMITIVE",
+      "name": "HASH",
+      "ancestors": [
+        "CONTAINER"
+      ],
+      "attributes": {}
+    },
+    "DATA_VALUE": {
+      "name": "DATA_VALUE",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {}
+    },
+    "DV_BOOLEAN": {
+      "name": "DV_BOOLEAN",
+      "ancestors": [
+        "DATA_VALUE"
+      ],
+      "attributes": {
+        "value": {
+          "name": "value",
+          "targetType": "BOOLEAN",
+          "mandatory": true
+        }
+      }
+    },
+    "DV_IDENTIFIER": {
+      "name": "DV_IDENTIFIER",
+      "ancestors": [
+        "DATA_VALUE"
+      ],
+      "attributes": {
+        "issuer": {
+          "name": "issuer",
+          "targetType": "STRING"
+        },
+        "id": {
+          "name": "id",
+          "targetType": "STRING",
+          "mandatory": true,
+          "imRuntime": true
+        },
+        "type": {
+          "name": "type",
+          "targetType": "STRING"
+        },
+        "assigner": {
+          "name": "assigner",
+          "targetType": "STRING"
+        }
+      }
+    },
+    "DV_STATE": {
+      "name": "DV_STATE",
+      "ancestors": [
+        "DATA_VALUE"
+      ],
+      "attributes": {
+        "value": {
+          "name": "value",
+          "targetType": "DV_CODED_TEXT",
+          "mandatory": true
+        },
+        "is_terminal": {
+          "name": "is_terminal",
+          "targetType": "BOOLEAN",
+          "mandatory": true
+        }
+      }
+    },
+    "TERM_MAPPING": {
+      "name": "TERM_MAPPING",
+      "ancestors": [],
+      "attributes": {
+        "match": {
+          "name": "match",
+          "targetType": "CHARACTER",
+          "mandatory": true
+        },
+        "purpose": {
+          "name": "purpose",
+          "targetType": "DV_CODED_TEXT"
+        },
+        "target": {
+          "name": "target",
+          "targetType": "CODE_PHRASE",
+          "mandatory": true
+        }
+      }
+    },
+    "DV_TEXT": {
+      "name": "DV_TEXT",
+      "ancestors": [
+        "DATA_VALUE"
+      ],
+      "attributes": {
+        "value": {
+          "name": "value",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "hyperlink": {
+          "name": "hyperlink",
+          "targetType": "DV_URI",
+          "imRuntime": true
+        },
+        "language": {
+          "name": "language",
+          "targetType": "CODE_PHRASE",
+          "imInfrastructure": true
+        },
+        "encoding": {
+          "name": "encoding",
+          "targetType": "CODE_PHRASE",
+          "imInfrastructure": true
+        },
+        "formatting": {
+          "name": "formatting",
+          "targetType": "STRING",
+          "imRuntime": true
+        },
+        "mappings": {
+          "name": "mappings",
+          "targetType": "TERM_MAPPING",
+          "imRuntime": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "DV_CODED_TEXT": {
+      "name": "DV_CODED_TEXT",
+      "ancestors": [
+        "DV_TEXT"
+      ],
+      "attributes": {
+        "defining_code": {
+          "name": "defining_code",
+          "targetType": "CODE_PHRASE",
+          "mandatory": true
+        }
+      }
+    },
+    "CODE_PHRASE": {
+      "name": "CODE_PHRASE",
+      "ancestors": [],
+      "attributes": {
+        "terminology_id": {
+          "name": "terminology_id",
+          "targetType": "TERMINOLOGY_ID",
+          "mandatory": true
+        },
+        "code_string": {
+          "name": "code_string",
+          "targetType": "STRING",
+          "mandatory": true
+        }
+      }
+    },
+    "DV_PARAGRAPH": {
+      "name": "DV_PARAGRAPH",
+      "ancestors": [
+        "DATA_VALUE"
+      ],
+      "attributes": {
+        "items": {
+          "name": "items",
+          "targetType": "DV_TEXT",
+          "mandatory": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "DV_INTERVAL": {
+      "name": "DV_INTERVAL",
+      "ancestors": [
+        "INTERVAL",
+        "DATA_VALUE"
+      ],
+      "attributes": {},
+      "genericTypes": {
+        "T": "DV_ORDERED"
+      }
+    },
+    "REFERENCE_RANGE": {
+      "name": "REFERENCE_RANGE",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "range": {
+          "name": "range",
+          "targetType": "DV_INTERVAL<T>",
+          "mandatory": true
+        },
+        "meaning": {
+          "name": "meaning",
+          "targetType": "DV_TEXT",
+          "mandatory": true
+        }
+      },
+      "genericTypes": {
+        "T": "DV_ORDERED"
+      }
+    },
+    "DV_ORDERED": {
+      "name": "DV_ORDERED",
+      "ancestors": [
+        "ORDERED",
+        "DATA_VALUE"
+      ],
+      "attributes": {
+        "normal_status": {
+          "name": "normal_status",
+          "targetType": "CODE_PHRASE"
+        },
+        "normal_range": {
+          "name": "normal_range",
+          "targetType": "DV_INTERVAL<DV_ORDERED>"
+        },
+        "other_reference_ranges": {
+          "name": "other_reference_ranges",
+          "targetType": "LIST",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "DV_QUANTIFIED": {
+      "name": "DV_QUANTIFIED",
+      "ancestors": [
+        "DV_ORDERED"
+      ],
+      "attributes": {
+        "magnitude_status": {
+          "name": "magnitude_status",
+          "targetType": "STRING",
+          "imRuntime": true
+        },
+        "accuracy": {
+          "name": "accuracy",
+          "targetType": "ANY"
+        }
+      }
+    },
+    "DV_ORDINAL": {
+      "name": "DV_ORDINAL",
+      "ancestors": [
+        "DV_ORDERED"
+      ],
+      "attributes": {
+        "value": {
+          "name": "value",
+          "targetType": "INTEGER",
+          "mandatory": true
+        },
+        "symbol": {
+          "name": "symbol",
+          "targetType": "DV_CODED_TEXT",
+          "mandatory": true
+        }
+      }
+    },
+    "DV_AMOUNT": {
+      "name": "DV_AMOUNT",
+      "ancestors": [
+        "DV_QUANTIFIED"
+      ],
+      "attributes": {
+        "accuracy": {
+          "name": "accuracy",
+          "targetType": "REAL",
+          "imRuntime": true
+        },
+        "accuracy_is_percent": {
+          "name": "accuracy_is_percent",
+          "targetType": "BOOLEAN",
+          "imRuntime": true
+        }
+      }
+    },
+    "DV_ABSOLUTE_QUANTITY": {
+      "name": "DV_ABSOLUTE_QUANTITY",
+      "ancestors": [
+        "DV_QUANTIFIED"
+      ],
+      "attributes": {
+        "accuracy": {
+          "name": "accuracy",
+          "targetType": "DV_AMOUNT",
+          "imRuntime": true
+        }
+      }
+    },
+    "DV_QUANTITY": {
+      "name": "DV_QUANTITY",
+      "ancestors": [
+        "DV_AMOUNT"
+      ],
+      "attributes": {
+        "magnitude": {
+          "name": "magnitude",
+          "targetType": "REAL",
+          "mandatory": true
+        },
+        "property": {
+          "name": "property",
+          "targetType": "CODE_PHRASE",
+          "mandatory": true
+        },
+        "units": {
+          "name": "units",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "precision": {
+          "name": "precision",
+          "targetType": "INTEGER"
+        },
+        "normal_range": {
+          "name": "normal_range",
+          "targetType": "DV_INTERVAL<DV_QUANTITY>"
+        },
+        "other_reference_ranges": {
+          "name": "other_reference_ranges",
+          "targetType": "LIST",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "DV_COUNT": {
+      "name": "DV_COUNT",
+      "ancestors": [
+        "DV_AMOUNT"
+      ],
+      "attributes": {
+        "magnitude": {
+          "name": "magnitude",
+          "targetType": "INTEGER64",
+          "mandatory": true
+        },
+        "normal_range": {
+          "name": "normal_range",
+          "targetType": "DV_INTERVAL<DV_COUNT>"
+        },
+        "other_reference_ranges": {
+          "name": "other_reference_ranges",
+          "targetType": "LIST",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "DV_PROPORTION": {
+      "name": "DV_PROPORTION",
+      "ancestors": [
+        "DV_AMOUNT"
+      ],
+      "attributes": {
+        "numerator": {
+          "name": "numerator",
+          "targetType": "REAL",
+          "mandatory": true
+        },
+        "denominator": {
+          "name": "denominator",
+          "targetType": "REAL",
+          "mandatory": true
+        },
+        "type": {
+          "name": "type",
+          "targetType": "PROPORTION_KIND",
+          "mandatory": true
+        },
+        "precision": {
+          "name": "precision",
+          "targetType": "INTEGER"
+        },
+        "is_integral": {
+          "name": "is_integral",
+          "targetType": "BOOLEAN"
+        },
+        "normal_range": {
+          "name": "normal_range",
+          "targetType": "DV_INTERVAL<DV_PROPORTION>"
+        },
+        "other_reference_ranges": {
+          "name": "other_reference_ranges",
+          "targetType": "LIST",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "PROPORTION_KIND": {
+      "type": "ENUMERATION_INTEGER",
+      "name": "PROPORTION_KIND",
+      "ancestors": [
+        "INTEGER"
+      ],
+      "attributes": {},
+      "itemNames": [
+        "pk_ratio",
+        "pk_unitary",
+        "pk_percent",
+        "pk_fraction",
+        "pk_integer_fraction"
+      ],
+      "primitiveAmType": "C_INTEGER"
+    },
+    "DV_TEMPORAL": {
+      "name": "DV_TEMPORAL",
+      "ancestors": [
+        "DV_ABSOLUTE_QUANTITY"
+      ],
+      "attributes": {
+        "accuracy": {
+          "name": "accuracy",
+          "targetType": "DV_DURATION"
+        }
+      }
+    },
+    "DV_DATE": {
+      "name": "DV_DATE",
+      "ancestors": [
+        "DV_TEMPORAL",
+        "ISO8601_DATE"
+      ],
+      "attributes": {
+        "value": {
+          "name": "value",
+          "targetType": "STRING",
+          "mandatory": true
+        }
+      }
+    },
+    "DV_TIME": {
+      "name": "DV_TIME",
+      "ancestors": [
+        "DV_TEMPORAL",
+        "ISO8601_TIME"
+      ],
+      "attributes": {
+        "value": {
+          "name": "value",
+          "targetType": "STRING",
+          "mandatory": true
+        }
+      }
+    },
+    "DV_DATE_TIME": {
+      "name": "DV_DATE_TIME",
+      "ancestors": [
+        "DV_TEMPORAL",
+        "ISO8601_DATE_TIME"
+      ],
+      "attributes": {
+        "value": {
+          "name": "value",
+          "targetType": "STRING",
+          "mandatory": true
+        }
+      }
+    },
+    "DV_DURATION": {
+      "name": "DV_DURATION",
+      "ancestors": [
+        "DV_AMOUNT",
+        "ISO8601_DURATION"
+      ],
+      "attributes": {
+        "value": {
+          "name": "value",
+          "targetType": "STRING",
+          "mandatory": true
+        }
+      }
+    },
+    "DV_ENCAPSULATED": {
+      "name": "DV_ENCAPSULATED",
+      "ancestors": [
+        "DATA_VALUE"
+      ],
+      "attributes": {
+        "charset": {
+          "name": "charset",
+          "targetType": "CODE_PHRASE",
+          "imRuntime": true
+        },
+        "language": {
+          "name": "language",
+          "targetType": "CODE_PHRASE",
+          "imRuntime": true
+        }
+      }
+    },
+    "DV_MULTIMEDIA": {
+      "name": "DV_MULTIMEDIA",
+      "ancestors": [
+        "DV_ENCAPSULATED"
+      ],
+      "attributes": {
+        "alternate_text": {
+          "name": "alternate_text",
+          "targetType": "STRING"
+        },
+        "uri": {
+          "name": "uri",
+          "targetType": "DV_URI"
+        },
+        "data": {
+          "name": "data",
+          "targetType": "OCTET",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "media_type": {
+          "name": "media_type",
+          "targetType": "CODE_PHRASE",
+          "mandatory": true
+        },
+        "compression_algorithm": {
+          "name": "compression_algorithm",
+          "targetType": "CODE_PHRASE"
+        },
+        "integrity_check": {
+          "name": "integrity_check",
+          "targetType": "OCTET",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "integrity_check_algorithm": {
+          "name": "integrity_check_algorithm",
+          "targetType": "CODE_PHRASE"
+        },
+        "thumbnail": {
+          "name": "thumbnail",
+          "targetType": "DV_MULTIMEDIA"
+        },
+        "size": {
+          "name": "size",
+          "targetType": "INTEGER",
+          "mandatory": true,
+          "imRuntime": true
+        }
+      }
+    },
+    "DV_PARSABLE": {
+      "name": "DV_PARSABLE",
+      "ancestors": [
+        "DV_ENCAPSULATED"
+      ],
+      "attributes": {
+        "value": {
+          "name": "value",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "formalism": {
+          "name": "formalism",
+          "targetType": "STRING",
+          "mandatory": true
+        }
+      }
+    },
+    "DV_URI": {
+      "name": "DV_URI",
+      "ancestors": [
+        "DATA_VALUE"
+      ],
+      "attributes": {
+        "value": {
+          "name": "value",
+          "targetType": "STRING",
+          "mandatory": true
+        }
+      }
+    },
+    "DV_EHR_URI": {
+      "name": "DV_EHR_URI",
+      "ancestors": [
+        "DV_URI"
+      ],
+      "attributes": {}
+    },
+    "DV_TIME_SPECIFICATION": {
+      "name": "DV_TIME_SPECIFICATION",
+      "ancestors": [
+        "DATA_VALUE"
+      ],
+      "attributes": {
+        "value": {
+          "name": "value",
+          "targetType": "DV_PARSABLE",
+          "mandatory": true
+        }
+      }
+    },
+    "DV_PERIODIC_TIME_SPECIFICATION": {
+      "name": "DV_PERIODIC_TIME_SPECIFICATION",
+      "ancestors": [
+        "DV_TIME_SPECIFICATION"
+      ],
+      "attributes": {}
+    },
+    "DV_GENERAL_TIME_SPECIFICATION": {
+      "name": "DV_GENERAL_TIME_SPECIFICATION",
+      "ancestors": [
+        "DV_TIME_SPECIFICATION"
+      ],
+      "attributes": {}
+    },
+    "DATA_STRUCTURE": {
+      "name": "DATA_STRUCTURE",
+      "ancestors": [
+        "LOCATABLE"
+      ],
+      "attributes": {}
+    },
+    "ITEM_STRUCTURE": {
+      "name": "ITEM_STRUCTURE",
+      "displayName": "STRUCTURE",
+      "ancestors": [
+        "DATA_STRUCTURE"
+      ],
+      "attributes": {}
+    },
+    "ITEM_SINGLE": {
+      "name": "ITEM_SINGLE",
+      "ancestors": [
+        "ITEM_STRUCTURE"
+      ],
+      "attributes": {
+        "item": {
+          "name": "item",
+          "targetType": "ELEMENT",
+          "mandatory": true
+        }
+      }
+    },
+    "ITEM_LIST": {
+      "name": "ITEM_LIST",
+      "ancestors": [
+        "ITEM_STRUCTURE"
+      ],
+      "attributes": {
+        "items": {
+          "name": "items",
+          "targetType": "ELEMENT",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "ITEM_TABLE": {
+      "name": "ITEM_TABLE",
+      "ancestors": [
+        "ITEM_STRUCTURE"
+      ],
+      "attributes": {
+        "rows": {
+          "name": "rows",
+          "targetType": "CLUSTER",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "ITEM_TREE": {
+      "name": "ITEM_TREE",
+      "ancestors": [
+        "ITEM_STRUCTURE"
+      ],
+      "attributes": {
+        "items": {
+          "name": "items",
+          "targetType": "ITEM",
+          "autoCreate": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "ITEM": {
+      "name": "ITEM",
+      "transparent": true,
+      "ancestors": [
+        "LOCATABLE"
+      ],
+      "attributes": {}
+    },
+    "CLUSTER": {
+      "name": "CLUSTER",
+      "priority": 10,
+      "ancestors": [
+        "ITEM"
+      ],
+      "attributes": {
+        "items": {
+          "name": "items",
+          "targetType": "ITEM",
+          "mandatory": true,
+          "autoCreate": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "ELEMENT": {
+      "name": "ELEMENT",
+      "priority": 20,
+      "ancestors": [
+        "ITEM"
+      ],
+      "attributes": {
+        "null_flavour": {
+          "name": "null_flavour",
+          "targetType": "DV_CODED_TEXT"
+        },
+        "value": {
+          "name": "value",
+          "targetType": "DATA_VALUE"
+        }
+      }
+    },
+    "HISTORY": {
+      "name": "HISTORY",
+      "ancestors": [
+        "DATA_STRUCTURE"
+      ],
+      "attributes": {
+        "origin": {
+          "name": "origin",
+          "targetType": "DV_DATE_TIME",
+          "mandatory": true,
+          "imRuntime": true
+        },
+        "period": {
+          "name": "period",
+          "targetType": "DV_DURATION"
+        },
+        "duration": {
+          "name": "duration",
+          "targetType": "DV_DURATION"
+        },
+        "summary": {
+          "name": "summary",
+          "targetType": "ITEM_STRUCTURE"
+        },
+        "events": {
+          "name": "events",
+          "targetType": "LIST",
+          "autoCreate": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      },
+      "genericTypes": {
+        "T": "ITEM_STRUCTURE"
+      }
+    },
+    "EVENT": {
+      "name": "EVENT",
+      "ancestors": [
+        "LOCATABLE"
+      ],
+      "attributes": {
+        "time": {
+          "name": "time",
+          "targetType": "DV_DATE_TIME",
+          "mandatory": true,
+          "imRuntime": true
+        },
+        "state": {
+          "name": "state",
+          "targetType": "ITEM_STRUCTURE"
+        },
+        "data": {
+          "name": "data",
+          "targetType": "ITEM_STRUCTURE",
+          "genericType": "T",
+          "mandatory": true
+        },
+        "offset": {
+          "name": "offset",
+          "targetType": "DV_DURATION"
+        }
+      },
+      "genericTypes": {
+        "T": "ITEM_STRUCTURE"
+      }
+    },
+    "POINT_EVENT": {
+      "name": "POINT_EVENT",
+      "ancestors": [
+        "EVENT"
+      ],
+      "attributes": {},
+      "genericTypes": {
+        "T": "ITEM_STRUCTURE"
+      }
+    },
+    "INTERVAL_EVENT": {
+      "name": "INTERVAL_EVENT",
+      "ancestors": [
+        "EVENT"
+      ],
+      "attributes": {
+        "width": {
+          "name": "width",
+          "targetType": "DV_DURATION",
+          "mandatory": true
+        },
+        "sample_count": {
+          "name": "sample_count",
+          "targetType": "INTEGER",
+          "imRuntime": true
+        },
+        "math_function": {
+          "name": "math_function",
+          "targetType": "DV_CODED_TEXT",
+          "mandatory": true
+        }
+      },
+      "genericTypes": {
+        "T": "ITEM_STRUCTURE"
+      }
+    },
+    "REVISION_HISTORY": {
+      "name": "REVISION_HISTORY",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "items": {
+          "name": "items",
+          "targetType": "REVISION_HISTORY_ITEM",
+          "mandatory": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "REVISION_HISTORY_ITEM": {
+      "name": "REVISION_HISTORY_ITEM",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "version_id": {
+          "name": "version_id",
+          "targetType": "OBJECT_VERSION_ID",
+          "mandatory": true
+        },
+        "audits": {
+          "name": "audits",
+          "targetType": "AUDIT_DETAILS",
+          "mandatory": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "AUDIT_DETAILS": {
+      "name": "AUDIT_DETAILS",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "system_id": {
+          "name": "system_id",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "time_committed": {
+          "name": "time_committed",
+          "targetType": "DV_DATE_TIME",
+          "mandatory": true
+        },
+        "change_type": {
+          "name": "change_type",
+          "targetType": "DV_CODED_TEXT",
+          "mandatory": true
+        },
+        "description": {
+          "name": "description",
+          "targetType": "DV_TEXT"
+        },
+        "committer": {
+          "name": "committer",
+          "targetType": "PARTY_PROXY",
+          "mandatory": true
+        }
+      }
+    },
+    "ATTESTATION": {
+      "name": "ATTESTATION",
+      "ancestors": [
+        "AUDIT_DETAILS"
+      ],
+      "attributes": {
+        "attested_view": {
+          "name": "attested_view",
+          "targetType": "DV_MULTIMEDIA"
+        },
+        "proof": {
+          "name": "proof",
+          "targetType": "STRING"
+        },
+        "items": {
+          "name": "items",
+          "targetType": "DV_EHR_URI",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "reason": {
+          "name": "reason",
+          "targetType": "DV_TEXT",
+          "mandatory": true
+        },
+        "is_pending": {
+          "name": "is_pending",
+          "targetType": "BOOLEAN",
+          "mandatory": true
+        }
+      }
+    },
+    "PARTICIPATION": {
+      "name": "PARTICIPATION",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "function": {
+          "name": "function",
+          "targetType": "DV_TEXT",
+          "mandatory": true
+        },
+        "time": {
+          "name": "time",
+          "targetType": "DV_INTERVAL<DV_DATE_TIME>",
+          "imRuntime": true
+        },
+        "mode": {
+          "name": "mode",
+          "targetType": "DV_CODED_TEXT"
+        },
+        "performer": {
+          "name": "performer",
+          "targetType": "PARTY_PROXY",
+          "mandatory": true
+        }
+      }
+    },
+    "PARTY_PROXY": {
+      "name": "PARTY_PROXY",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "external_ref": {
+          "name": "external_ref",
+          "targetType": "PARTY_REF",
+          "imInfrastructure": true
+        }
+      }
+    },
+    "PARTY_IDENTIFIED": {
+      "name": "PARTY_IDENTIFIED",
+      "ancestors": [
+        "PARTY_PROXY"
+      ],
+      "attributes": {
+        "name": {
+          "name": "name",
+          "targetType": "STRING"
+        },
+        "identifiers": {
+          "name": "identifiers",
+          "targetType": "DV_IDENTIFIER",
+          "imRuntime": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "PARTY_RELATED": {
+      "name": "PARTY_RELATED",
+      "ancestors": [
+        "PARTY_IDENTIFIED"
+      ],
+      "attributes": {
+        "relationship": {
+          "name": "relationship",
+          "targetType": "DV_CODED_TEXT",
+          "mandatory": true
+        }
+      }
+    },
+    "PARTY_SELF": {
+      "name": "PARTY_SELF",
+      "ancestors": [
+        "PARTY_PROXY"
+      ],
+      "attributes": {}
+    },
+    "PATHABLE": {
+      "name": "PATHABLE",
+      "transparent": true,
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {}
+    },
+    "LOCATABLE": {
+      "name": "LOCATABLE",
+      "transparent": true,
+      "ancestors": [
+        "PATHABLE"
+      ],
+      "attributes": {
+        "uid": {
+          "name": "uid",
+          "targetType": "UID_BASED_ID",
+          "imInfrastructure": true
+        },
+        "archetype_node_id": {
+          "name": "archetype_node_id",
+          "targetType": "STRING",
+          "mandatory": true,
+          "imInfrastructure": true
+        },
+        "name": {
+          "name": "name",
+          "targetType": "DV_TEXT",
+          "mandatory": true
+        },
+        "archetype_details": {
+          "name": "archetype_details",
+          "targetType": "ARCHETYPED",
+          "imInfrastructure": true
+        },
+        "feeder_audit": {
+          "name": "feeder_audit",
+          "targetType": "FEEDER_AUDIT",
+          "imRuntime": true
+        },
+        "links": {
+          "name": "links",
+          "targetType": "LINK",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "LINK": {
+      "name": "LINK",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "meaning": {
+          "name": "meaning",
+          "targetType": "DV_TEXT",
+          "mandatory": true
+        },
+        "type": {
+          "name": "type",
+          "targetType": "DV_TEXT",
+          "mandatory": true
+        },
+        "target": {
+          "name": "target",
+          "targetType": "DV_EHR_URI",
+          "mandatory": true
+        }
+      }
+    },
+    "ARCHETYPED": {
+      "name": "ARCHETYPED",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "archetype_id": {
+          "name": "archetype_id",
+          "targetType": "ARCHETYPE_ID",
+          "mandatory": true,
+          "imInfrastructure": true
+        },
+        "template_id": {
+          "name": "template_id",
+          "targetType": "TEMPLATE_ID",
+          "imInfrastructure": true
+        },
+        "rm_version": {
+          "name": "rm_version",
+          "targetType": "STRING",
+          "mandatory": true,
+          "imInfrastructure": true
+        }
+      }
+    },
+    "FEEDER_AUDIT": {
+      "name": "FEEDER_AUDIT",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "originating_system_item_ids": {
+          "name": "originating_system_item_ids",
+          "targetType": "DV_IDENTIFIER",
+          "imRuntime": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "feeder_system_item_ids": {
+          "name": "feeder_system_item_ids",
+          "targetType": "DV_IDENTIFIER",
+          "imRuntime": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "original_content": {
+          "name": "original_content",
+          "targetType": "DV_ENCAPSULATED",
+          "imRuntime": true
+        },
+        "originating_system_audit": {
+          "name": "originating_system_audit",
+          "targetType": "FEEDER_AUDIT_DETAILS",
+          "mandatory": true,
+          "imRuntime": true
+        },
+        "feeder_system_audit": {
+          "name": "feeder_system_audit",
+          "targetType": "FEEDER_AUDIT_DETAILS",
+          "imRuntime": true
+        }
+      }
+    },
+    "FEEDER_AUDIT_DETAILS": {
+      "name": "FEEDER_AUDIT_DETAILS",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "system_id": {
+          "name": "system_id",
+          "targetType": "STRING",
+          "mandatory": true,
+          "imRuntime": true
+        },
+        "location": {
+          "name": "location",
+          "targetType": "PARTY_IDENTIFIED",
+          "imRuntime": true
+        },
+        "provider": {
+          "name": "provider",
+          "targetType": "PARTY_IDENTIFIED",
+          "imRuntime": true
+        },
+        "subject": {
+          "name": "subject",
+          "targetType": "PARTY_PROXY",
+          "imRuntime": true
+        },
+        "time": {
+          "name": "time",
+          "targetType": "DV_DATE_TIME",
+          "imRuntime": true
+        },
+        "version_id": {
+          "name": "version_id",
+          "targetType": "STRING",
+          "imRuntime": true
+        }
+      }
+    },
+    "FOLDER": {
+      "name": "FOLDER",
+      "ancestors": [
+        "LOCATABLE"
+      ],
+      "attributes": {
+        "folders": {
+          "name": "folders",
+          "targetType": "FOLDER",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "items": {
+          "name": "items",
+          "targetType": "OBJECT_REF",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "CONTRIBUTION": {
+      "name": "CONTRIBUTION",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "uid": {
+          "name": "uid",
+          "targetType": "HIER_OBJECT_ID",
+          "mandatory": true,
+          "imInfrastructure": true
+        },
+        "audit": {
+          "name": "audit",
+          "targetType": "AUDIT_DETAILS",
+          "mandatory": true,
+          "imInfrastructure": true
+        },
+        "versions": {
+          "name": "versions",
+          "targetType": "OBJECT_REF",
+          "mandatory": true,
+          "imInfrastructure": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "VERSIONED_OBJECT": {
+      "name": "VERSIONED_OBJECT",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "uid": {
+          "name": "uid",
+          "targetType": "HIER_OBJECT_ID",
+          "mandatory": true,
+          "imInfrastructure": true
+        },
+        "owner_id": {
+          "name": "owner_id",
+          "targetType": "OBJECT_REF",
+          "mandatory": true,
+          "imInfrastructure": true
+        },
+        "time_created": {
+          "name": "time_created",
+          "targetType": "DV_DATE_TIME",
+          "mandatory": true,
+          "imInfrastructure": true
+        }
+      }
+    },
+    "VERSION": {
+      "name": "VERSION",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {
+        "contribution": {
+          "name": "contribution",
+          "targetType": "OBJECT_REF",
+          "mandatory": true,
+          "imInfrastructure": true
+        },
+        "commit_audit": {
+          "name": "commit_audit",
+          "targetType": "AUDIT_DETAILS",
+          "mandatory": true,
+          "imInfrastructure": true
+        },
+        "signature": {
+          "name": "signature",
+          "targetType": "STRING",
+          "imInfrastructure": true
+        }
+      }
+    },
+    "ORIGINAL_VERSION": {
+      "name": "ORIGINAL_VERSION",
+      "ancestors": [
+        "VERSION"
+      ],
+      "attributes": {
+        "uid": {
+          "name": "uid",
+          "targetType": "OBJECT_VERSION_ID",
+          "mandatory": true,
+          "imInfrastructure": true
+        },
+        "preceding_version_uid": {
+          "name": "preceding_version_uid",
+          "targetType": "OBJECT_VERSION_ID",
+          "imInfrastructure": true
+        },
+        "other_input_version_uids": {
+          "name": "other_input_version_uids",
+          "targetType": "OBJECT_VERSION_ID",
+          "imInfrastructure": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "attestations": {
+          "name": "attestations",
+          "targetType": "ATTESTATION",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "lifecycle_state": {
+          "name": "lifecycle_state",
+          "targetType": "DV_CODED_TEXT",
+          "mandatory": true
+        },
+        "data": {
+          "name": "data",
+          "targetType": "T"
+        }
+      }
+    },
+    "IMPORTED_VERSION": {
+      "name": "IMPORTED_VERSION",
+      "ancestors": [
+        "VERSION"
+      ],
+      "attributes": {
+        "item": {
+          "name": "item",
+          "targetType": "ORIGINAL_VERSION<T>",
+          "mandatory": true,
+          "imInfrastructure": true
+        }
+      }
+    },
+    "EHR": {
+      "rmPackage": "EHR",
+      "name": "EHR",
+      "ancestors": [],
+      "attributes": {
+        "system_id": {
+          "name": "system_id",
+          "targetType": "HIER_OBJECT_ID",
+          "mandatory": true
+        },
+        "ehr_id": {
+          "name": "ehr_id",
+          "targetType": "HIER_OBJECT_ID",
+          "mandatory": true
+        },
+        "time_created": {
+          "name": "time_created",
+          "targetType": "DV_DATE_TIME",
+          "mandatory": true
+        },
+        "ehr_access": {
+          "name": "ehr_access",
+          "targetType": "OBJECT_REF",
+          "mandatory": true
+        },
+        "ehr_status": {
+          "name": "ehr_status",
+          "targetType": "OBJECT_REF",
+          "mandatory": true
+        },
+        "directory": {
+          "name": "directory",
+          "targetType": "OBJECT_REF"
+        },
+        "compositions": {
+          "name": "compositions",
+          "targetType": "OBJECT_REF",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "contributions": {
+          "name": "contributions",
+          "targetType": "OBJECT_REF",
+          "mandatory": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "most_recent_composition": {
+          "name": "most_recent_composition",
+          "targetType": "COMPOSITION"
+        }
+      }
+    },
+    "EHR_ACCESS": {
+      "rmPackage": "EHR",
+      "name": "EHR_ACCESS",
+      "ancestors": [
+        "LOCATABLE"
+      ],
+      "attributes": {
+        "settings": {
+          "name": "settings",
+          "targetType": "ACCESS_CONTROL_SETTINGS"
+        }
+      }
+    },
+    "ACCESS_CONTROL_SETTINGS": {
+      "rmPackage": "EHR",
+      "name": "ACCESS_CONTROL_SETTINGS",
+      "ancestors": [
+        "ANY"
+      ],
+      "attributes": {}
+    },
+    "EHR_STATUS": {
+      "rmPackage": "EHR",
+      "name": "EHR_STATUS",
+      "ancestors": [
+        "LOCATABLE"
+      ],
+      "attributes": {
+        "subject": {
+          "name": "subject",
+          "targetType": "PARTY_SELF",
+          "mandatory": true
+        },
+        "is_queryable": {
+          "name": "is_queryable",
+          "targetType": "BOOLEAN",
+          "mandatory": true
+        },
+        "is_modifiable": {
+          "name": "is_modifiable",
+          "targetType": "BOOLEAN",
+          "mandatory": true
+        },
+        "other_details": {
+          "name": "other_details",
+          "targetType": "ITEM_STRUCTURE"
+        }
+      }
+    },
+    "COMPOSITION": {
+      "rmPackage": "EHR",
+      "name": "COMPOSITION",
+      "ancestors": [
+        "LOCATABLE"
+      ],
+      "attributes": {
+        "language": {
+          "name": "language",
+          "targetType": "CODE_PHRASE",
+          "mandatory": true
+        },
+        "territory": {
+          "name": "territory",
+          "targetType": "CODE_PHRASE",
+          "mandatory": true
+        },
+        "category": {
+          "name": "category",
+          "targetType": "DV_CODED_TEXT",
+          "mandatory": true
+        },
+        "composer": {
+          "name": "composer",
+          "targetType": "PARTY_PROXY",
+          "mandatory": true
+        },
+        "context": {
+          "name": "context",
+          "targetType": "EVENT_CONTEXT",
+          "autoCreate": true
+        },
+        "content": {
+          "name": "content",
+          "targetType": "CONTENT_ITEM",
+          "autoCreate": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "EVENT_CONTEXT": {
+      "rmPackage": "EHR",
+      "name": "EVENT_CONTEXT",
+      "ancestors": [
+        "PATHABLE"
+      ],
+      "attributes": {
+        "health_care_facility": {
+          "name": "health_care_facility",
+          "targetType": "PARTY_IDENTIFIED"
+        },
+        "start_time": {
+          "name": "start_time",
+          "targetType": "DV_DATE_TIME",
+          "mandatory": true
+        },
+        "end_time": {
+          "name": "end_time",
+          "targetType": "DV_DATE_TIME"
+        },
+        "participations": {
+          "name": "participations",
+          "targetType": "PARTICIPATION",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "location": {
+          "name": "location",
+          "targetType": "STRING"
+        },
+        "setting": {
+          "name": "setting",
+          "targetType": "DV_CODED_TEXT",
+          "mandatory": true
+        },
+        "other_context": {
+          "name": "other_context",
+          "targetType": "ITEM_STRUCTURE"
+        }
+      }
+    },
+    "CONTENT_ITEM": {
+      "rmPackage": "EHR",
+      "name": "CONTENT_ITEM",
+      "transparent": true,
+      "ancestors": [
+        "LOCATABLE"
+      ],
+      "attributes": {}
+    },
+    "SECTION": {
+      "rmPackage": "EHR",
+      "name": "SECTION",
+      "ancestors": [
+        "CONTENT_ITEM"
+      ],
+      "attributes": {
+        "items": {
+          "name": "items",
+          "targetType": "CONTENT_ITEM",
+          "autoCreate": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "ENTRY": {
+      "rmPackage": "EHR",
+      "name": "ENTRY",
+      "ancestors": [
+        "CONTENT_ITEM"
+      ],
+      "attributes": {
+        "language": {
+          "name": "language",
+          "targetType": "CODE_PHRASE",
+          "mandatory": true,
+          "imInfrastructure": true
+        },
+        "encoding": {
+          "name": "encoding",
+          "targetType": "CODE_PHRASE",
+          "mandatory": true,
+          "imInfrastructure": true
+        },
+        "subject": {
+          "name": "subject",
+          "targetType": "PARTY_PROXY",
+          "mandatory": true
+        },
+        "provider": {
+          "name": "provider",
+          "targetType": "PARTY_PROXY"
+        },
+        "other_participations": {
+          "name": "other_participations",
+          "targetType": "PARTICIPATION",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "workflow_id": {
+          "name": "workflow_id",
+          "targetType": "OBJECT_REF",
+          "imRuntime": true
+        }
+      }
+    },
+    "ADMIN_ENTRY": {
+      "rmPackage": "EHR",
+      "name": "ADMIN_ENTRY",
+      "ancestors": [
+        "ENTRY"
+      ],
+      "attributes": {
+        "data": {
+          "name": "data",
+          "targetType": "ITEM_STRUCTURE",
+          "mandatory": true,
+          "autoCreate": true
+        }
+      }
+    },
+    "CARE_ENTRY": {
+      "rmPackage": "EHR",
+      "name": "CARE_ENTRY",
+      "transparent": true,
+      "ancestors": [
+        "ENTRY"
+      ],
+      "attributes": {
+        "protocol": {
+          "name": "protocol",
+          "targetType": "ITEM_STRUCTURE"
+        },
+        "guideline_id": {
+          "name": "guideline_id",
+          "targetType": "OBJECT_REF",
+          "imRuntime": true
+        }
+      }
+    },
+    "OBSERVATION": {
+      "rmPackage": "EHR",
+      "name": "OBSERVATION",
+      "ancestors": [
+        "CARE_ENTRY"
+      ],
+      "attributes": {
+        "data": {
+          "name": "data",
+          "targetType": "HISTORY<ITEM_STRUCTURE>",
+          "mandatory": true,
+          "autoCreate": true,
+          "preventDelete": true
+        },
+        "state": {
+          "name": "state",
+          "targetType": "HISTORY<ITEM_STRUCTURE>"
+        }
+      }
+    },
+    "EVALUATION": {
+      "rmPackage": "EHR",
+      "name": "EVALUATION",
+      "ancestors": [
+        "CARE_ENTRY"
+      ],
+      "attributes": {
+        "data": {
+          "name": "data",
+          "targetType": "ITEM_STRUCTURE",
+          "mandatory": true,
+          "autoCreate": true
+        }
+      }
+    },
+    "INSTRUCTION": {
+      "rmPackage": "EHR",
+      "name": "INSTRUCTION",
+      "ancestors": [
+        "CARE_ENTRY"
+      ],
+      "attributes": {
+        "narrative": {
+          "name": "narrative",
+          "targetType": "DV_TEXT",
+          "mandatory": true
+        },
+        "expiry_time": {
+          "name": "expiry_time",
+          "targetType": "DV_DATE_TIME"
+        },
+        "wf_definition": {
+          "name": "wf_definition",
+          "targetType": "DV_PARSABLE",
+          "imRuntime": true
+        },
+        "activities": {
+          "name": "activities",
+          "targetType": "ACTIVITY",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "ACTIVITY": {
+      "rmPackage": "EHR",
+      "name": "ACTIVITY",
+      "ancestors": [
+        "LOCATABLE"
+      ],
+      "attributes": {
+        "description": {
+          "name": "description",
+          "targetType": "ITEM_STRUCTURE",
+          "mandatory": true,
+          "autoCreate": true
+        },
+        "timing": {
+          "name": "timing",
+          "targetType": "DV_PARSABLE"
+        },
+        "action_archetype_id": {
+          "name": "action_archetype_id",
+          "targetType": "STRING"
+        }
+      }
+    },
+    "ACTION": {
+      "rmPackage": "EHR",
+      "name": "ACTION",
+      "ancestors": [
+        "CARE_ENTRY"
+      ],
+      "attributes": {
+        "time": {
+          "name": "time",
+          "targetType": "DV_DATE_TIME",
+          "mandatory": true,
+          "imRuntime": true
+        },
+        "description": {
+          "name": "description",
+          "targetType": "ITEM_STRUCTURE",
+          "mandatory": true,
+          "autoCreate": true
+        },
+        "ism_transition": {
+          "name": "ism_transition",
+          "targetType": "ISM_TRANSITION",
+          "mandatory": true
+        },
+        "instruction_details": {
+          "name": "instruction_details",
+          "targetType": "INSTRUCTION_DETAILS"
+        }
+      }
+    },
+    "INSTRUCTION_DETAILS": {
+      "rmPackage": "EHR",
+      "name": "INSTRUCTION_DETAILS",
+      "ancestors": [
+        "PATHABLE"
+      ],
+      "attributes": {
+        "instruction_id": {
+          "name": "instruction_id",
+          "targetType": "LOCATABLE_REF",
+          "mandatory": true,
+          "imRuntime": true
+        },
+        "wf_details": {
+          "name": "wf_details",
+          "targetType": "ITEM_STRUCTURE",
+          "imRuntime": true
+        },
+        "activity_id": {
+          "name": "activity_id",
+          "targetType": "STRING",
+          "mandatory": true,
+          "imRuntime": true
+        }
+      }
+    },
+    "ISM_TRANSITION": {
+      "rmPackage": "EHR",
+      "name": "ISM_TRANSITION",
+      "ancestors": [
+        "PATHABLE"
+      ],
+      "attributes": {
+        "current_state": {
+          "name": "current_state",
+          "targetType": "DV_CODED_TEXT",
+          "mandatory": true
+        },
+        "transition": {
+          "name": "transition",
+          "targetType": "DV_CODED_TEXT"
+        },
+        "careflow_step": {
+          "name": "careflow_step",
+          "targetType": "DV_CODED_TEXT"
+        },
+        "reason": {
+          "name": "reason",
+          "targetType": "DV_TEXT",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "GENERIC_ENTRY": {
+      "rmPackage": "EHR",
+      "name": "GENERIC_ENTRY",
+      "ancestors": [
+        "CONTENT_ITEM"
+      ],
+      "attributes": {
+        "data": {
+          "name": "data",
+          "targetType": "ITEM_TREE",
+          "mandatory": true
+        }
+      }
+    },
+    "PARTY": {
+      "rmPackage": "DEMOGRAPHIC",
+      "name": "PARTY",
+      "ancestors": [
+        "LOCATABLE"
+      ],
+      "attributes": {
+        "uid": {
+          "name": "uid",
+          "targetType": "UID_BASED_ID",
+          "mandatory": true,
+          "imInfrastructure": true
+        },
+        "details": {
+          "name": "details",
+          "targetType": "ITEM_STRUCTURE"
+        },
+        "identities": {
+          "name": "identities",
+          "targetType": "PARTY_IDENTITY",
+          "mandatory": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "contacts": {
+          "name": "contacts",
+          "targetType": "CONTACT",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "relationships": {
+          "name": "relationships",
+          "targetType": "PARTY_RELATIONSHIP",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "reverse_relationships": {
+          "name": "reverse_relationships",
+          "targetType": "LOCATABLE_REF",
+          "imRuntime": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "type": {
+          "name": "type",
+          "targetType": "DV_TEXT"
+        }
+      }
+    },
+    "PARTY_IDENTITY": {
+      "rmPackage": "DEMOGRAPHIC",
+      "name": "PARTY_IDENTITY",
+      "ancestors": [
+        "LOCATABLE"
+      ],
+      "attributes": {
+        "details": {
+          "name": "details",
+          "targetType": "ITEM_STRUCTURE",
+          "mandatory": true
+        },
+        "purpose": {
+          "name": "purpose",
+          "targetType": "DV_TEXT"
+        }
+      }
+    },
+    "CONTACT": {
+      "rmPackage": "DEMOGRAPHIC",
+      "name": "CONTACT",
+      "ancestors": [
+        "LOCATABLE"
+      ],
+      "attributes": {
+        "time_validity": {
+          "name": "time_validity",
+          "targetType": "DV_INTERVAL<DV_DATE>",
+          "imRuntime": true
+        },
+        "addresses": {
+          "name": "addresses",
+          "targetType": "ADDRESS",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "purpose": {
+          "name": "purpose",
+          "targetType": "DV_TEXT"
+        }
+      }
+    },
+    "ADDRESS": {
+      "rmPackage": "DEMOGRAPHIC",
+      "name": "ADDRESS",
+      "ancestors": [
+        "LOCATABLE"
+      ],
+      "attributes": {
+        "details": {
+          "name": "details",
+          "targetType": "ITEM_STRUCTURE",
+          "mandatory": true
+        },
+        "type": {
+          "name": "type",
+          "targetType": "DV_TEXT"
+        }
+      }
+    },
+    "ACTOR": {
+      "rmPackage": "DEMOGRAPHIC",
+      "name": "ACTOR",
+      "ancestors": [
+        "PARTY"
+      ],
+      "attributes": {
+        "roles": {
+          "name": "roles",
+          "targetType": "PARTY_REF",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "languages": {
+          "name": "languages",
+          "targetType": "DV_TEXT",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "PERSON": {
+      "rmPackage": "DEMOGRAPHIC",
+      "name": "PERSON",
+      "ancestors": [
+        "ACTOR"
+      ],
+      "attributes": {}
+    },
+    "ORGANISATION": {
+      "rmPackage": "DEMOGRAPHIC",
+      "name": "ORGANISATION",
+      "ancestors": [
+        "ACTOR"
+      ],
+      "attributes": {}
+    },
+    "GROUP": {
+      "rmPackage": "DEMOGRAPHIC",
+      "name": "GROUP",
+      "ancestors": [
+        "ACTOR"
+      ],
+      "attributes": {}
+    },
+    "AGENT": {
+      "rmPackage": "DEMOGRAPHIC",
+      "name": "AGENT",
+      "ancestors": [
+        "ACTOR"
+      ],
+      "attributes": {}
+    },
+    "ROLE": {
+      "rmPackage": "DEMOGRAPHIC",
+      "name": "ROLE",
+      "ancestors": [
+        "PARTY"
+      ],
+      "attributes": {
+        "performer": {
+          "name": "performer",
+          "targetType": "PARTY_REF",
+          "mandatory": true
+        },
+        "capabilities": {
+          "name": "capabilities",
+          "targetType": "CAPABILITY",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "time_validity": {
+          "name": "time_validity",
+          "targetType": "DV_INTERVAL<DV_DATE>",
+          "imRuntime": true
+        }
+      }
+    },
+    "CAPABILITY": {
+      "rmPackage": "DEMOGRAPHIC",
+      "name": "CAPABILITY",
+      "ancestors": [
+        "LOCATABLE"
+      ],
+      "attributes": {
+        "credentials": {
+          "name": "credentials",
+          "targetType": "ITEM_STRUCTURE",
+          "mandatory": true
+        },
+        "time_validity": {
+          "name": "time_validity",
+          "targetType": "DV_INTERVAL<DV_DATE>",
+          "imRuntime": true
+        }
+      }
+    },
+    "PARTY_RELATIONSHIP": {
+      "rmPackage": "DEMOGRAPHIC",
+      "name": "PARTY_RELATIONSHIP",
+      "ancestors": [
+        "LOCATABLE"
+      ],
+      "attributes": {
+        "source": {
+          "name": "source",
+          "targetType": "PARTY_REF",
+          "mandatory": true
+        },
+        "target": {
+          "name": "target",
+          "targetType": "PARTY_REF",
+          "mandatory": true
+        },
+        "details": {
+          "name": "details",
+          "targetType": "ITEM_STRUCTURE"
+        },
+        "time_validity": {
+          "name": "time_validity",
+          "targetType": "DV_INTERVAL<DV_DATE>",
+          "imRuntime": true
+        }
+      }
+    },
+    "RESUME_TYPE": {
+      "type": "ENUMERATION_INTEGER",
+      "rmPackage": "TASK_PLANNING",
+      "name": "RESUME_TYPE",
+      "ancestors": [
+        "INTEGER"
+      ],
+      "attributes": {},
+      "itemNames": [
+        "resume_specified",
+        "retry_current_group",
+        "new_thread"
+      ],
+      "primitiveAmType": "C_INTEGER"
+    },
+    "TEMPORAL_RELATION": {
+      "type": "ENUMERATION_INTEGER",
+      "rmPackage": "TASK_PLANNING",
+      "name": "TEMPORAL_RELATION",
+      "ancestors": [
+        "INTEGER"
+      ],
+      "attributes": {},
+      "itemNames": [
+        "before",
+        "with",
+        "after"
+      ],
+      "primitiveAmType": "C_INTEGER"
+    },
+    "TASK_LIFECYCLE": {
+      "type": "ENUMERATION_INTEGER",
+      "rmPackage": "TASK_PLANNING",
+      "name": "TASK_LIFECYCLE",
+      "ancestors": [
+        "INTEGER"
+      ],
+      "attributes": {},
+      "itemNames": [
+        "planned",
+        "available",
+        "cancelled",
+        "aborted",
+        "abandoned",
+        "underway",
+        "suspended",
+        "resumed",
+        "completed"
+      ],
+      "primitiveAmType": "C_INTEGER"
+    },
+    "SYSTEM_CALL": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "SYSTEM_CALL",
+      "transparent": true,
+      "ancestors": [],
+      "attributes": {
+        "call_name": {
+          "name": "call_name",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "system_id": {
+          "name": "system_id",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "parameter_map": {
+          "name": "parameter_map",
+          "targetType": "PARAMETER_MAPPING",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "bound_parameters": {
+          "name": "bound_parameters",
+          "targetType": "PARAMETER_DEF",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "PARAMETER_DEF": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "PARAMETER_DEF",
+      "ancestors": [],
+      "attributes": {
+        "name": {
+          "name": "name",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "type": {
+          "name": "type",
+          "targetType": "EXPR_TYPE_DEF",
+          "mandatory": true
+        },
+        "value": {
+          "name": "value",
+          "targetType": "ANY",
+          "mandatory": true
+        }
+      }
+    },
+    "PARAMETER_MAPPING": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "PARAMETER_MAPPING",
+      "ancestors": [],
+      "attributes": {
+        "name": {
+          "name": "name",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "context_name": {
+          "name": "context_name",
+          "targetType": "STRING",
+          "mandatory": true
+        }
+      }
+    },
+    "QUERY_CALL": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "QUERY_CALL",
+      "ancestors": [
+        "SYSTEM_CALL"
+      ],
+      "attributes": {
+        "query_id": {
+          "name": "query_id",
+          "targetType": "STRING"
+        },
+        "query_text": {
+          "name": "query_text",
+          "targetType": "STRING"
+        }
+      }
+    },
+    "API_CALL": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "API_CALL",
+      "ancestors": [
+        "SYSTEM_CALL"
+      ],
+      "attributes": {}
+    },
+    "PLAN_DATA_CONTEXT": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "PLAN_DATA_CONTEXT",
+      "ancestors": [],
+      "attributes": {
+        "expressions": {
+          "name": "expressions",
+          "targetType": "LIST",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "variables": {
+          "name": "variables",
+          "targetType": "LIST",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "constants": {
+          "name": "constants",
+          "targetType": "LIST",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "CONTEXT_VALUE": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "CONTEXT_VALUE",
+      "transparent": true,
+      "ancestors": [],
+      "attributes": {
+        "name": {
+          "name": "name",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "type": {
+          "name": "type",
+          "targetType": "EXPR_TYPE_DEF",
+          "genericType": "T",
+          "mandatory": true
+        }
+      },
+      "genericTypes": {
+        "T": "EXPR_TYPE_DEF"
+      }
+    },
+    "CONTEXT_VARIABLE": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "CONTEXT_VARIABLE",
+      "transparent": true,
+      "ancestors": [
+        "CONTEXT_VALUE"
+      ],
+      "attributes": {},
+      "genericTypes": {
+        "T": "EXPR_TYPE_DEF"
+      }
+    },
+    "CONTEXT_EXPRESSION": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "CONTEXT_EXPRESSION",
+      "ancestors": [
+        "CONTEXT_VALUE"
+      ],
+      "attributes": {
+        "expression": {
+          "name": "expression",
+          "targetType": "STRING",
+          "mandatory": true
+        }
+      },
+      "genericTypes": {
+        "T": "EXPR_TYPE_DEF"
+      }
+    },
+    "BOOLEAN_CONTEXT_EXPRESSION": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "BOOLEAN_CONTEXT_EXPRESSION",
+      "ancestors": [
+        "CONTEXT_EXPRESSION<TIMER_EVENT>"
+      ],
+      "attributes": {}
+    },
+    "STATE_VARIABLE": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "STATE_VARIABLE",
+      "ancestors": [
+        "EXTERNAL_VARIABLE"
+      ],
+      "attributes": {
+        "required_currency": {
+          "name": "required_currency",
+          "targetType": "ISO8601_DURATION"
+        }
+      },
+      "genericTypes": {
+        "T": "EXPR_TYPE_DEF"
+      }
+    },
+    "EXTERNAL_VARIABLE": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "EXTERNAL_VARIABLE",
+      "transparent": true,
+      "ancestors": [
+        "CONTEXT_VARIABLE"
+      ],
+      "attributes": {
+        "populating_request": {
+          "name": "populating_request",
+          "targetType": "SYSTEM_CALL"
+        }
+      },
+      "genericTypes": {
+        "T": "EXPR_TYPE_DEF"
+      }
+    },
+    "EVENT_VARIABLE": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "EVENT_VARIABLE",
+      "ancestors": [
+        "EXTERNAL_VARIABLE"
+      ],
+      "attributes": {},
+      "genericTypes": {
+        "T": "EXPR_TYPE_DEF"
+      }
+    },
+    "LOCAL_VARIABLE": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "LOCAL_VARIABLE",
+      "ancestors": [
+        "CONTEXT_VARIABLE"
+      ],
+      "attributes": {},
+      "genericTypes": {
+        "T": "EXPR_TYPE_DEF"
+      }
+    },
+    "CONTINUOUS_EVENT_VARIABLE": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "CONTINUOUS_EVENT_VARIABLE",
+      "ancestors": [
+        "EVENT_VARIABLE"
+      ],
+      "attributes": {
+        "update_variation": {
+          "name": "update_variation",
+          "targetType": "REAL"
+        }
+      },
+      "genericTypes": {
+        "T": "EXPR_TYPE_DEF"
+      }
+    },
+    "CONTEXT_CONSTANT": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "CONTEXT_CONSTANT",
+      "ancestors": [
+        "CONTEXT_VALUE"
+      ],
+      "attributes": {},
+      "genericTypes": {
+        "T": "EXPR_TYPE_DEF"
+      }
+    },
+    "WORK_PLAN": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "WORK_PLAN",
+      "ancestors": [
+        "CONTENT_ITEM",
+        "AUTHORED_RESOURCE"
+      ],
+      "attributes": {
+        "care_plan": {
+          "name": "care_plan",
+          "targetType": "LOCATABLE_REF"
+        },
+        "care_pathway": {
+          "name": "care_pathway",
+          "targetType": "DV_IDENTIFIER"
+        },
+        "order_list": {
+          "name": "order_list",
+          "targetType": "ORDER_REF",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "calendar": {
+          "name": "calendar",
+          "targetType": "PLAN_CALENDAR",
+          "mandatory": true
+        },
+        "timeline": {
+          "name": "timeline",
+          "targetType": "PLAN_TIMELINE",
+          "mandatory": true
+        },
+        "plans": {
+          "name": "plans",
+          "targetType": "UID_BASED_ID",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "event_wait_states": {
+          "name": "event_wait_states",
+          "targetType": "LIST",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "top_level_plans": {
+          "name": "top_level_plans",
+          "targetType": "TASK_PLAN",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "indications": {
+          "name": "indications",
+          "targetType": "DV_TEXT",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "context": {
+          "name": "context",
+          "targetType": "PLAN_DATA_CONTEXT"
+        }
+      }
+    },
+    "TASK_PLAN": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "TASK_PLAN",
+      "ancestors": [
+        "CONTENT_ITEM"
+      ],
+      "attributes": {
+        "subject": {
+          "name": "subject",
+          "targetType": "PARTY_PROXY"
+        },
+        "description": {
+          "name": "description",
+          "targetType": "DV_TEXT",
+          "mandatory": true,
+          "autoCreate": true,
+          "order": -1
+        },
+        "guideline": {
+          "name": "guideline",
+          "targetType": "DV_IDENTIFIER"
+        },
+        "best_practice_ref": {
+          "name": "best_practice_ref",
+          "targetType": "DV_URI"
+        },
+        "definition": {
+          "name": "definition",
+          "targetType": "TASK_GROUP",
+          "mandatory": true,
+          "autoCreate": true,
+          "order": 1
+        },
+        "principal_performer": {
+          "name": "principal_performer",
+          "targetType": "TASK_PARTICIPATION"
+        },
+        "order_set_type": {
+          "name": "order_set_type",
+          "targetType": "DV_IDENTIFIER"
+        },
+        "order_set_id": {
+          "name": "order_set_id",
+          "targetType": "DV_IDENTIFIER"
+        },
+        "due_time": {
+          "name": "due_time",
+          "targetType": "ISO8601_DURATION"
+        },
+        "expiry_time": {
+          "name": "expiry_time",
+          "targetType": "ISO8601_DURATION"
+        },
+        "indications": {
+          "name": "indications",
+          "targetType": "DV_TEXT",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "execution_history": {
+          "name": "execution_history",
+          "targetType": "TASK_PLAN_EXECUTION_HISTORY",
+          "imRuntime": true
+        }
+      }
+    },
+    "PLAN_CALENDAR": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "PLAN_CALENDAR",
+      "ancestors": [],
+      "attributes": {
+        "entries": {
+          "name": "entries",
+          "targetType": "CALENDAR_ENTRY",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "CALENDAR_ENTRY": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "CALENDAR_ENTRY",
+      "ancestors": [],
+      "attributes": {}
+    },
+    "PLAN_TIMELINE": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "PLAN_TIMELINE",
+      "ancestors": [],
+      "attributes": {
+        "planned_items": {
+          "name": "planned_items",
+          "targetType": "PLAN_ITEM",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "timers": {
+          "name": "timers",
+          "targetType": "TIMER_WAIT",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "ORDER_REF": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "ORDER_REF",
+      "ancestors": [
+        "LOCATABLE"
+      ],
+      "attributes": {
+        "order_tag": {
+          "name": "order_tag",
+          "targetType": "STRING"
+        },
+        "order_ref": {
+          "name": "order_ref",
+          "targetType": "LOCATABLE_REF"
+        },
+        "instruction_archetype_id": {
+          "name": "instruction_archetype_id",
+          "targetType": "STRING"
+        },
+        "action_archetype_id": {
+          "name": "action_archetype_id",
+          "targetType": "STRING"
+        }
+      }
+    },
+    "TASK_PARTICIPATION": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "TASK_PARTICIPATION",
+      "ancestors": [],
+      "attributes": {
+        "function": {
+          "name": "function",
+          "targetType": "DV_TEXT"
+        },
+        "role": {
+          "name": "role",
+          "targetType": "DV_TEXT",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "mode": {
+          "name": "mode",
+          "targetType": "DV_CODED_TEXT"
+        },
+        "performer": {
+          "name": "performer",
+          "targetType": "PARTY_PROXY"
+        },
+        "optionality": {
+          "name": "optionality",
+          "targetType": "VALIDITY_KIND"
+        }
+      }
+    },
+    "PLAN_ITEM": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "PLAN_ITEM",
+      "transparent": true,
+      "ancestors": [
+        "LOCATABLE"
+      ],
+      "attributes": {
+        "description": {
+          "name": "description",
+          "targetType": "DV_TEXT",
+          "mandatory": true
+        },
+        "repeat_spec": {
+          "name": "repeat_spec",
+          "targetType": "TASK_REPEAT"
+        },
+        "other_details": {
+          "name": "other_details",
+          "targetType": "ITEM_STRUCTURE"
+        },
+        "wait_spec": {
+          "name": "wait_spec",
+          "targetType": "TASK_WAIT"
+        },
+        "review_dataset": {
+          "name": "review_dataset",
+          "targetType": "REVIEW_DATASET_SPEC",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "order_tags": {
+          "name": "order_tags",
+          "targetType": "STRING",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "TASK_REPEAT": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "TASK_REPEAT",
+      "ancestors": [],
+      "attributes": {
+        "repeats": {
+          "name": "repeats",
+          "targetType": "INTERVAL<INTEGER>"
+        },
+        "terminate_condition": {
+          "name": "terminate_condition",
+          "targetType": "PLAN_EVENT"
+        },
+        "period": {
+          "name": "period",
+          "targetType": "ISO8601_DURATION"
+        }
+      }
+    },
+    "TASK_GROUP": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "TASK_GROUP",
+      "ancestors": [
+        "PLAN_ITEM"
+      ],
+      "attributes": {
+        "execution_type": {
+          "name": "execution_type",
+          "targetType": "EXECUTION_TYPE"
+        },
+        "members": {
+          "name": "members",
+          "targetType": "PLAN_ITEM",
+          "autoCreate": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "training_level": {
+          "name": "training_level",
+          "targetType": "INTEGER"
+        }
+      }
+    },
+    "EXECUTION_TYPE": {
+      "type": "ENUMERATION_INTEGER",
+      "rmPackage": "TASK_PLANNING",
+      "name": "EXECUTION_TYPE",
+      "ancestors": [
+        "INTEGER"
+      ],
+      "attributes": {},
+      "itemNames": [
+        "sequential",
+        "parallel"
+      ],
+      "primitiveAmType": "C_INTEGER"
+    },
+    "TASK": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "TASK",
+      "transparent": true,
+      "ancestors": [
+        "PLAN_ITEM"
+      ],
+      "attributes": {
+        "action": {
+          "name": "action",
+          "targetType": "TASK_ACTION",
+          "genericType": "T",
+          "mandatory": true,
+          "autoCreate": true,
+          "order": 2
+        }
+      },
+      "genericTypes": {
+        "T": "TASK_ACTION"
+      }
+    },
+    "DISPATCHABLE_TASK": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "DISPATCHABLE_TASK",
+      "ancestors": [
+        "TASK"
+      ],
+      "attributes": {
+        "wait": {
+          "name": "wait",
+          "targetType": "BOOLEAN",
+          "mandatory": true
+        },
+        "callback": {
+          "name": "callback",
+          "targetType": "CALLBACK_WAIT"
+        }
+      },
+      "genericTypes": {
+        "T": "DISPATCHABLE_ACTION"
+      }
+    },
+    "PERFORMABLE_TASK": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "PERFORMABLE_TASK",
+      "ancestors": [
+        "TASK"
+      ],
+      "attributes": {
+        "capture_dataset": {
+          "name": "capture_dataset",
+          "targetType": "CAPTURE_DATASET_SPEC",
+          "autoCreate": true,
+          "order": 1,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      },
+      "genericTypes": {
+        "T": "PERFORMABLE_ACTION"
+      }
+    },
+    "TASK_ACTION": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "TASK_ACTION",
+      "ancestors": [
+        "LOCATABLE"
+      ],
+      "attributes": {
+        "subject_preconditions": {
+          "name": "subject_preconditions",
+          "targetType": "SUBJECT_PRECONDITION",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "costing_data": {
+          "name": "costing_data",
+          "targetType": "TASK_COSTING"
+        },
+        "instruction_activity": {
+          "name": "instruction_activity",
+          "targetType": "LOCATABLE_REF"
+        }
+      }
+    },
+    "DISPATCHABLE_ACTION": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "DISPATCHABLE_ACTION",
+      "ancestors": [
+        "TASK_ACTION"
+      ],
+      "attributes": {}
+    },
+    "PERFORMABLE_ACTION": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "PERFORMABLE_ACTION",
+      "ancestors": [
+        "TASK_ACTION"
+      ],
+      "attributes": {
+        "other_participations": {
+          "name": "other_participations",
+          "targetType": "TASK_PARTICIPATION",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "resources": {
+          "name": "resources",
+          "targetType": "RESOURCE_PARTICIPATION",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "RESOURCE_PARTICIPATION": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "RESOURCE_PARTICIPATION",
+      "ancestors": [],
+      "attributes": {
+        "resource_type": {
+          "name": "resource_type",
+          "targetType": "DV_TEXT",
+          "mandatory": true
+        },
+        "external_ref": {
+          "name": "external_ref",
+          "targetType": "OBJECT_REF"
+        }
+      }
+    },
+    "SUBJECT_PRECONDITION": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "SUBJECT_PRECONDITION",
+      "ancestors": [],
+      "attributes": {
+        "description": {
+          "name": "description",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "expression": {
+          "name": "expression",
+          "targetType": "BOOLEAN_CONTEXT_EXPRESSION"
+        }
+      }
+    },
+    "EXTERNAL_REQUEST": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "EXTERNAL_REQUEST",
+      "ancestors": [
+        "DISPATCHABLE_ACTION"
+      ],
+      "attributes": {
+        "organisation": {
+          "name": "organisation",
+          "targetType": "PARTY_PROXY",
+          "mandatory": true
+        },
+        "request_id": {
+          "name": "request_id",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "other_details": {
+          "name": "other_details",
+          "targetType": "ITEM_STRUCTURE"
+        }
+      }
+    },
+    "DEFINED_ACTION": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "DEFINED_ACTION",
+      "ancestors": [
+        "PERFORMABLE_ACTION"
+      ],
+      "attributes": {
+        "prototype": {
+          "name": "prototype",
+          "targetType": "ENTRY",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "optionality": {
+          "name": "optionality",
+          "targetType": "VALIDITY_KIND"
+        }
+      }
+    },
+    "SYSTEM_REQUEST": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "SYSTEM_REQUEST",
+      "ancestors": [
+        "DISPATCHABLE_ACTION"
+      ],
+      "attributes": {
+        "system_call": {
+          "name": "system_call",
+          "targetType": "SYSTEM_CALL",
+          "mandatory": true
+        }
+      }
+    },
+    "DATASET_SPEC": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "DATASET_SPEC",
+      "ancestors": [
+        "LOCATABLE"
+      ],
+      "attributes": {
+        "other_details": {
+          "name": "other_details",
+          "targetType": "ITEM_STRUCTURE"
+        },
+        "form_id": {
+          "name": "form_id",
+          "targetType": "STRING"
+        },
+        "template_id": {
+          "name": "template_id",
+          "targetType": "STRING"
+        },
+        "populating_call": {
+          "name": "populating_call",
+          "targetType": "SYSTEM_CALL"
+        }
+      }
+    },
+    "CAPTURE_DATASET_SPEC": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "CAPTURE_DATASET_SPEC",
+      "ancestors": [
+        "DATASET_SPEC"
+      ],
+      "attributes": {}
+    },
+    "REVIEW_DATASET_SPEC": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "REVIEW_DATASET_SPEC",
+      "ancestors": [
+        "DATASET_SPEC"
+      ],
+      "attributes": {
+        "capture_datasets": {
+          "name": "capture_datasets",
+          "targetType": "CAPTURE_DATASET_SPEC",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "LINKED_PLAN": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "LINKED_PLAN",
+      "ancestors": [],
+      "attributes": {
+        "target": {
+          "name": "target",
+          "targetType": "TASK_PLAN",
+          "mandatory": true
+        }
+      }
+    },
+    "HAND_OFF": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "HAND_OFF",
+      "ancestors": [
+        "LINKED_PLAN",
+        "DISPATCHABLE_ACTION"
+      ],
+      "attributes": {}
+    },
+    "SUB_PLAN": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "SUB_PLAN",
+      "ancestors": [
+        "LINKED_PLAN",
+        "PERFORMABLE_ACTION"
+      ],
+      "attributes": {}
+    },
+    "TASK_COSTING": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "TASK_COSTING",
+      "ancestors": [],
+      "attributes": {}
+    },
+    "CHOICE_GROUP": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "CHOICE_GROUP",
+      "transparent": true,
+      "ancestors": [
+        "TASK_GROUP"
+      ],
+      "attributes": {
+        "override_type": {
+          "name": "override_type",
+          "targetType": "OVERRIDE_TYPE"
+        },
+        "members": {
+          "name": "members",
+          "targetType": "CHOICE_BRANCH",
+          "autoCreate": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "OVERRIDE_TYPE": {
+      "type": "ENUMERATION_INTEGER",
+      "rmPackage": "TASK_PLANNING",
+      "name": "OVERRIDE_TYPE",
+      "ancestors": [
+        "INTEGER"
+      ],
+      "attributes": {},
+      "itemNames": [
+        "allowed",
+        "allowed_with_reason",
+        "prohibited"
+      ],
+      "primitiveAmType": "C_INTEGER"
+    },
+    "CHOICE_BRANCH": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "CHOICE_BRANCH",
+      "transparent": true,
+      "ancestors": [
+        "TASK_GROUP"
+      ],
+      "attributes": {}
+    },
+    "ADHOC_GROUP": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "ADHOC_GROUP",
+      "ancestors": [
+        "CHOICE_GROUP"
+      ],
+      "attributes": {}
+    },
+    "ADHOC_BRANCH": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "ADHOC_BRANCH",
+      "ancestors": [
+        "CHOICE_BRANCH"
+      ],
+      "attributes": {},
+      "limitToParents": [
+        "CHOICE_BRANCH"
+      ]
+    },
+    "CONDITION_GROUP": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "CONDITION_GROUP",
+      "ancestors": [
+        "CHOICE_GROUP"
+      ],
+      "attributes": {
+        "members": {
+          "name": "members",
+          "targetType": "CONDITION_BRANCH",
+          "autoCreate": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "CONDITION_BRANCH": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "CONDITION_BRANCH",
+      "ancestors": [
+        "CHOICE_BRANCH"
+      ],
+      "attributes": {
+        "test": {
+          "name": "test",
+          "targetType": "BOOLEAN_CONTEXT_EXPRESSION",
+          "mandatory": true
+        }
+      },
+      "limitToParents": [
+        "CONDITION_BRANCH"
+      ]
+    },
+    "DECISION_GROUP": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "DECISION_GROUP",
+      "ancestors": [
+        "CHOICE_GROUP"
+      ],
+      "attributes": {
+        "test": {
+          "name": "test",
+          "targetType": "CONTEXT_EXPRESSION<EXPR_TYPE_DEF>",
+          "mandatory": true
+        },
+        "members": {
+          "name": "members",
+          "targetType": "DECISION_BRANCH",
+          "autoCreate": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "DECISION_BRANCH": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "DECISION_BRANCH",
+      "ancestors": [
+        "CHOICE_BRANCH"
+      ],
+      "attributes": {
+        "value_constraint": {
+          "name": "value_constraint",
+          "targetType": "BOOLEAN_CONTEXT_EXPRESSION",
+          "mandatory": true
+        }
+      },
+      "limitToParents": [
+        "DECISION_BRANCH"
+      ]
+    },
+    "EVENT_GROUP": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "EVENT_GROUP",
+      "ancestors": [
+        "CHOICE_GROUP"
+      ],
+      "attributes": {
+        "timeout": {
+          "name": "timeout",
+          "targetType": "TIMER_WAIT"
+        },
+        "members": {
+          "name": "members",
+          "targetType": "EVENT_BRANCH",
+          "autoCreate": true,
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "EVENT_BRANCH": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "EVENT_BRANCH",
+      "ancestors": [
+        "CHOICE_BRANCH"
+      ],
+      "attributes": {},
+      "limitToParents": [
+        "EVENT_BRANCH"
+      ]
+    },
+    "TASK_WAIT": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "TASK_WAIT",
+      "ancestors": [],
+      "attributes": {
+        "timeout": {
+          "name": "timeout",
+          "targetType": "TIMER_WAIT"
+        },
+        "start_window": {
+          "name": "start_window",
+          "targetType": "REMINDER"
+        },
+        "events": {
+          "name": "events",
+          "targetType": "PLAN_EVENT",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "event_relation": {
+          "name": "event_relation",
+          "targetType": "TEMPORAL_RELATION"
+        }
+      }
+    },
+    "PLAN_EVENT": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "PLAN_EVENT",
+      "transparent": true,
+      "ancestors": [
+        "LOCATABLE"
+      ],
+      "attributes": {
+        "other_details": {
+          "name": "other_details",
+          "targetType": "ITEM_STRUCTURE"
+        }
+      }
+    },
+    "TIMELINE_MOMENT": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "TIMELINE_MOMENT",
+      "ancestors": [
+        "PLAN_EVENT"
+      ],
+      "attributes": {
+        "timeline_offset": {
+          "name": "timeline_offset",
+          "targetType": "ISO8601_DURATION"
+        },
+        "fixed_time": {
+          "name": "fixed_time",
+          "targetType": "TIME_SPECIFIER"
+        }
+      }
+    },
+    "SYSTEM_NOTIFICATION": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "SYSTEM_NOTIFICATION",
+      "ancestors": [
+        "PLAN_EVENT"
+      ],
+      "attributes": {
+        "system_id": {
+          "name": "system_id",
+          "targetType": "STRING",
+          "mandatory": true
+        },
+        "notification_type": {
+          "name": "notification_type",
+          "targetType": "STRING"
+        },
+        "reference_id": {
+          "name": "reference_id",
+          "targetType": "STRING"
+        }
+      }
+    },
+    "CALLBACK_NOTIFICATION": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "CALLBACK_NOTIFICATION",
+      "ancestors": [
+        "PLAN_EVENT"
+      ],
+      "attributes": {
+        "task_id": {
+          "name": "task_id",
+          "targetType": "UID_BASED_ID",
+          "mandatory": true
+        },
+        "request_id": {
+          "name": "request_id",
+          "targetType": "STRING"
+        }
+      }
+    },
+    "MANUAL_NOTIFICATION": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "MANUAL_NOTIFICATION",
+      "ancestors": [
+        "PLAN_EVENT"
+      ],
+      "attributes": {
+        "description": {
+          "name": "description",
+          "targetType": "STRING",
+          "mandatory": true
+        }
+      }
+    },
+    "TASK_TRANSITION": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "TASK_TRANSITION",
+      "ancestors": [
+        "PLAN_EVENT"
+      ],
+      "attributes": {
+        "task_id": {
+          "name": "task_id",
+          "targetType": "UID_BASED_ID",
+          "mandatory": true
+        },
+        "transitions": {
+          "name": "transitions",
+          "targetType": "TASK_LIFECYCLE",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "1..*",
+            "ordered": false,
+            "unique": false
+          }
+        }
+      }
+    },
+    "EVENT_WAIT": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "EVENT_WAIT",
+      "ancestors": [],
+      "attributes": {
+        "event": {
+          "name": "event",
+          "targetType": "PLAN_EVENT",
+          "genericType": "T",
+          "mandatory": true
+        },
+        "timeout": {
+          "name": "timeout",
+          "targetType": "TIMER_WAIT"
+        },
+        "success_action": {
+          "name": "success_action",
+          "targetType": "EVENT_ACTION"
+        }
+      },
+      "genericTypes": {
+        "T": "PLAN_EVENT"
+      }
+    },
+    "DELAY_EVENT": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "DELAY_EVENT",
+      "ancestors": [
+        "PLAN_EVENT"
+      ],
+      "attributes": {
+        "delay": {
+          "name": "delay",
+          "targetType": "ISO8601_DURATION",
+          "mandatory": true
+        },
+        "source": {
+          "name": "source",
+          "targetType": "PLAN_EVENT"
+        }
+      }
+    },
+    "STATE_TRIGGER": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "STATE_TRIGGER",
+      "ancestors": [
+        "PLAN_EVENT"
+      ],
+      "attributes": {
+        "expression": {
+          "name": "expression",
+          "targetType": "BOOLEAN_CONTEXT_EXPRESSION",
+          "mandatory": true
+        }
+      }
+    },
+    "TIMER_EVENT": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "TIMER_EVENT",
+      "ancestors": [
+        "PLAN_EVENT"
+      ],
+      "attributes": {
+        "duration": {
+          "name": "duration",
+          "targetType": "ISO8601_DURATION",
+          "mandatory": true
+        },
+        "purpose": {
+          "name": "purpose",
+          "targetType": "STRING"
+        }
+      }
+    },
+    "REMINDER": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "REMINDER",
+      "ancestors": [
+        "TIMER_WAIT"
+      ],
+      "attributes": {}
+    },
+    "TIMER_WAIT": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "TIMER_WAIT",
+      "ancestors": [
+        "EVENT_WAIT<TIMER_EVENT>"
+      ],
+      "attributes": {
+        "event": {
+          "name": "event",
+          "targetType": "TIMER_EVENT",
+          "mandatory": true
+        }
+      }
+    },
+    "CALLBACK_WAIT": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "CALLBACK_WAIT",
+      "ancestors": [
+        "EVENT_WAIT<CALLBACK_NOTIFICATION>"
+      ],
+      "attributes": {
+        "fail_action": {
+          "name": "fail_action",
+          "targetType": "EVENT_ACTION"
+        },
+        "event": {
+          "name": "event",
+          "targetType": "CALLBACK_NOTIFICATION",
+          "mandatory": true
+        }
+      }
+    },
+    "EVENT_ACTION": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "EVENT_ACTION",
+      "ancestors": [],
+      "attributes": {
+        "system_call": {
+          "name": "system_call",
+          "targetType": "SYSTEM_CALL",
+          "cardinality": {
+            "@type": "CARDINALITY",
+            "interval": "0..*",
+            "ordered": false,
+            "unique": false
+          }
+        },
+        "resume_action": {
+          "name": "resume_action",
+          "targetType": "RESUME_ACTION"
+        },
+        "message": {
+          "name": "message",
+          "targetType": "DV_TEXT"
+        },
+        "receiver_thread_next_state": {
+          "name": "receiver_thread_next_state",
+          "targetType": "TASK_LIFECYCLE"
+        }
+      }
+    },
+    "CALENDAR_EVENT": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "CALENDAR_EVENT",
+      "ancestors": [
+        "PLAN_EVENT"
+      ],
+      "attributes": {
+        "entry_id": {
+          "name": "entry_id",
+          "targetType": "UID_BASED_ID"
+        },
+        "time": {
+          "name": "time",
+          "targetType": "ISO8601_DATE_TIME",
+          "mandatory": true
+        }
+      }
+    },
+    "RESUME_ACTION": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "RESUME_ACTION",
+      "ancestors": [],
+      "attributes": {
+        "resume_type": {
+          "name": "resume_type",
+          "targetType": "RESUME_TYPE",
+          "mandatory": true
+        },
+        "resume_location": {
+          "name": "resume_location",
+          "targetType": "UID_BASED_ID"
+        }
+      }
+    },
+    "TIME_SPECIFIER": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "TIME_SPECIFIER",
+      "transparent": true,
+      "ancestors": [],
+      "attributes": {}
+    },
+    "CLOCK_TIME": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "CLOCK_TIME",
+      "ancestors": [
+        "TIME_SPECIFIER"
+      ],
+      "attributes": {
+        "time": {
+          "name": "time",
+          "targetType": "ISO8601_TIME",
+          "mandatory": true
+        }
+      }
+    },
+    "CALENDAR_TIME": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "CALENDAR_TIME",
+      "ancestors": [
+        "TIME_SPECIFIER"
+      ],
+      "attributes": {
+        "time": {
+          "name": "time",
+          "targetType": "ISO8601_DATE_TIME",
+          "mandatory": true
+        }
+      }
+    },
+    "CUSTOMARY_TIME": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "CUSTOMARY_TIME",
+      "ancestors": [
+        "TIME_SPECIFIER"
+      ],
+      "attributes": {
+        "time": {
+          "name": "time",
+          "targetType": "DV_CODED_TEXT",
+          "mandatory": true
+        }
+      }
+    },
+    "TASK_PLAN_EXECUTION_HISTORY": {
+      "rmPackage": "TASK_PLANNING",
+      "name": "TASK_PLAN_EXECUTION_HISTORY",
+      "ancestors": [],
+      "attributes": {}
+    }
+  }
+}

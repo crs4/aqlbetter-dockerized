@@ -1,0 +1,49 @@
+/* Copyright 2021 Better Ltd (www.better.care)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+$m-fonts-path: "/assets/fonts";
+$m-font-map: (
+  "Hairline": 100,
+  "Thin": 300,
+  "Regular": 400,
+  "Bold": 700,
+  "Black": 900
+);
+
+@each $name, $weight in $m-font-map {
+  /**
+   * Regular font face for particular weight
+   */
+  @font-face {
+    font-family: Lato;
+    font-style: normal;
+    font-weight: $weight;
+    src: local("LatoLatin-#{$name}"),
+    url("#{$m-fonts-path}/LatoLatin-#{$weight}.woff2") format("woff2"),
+    url("#{$m-fonts-path}/LatoLatin-#{$weight}.woff") format("woff"),
+  }
+
+  /**
+   * Italic font face for particular weight
+   */
+  @font-face {
+    font-family: Lato;
+    font-style: italic;
+    font-weight: $weight;
+    src: local("LatoLatin-#{$name}Italic"),
+    url("#{$m-fonts-path}/LatoLatin-#{$weight}-Italic.woff2") format("woff2"),
+    url("#{$m-fonts-path}/LatoLatin-#{$weight}-Italic.woff") format("woff"),
+  }
+}

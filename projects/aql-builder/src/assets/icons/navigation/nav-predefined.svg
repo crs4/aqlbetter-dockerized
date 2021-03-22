@@ -1,0 +1,8 @@
+<svg id="nav-predefined" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
+    <g fill="none" fill-rule="evenodd">
+        <rect width="26" height="26" x="1" y="1" stroke="currentColor" stroke-width="2" rx="5"/>
+        <text fill="currentColor" font-family="Lato-Black, Lato" font-size="10" font-weight="700">
+            <tspan x="4" y="18">EHR</tspan>
+        </text>
+    </g>
+</svg>

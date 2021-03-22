@@ -1,0 +1,207 @@
+<div class="sidebar-content-wrapper bg-light" [ngSwitch]="selectedPanel" >
+  <div class="panel-header">
+    <div class="panel-title" *ngIf="isSidebarPanelOpen">
+      <ng-container *ngSwitchCase="MenuPanel.TEMPLATES">
+        <span *ngIf="!template">{{ selectedPanel | translate}}</span>
+        <span *ngIf="template" [attr.title]="template.webTemplate.templateId">
+        <i class="fas fa-chevron-left back-btn" (click)="showTemplateList()"></i>
+          {{ template.webTemplate.templateId }}
+      </span>
+      </ng-container>
+      <ng-container *ngSwitchCase="MenuPanel.PREDEFINED">
+        <span *ngIf="!predefinedObject">{{ selectedPanel | translate | titlecase }}</span>
+        <span *ngIf="predefinedObject">
+        <i class="fas fa-chevron-left back-btn" (click)="togglePredefinedObject(null)"></i>
+          {{ predefinedObject | translate }}
+      </span>
+      </ng-container>
+      <span *ngSwitchCase="MenuPanel.VIEWS">{{ selectedPanel | translate }}</span>
+      <span *ngSwitchCase="MenuPanel.HISTORY">{{ selectedPanel | translate }}</span>
+      <span *ngSwitchCase="MenuPanel.SNIPPETS">{{ selectedPanel | translate }}</span>
+    </div>
+
+    <div class="panel-close-open"
+         (click)="toggleSidebarPanel.emit()">
+      <i class="open fas fa-angle-double-right"
+         [ngClass]="{'d-block': !isSidebarPanelOpen}"></i>
+      <i class="close fas fa-angle-double-left"
+         [ngClass]="{'d-block': isSidebarPanelOpen}"></i>
+    </div>
+  </div>
+
+
+  <ng-container *ngIf="isSidebarPanelOpen">
+    <ng-container *ngSwitchCase="MenuPanel.HISTORY">
+      <div class="panel-content">
+        <div class="history-date mb-3" *ngFor="let date of history | keyvalue: orderHistoryDesc">
+          <div class="history-title">{{ date.key | date:'dd MMM yyyy' | dateToToday | uppercase }}</div>
+          <div class="history-item" *ngFor="let item of date.value; let i = index" (click)="openTab(item)">
+            <span [title]="(item.code|truncate:998) + '\n\n' + (item.timeStamp | date:'dd MMM yyyy @ HH:mm:ss')">{{item.code}}</span>
+            <div class="history-item-action--remove">
+              <i class="fa fa-trash-alt pointer" (click)="removeHistoryItem(i)"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="MenuPanel.VIEWS">
+      <div class="fb-template-search-input">
+        <input [formControl]="searchViews" class="form-control fb-input" [placeholder]="'SEARCH_PLACEHOLDER'|translate" id="view-search">
+        <div class="fb-input-action clear" (click)="clearSearch(MenuPanel.VIEWS)" *ngIf="!!searchViews.value">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="panel-content">
+        <div *ngFor="let view of views|async; let i = index" class="history-item d-flex justify-content-between" (click)="loadViewItem(view)">
+          <span>{{view.name}}</span>
+          <div class="history-item-action--remove">
+            <i class="fa fa-trash-alt pointer" (click)="openDeletePrompt($event, view, deleteViewModal)"></i>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="MenuPanel.PREDEFINED">
+      <aql-spinner *ngIf="spinnerService.sidebarSpinner$ | async; else content"></aql-spinner>
+      <ng-template #content>
+        <div class="panel-content" *ngIf="!predefinedObject">
+          <div class="history-item" (click)="togglePredefinedObject(PredefinedObjects.EHR)">{{'EHR' | translate}}</div>
+          <div class="history-item" (click)="togglePredefinedObject(PredefinedObjects.COMPOSITION)">{{'COMPOSITION' | translate}}</div>
+          <div class="history-item" (click)="togglePredefinedObject(PredefinedObjects.VERSION)">{{'VERSION' | translate}}</div>
+          <div class="history-item" (click)="togglePredefinedObject(PredefinedObjects.VERSIONED_OBJECT)">{{'VERSIONED_OBJECT' | translate}}</div>
+        </div>
+        <div class="panel-content bottom-margin" *ngIf="predefinedObject === PredefinedObjects.EHR">
+          <aql-tree [tree]="getRootTreeNode(AdditionalAqlAutocompleteKeyword.EHR)"></aql-tree>
+        </div>
+        <div class="panel-content bottom-margin" *ngIf="predefinedObject === PredefinedObjects.COMPOSITION">
+          <aql-tree [tree]="getRootTreeNode(AdditionalAqlAutocompleteKeyword.COMPOSITION)"></aql-tree>
+        </div>
+        <div class="panel-content bottom-margin" *ngIf="predefinedObject === PredefinedObjects.VERSION">
+          <aql-tree [tree]="getRootTreeNode(AdditionalAqlAutocompleteKeyword.VERSION)"></aql-tree>
+        </div>
+        <div class="panel-content bottom-margin" *ngIf="predefinedObject === PredefinedObjects.VERSIONED_OBJECT">
+          <aql-tree [tree]="getRootTreeNode(AdditionalAqlAutocompleteKeyword.VERSIONED_OBJECT)"></aql-tree>
+        </div>
+        <ng-container *ngIf="predefinedObject">
+          <div class="custom-control custom-checkbox my-3 bottom-fixed">
+            <input type="checkbox" class="custom-control-input form-check-input" id="showDetailed"
+                   (click)="changeTemplatePresentation(templatePresentation === TemplatePresentation.MIN ? TemplatePresentation.ALL : TemplatePresentation.MIN)"
+                   [checked]="templatePresentation === TemplatePresentation.ALL">
+            <label class="custom-control-label" for="showDetailed">{{ 'SHOW_DETAILED_VIEW' | translate }}</label>
+          </div>
+        </ng-container>
+      </ng-template>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="MenuPanel.TEMPLATES">
+      <aql-spinner *ngIf="spinnerService.sidebarSpinner$ | async; else content"></aql-spinner>
+      <ng-template #content>
+        <ng-container *ngIf="!template">
+          <div class="fb-template-search-input">
+            <input [formControl]="searchTemplate" class="form-control fb-input" [placeholder]="'SEARCH_PLACEHOLDER'|translate" id="template-search">
+            <div class="fb-input-action clear" (click)="clearSearch(MenuPanel.TEMPLATES)" *ngIf="!!searchTemplate.value">
+              <i class="fas fa-times"></i>
+            </div>
+          </div>
+          <div class="panel-content">
+            <div *ngFor="let template of templates | async" class="history-item"
+                 (click)="loadTemplate(template.templateId)"
+                 [attr.title]="template.templateId">
+              {{template.templateId}}
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="template">
+          <div class="row">
+            <div class="col-12">
+              <div class="fb-template-search-input mb-3">
+                <input type="text" id="treeSearch" class="form-control fb-input" [formControl]="searchTree" [placeholder]="'SEARCH_PLACEHOLDER'|translate">
+                <ng-container *ngIf="!!searchTree.value">
+                  <div class="fb-input-text">{{ numberOfHighlightedFields ? selectedHighlightIndex + 1 : selectedHighlightIndex }}/{{ numberOfHighlightedFields }}</div>
+                  <div class="fb-action-divider">&nbsp;</div>
+                  <div class="fb-input-action clear" (click)="clearSearchTree()"><i class="fas fa-times"></i></div>
+                  <div class="fb-input-action next" [class.disabled]="numberOfHighlightedFields === 0" (click)="nextHighlightedField()">
+                    <i class="fas fa-angle-down"></i>
+                  </div>
+                  <div class="fb-input-action previous" [class.disabled]="numberOfHighlightedFields === 0" (click)="prevHighlightedField()">
+                    <i class="fas fa-angle-up"></i>
+                  </div>
+                </ng-container>
+              </div>
+
+              <div class="d-flex language-container" *ngIf="template?.webTemplate.languages?.length > 1">
+                <label class="col-form-label">{{"LANGUAGE" | translate}}:</label>
+                <aql-dropdown class="w-100" [items]="templateLanguages" [currentValue]="selectedTemplateLanguage" (selectItem)="changeSelectedLanguage($event)"></aql-dropdown>
+              </div>
+            </div>
+          </div>
+          <div class="panel-content bottom-margin">
+            <aql-tree [tree]="template.webTemplate.tree" [presentation]="templatePresentation" [treeSearchTerm]="treeSearchTerm" [language]="selectedTemplateLanguage"></aql-tree>
+          </div>
+          <div class="custom-control custom-checkbox my-3 bottom-fixed">
+            <input type="checkbox" class="custom-control-input form-check-input" id="customControlCheckbox"
+                   (click)="changeTemplatePresentation(templatePresentation === TemplatePresentation.MIN ? TemplatePresentation.ALL : TemplatePresentation.MIN)"
+                   [checked]="templatePresentation === TemplatePresentation.ALL">
+            <label class="custom-control-label" for="customControlCheckbox">{{ 'SHOW_DETAILED_VIEW' | translate }}</label>
+          </div>
+        </ng-container>
+      </ng-template>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="MenuPanel.SNIPPETS">
+      <div class="panel-content">
+        <div *ngFor="let item of (snippets$ | async); let i = index" class="history-item">
+          <div class="history-item" (click)="openTab(item)">
+            <span [title]="item.name + '\n\n' + item.code ">{{item.name || item.code}}</span>
+            <div class="history-item-action--remove">
+              <i class="fa fa-trash-alt pointer" (click)="removeSnippetItem(i)"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #deleteViewModal id="delete-view-modal" let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h5 class="modal-title">{{'DELETE_VIEW.DELETE_PROMPT'|translate}}</h5>
+    <button type="button" class="close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row mt-4">
+      <div class="col-12">{{'DELETE_VIEW.VIEW'|translate}}: <strong>{{deleteViewForm.get('name')?.value}}</strong></div>
+    </div>
+    <div class="row">
+      <div class="col-12">{{'DELETE_VIEW.DESCRIPTION'|translate}}: <strong>{{deleteViewForm.get('description')?.value}}</strong></div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-12">{{'DELETE_VIEW.NOTIFICATION'|translate}}</div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-12">
+        <form (ngSubmit)="deleteView()" [formGroup]="deleteViewForm">
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group text-left">
+                <div class="custom-control custom-checkbox pt-1">
+                  <input type="checkbox" class="custom-control-input" id="confirmCheckbox" formControlName="confirm">
+                  <label class="custom-control-label confirm-label" for="confirmCheckbox">{{'DELETE_VIEW.CONFIRM'|translate}}</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 text-right">
+              <div class="form-group">
+                <button class="btn btn-danger" type="submit" [disabled]="deleteViewForm.invalid">{{'DELETE_VIEW.DELETE'|translate}}</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ng-template>

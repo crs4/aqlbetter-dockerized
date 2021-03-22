@@ -1,0 +1,95 @@
+<div ngbDropdown role="group" aria-label="Button group with nested dropdown">
+  <button class="btn aql-button btn-block btn-sm m-0 no-arrow"
+          ngbDropdownToggle
+          [ngbTooltip]="'SAVE' | translate"
+          placement="left"
+          [container]="'body'"
+          [disabled]="!code">
+    <i class="fas fa-save m-1"></i>
+  </button>
+  <div class="dropdown-menu" ngbDropdownMenu>
+    <button ngbDropdownItem (click)="openModal(snippetModal)">{{'CODE_SNIPPET.SAVE' | translate}}</button>
+    <button ngbDropdownItem (click)="openModal(saveViewModal)">{{'VIEW.SAVE' | translate}}</button>
+
+    <ng-container *ngIf="tab?.type === EditorTabType.VIEW && tab.view?.name">
+      <div class="dropdown-divider"></div>
+      <button ngbDropdownItem (click)="openModal(saveViewModal, true)">{{'VIEW.UPDATE' | translate}}</button>
+    </ng-container>
+  </div>
+</div>
+<!-- Snippet modal dialog -->
+<ng-template #snippetModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{'CODE_SNIPPET.SAVE_TITLE' | translate}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="snippetFormGroup" (ngSubmit)="saveSnippet();">
+      <div class="form-group">
+        <label for="snippet-name" class="aql-label">{{'NAME' | translate}}</label>
+        <input #name type="text" id="snippet-name" class="form-control aql-input w-100" name="snippet-name" formControlName="name">
+        <div class="invalid-feedback" *ngIf="snippetFormGroup.get('name').errors?.exist">{{'ERRORS.SNIPPET_ALREADY_EXIST' | translate}}</div>
+        <div class="invalid-feedback" *ngIf="snippetFormGroup.get('name').errors?.required">{{'ERRORS.MANDATORY_FIELD' | translate}}</div>
+        <div class="invalid-feedback" *ngIf="snippetFormGroup.get('name').errors?.minlength">{{'ERRORS.NAME_MIN_LENGTH' | translate}}</div>
+        <small class="form-text text-muted">
+          <i>{{'CODE_SNIPPET.EXPLANATION' | translate}}</i>
+        </small>
+      </div>
+
+      <button class="btn btn-primary" type="submit">
+        {{'SAVE' | translate}}
+      </button>
+    </form>
+  </div>
+</ng-template>
+
+<!-- Save View Modal -->
+<ng-template #saveViewModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{(!isUpdate ? 'VIEW.SAVE' : 'VIEW.UPDATE')|translate}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <!-- Update warning notice -->
+    <ng-container *ngIf="isUpdate">
+      <div class="alert alert-warning" role="alert">
+        <div class="row">
+          <i class="fas fa-exclamation-triangle col-2 align-self-center"></i>
+          <div class="col-10">
+            <strong>{{'VIEW.UPDATE_WARNING_TITLE' | translate}}</strong> {{'VIEW.UPDATE_WARNING_BODY' | translate}}
+            <br><br>
+            <strong>{{'VIEW.UPDATE_UNDONE_WARNING' | translate}}</strong>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <form [formGroup]="viewsFormGroup" (ngSubmit)="save()">
+      <div class="form-group">
+        <label for="view-name" class="aql-label">{{'NAME' | translate}}</label>
+        <input type="text" id="view-name" [value]="tab?.name" class="form-control aql-input w-100" name="view-name" formControlName="name">
+        <div class="invalid-feedback" *ngIf="viewsFormGroup.get('name').errors?.required">{{'ERRORS.MANDATORY_FIELD' | translate}}</div>
+        <div class="invalid-feedback" *ngIf="viewsFormGroup.get('name').errors?.minlength">{{'ERRORS.NAME_MIN_LENGTH' | translate}}</div>
+        <label for="view-name" class="aql-label">{{'DESCRIPTION' | translate}}</label>
+        <input type="text" id="view-description" class="form-control aql-input w-100" name="view-name" formControlName="description">
+      </div>
+
+      <div class="custom-control custom-checkbox my-3" *ngIf="isUpdate">
+        <input type="checkbox" class="custom-control-input" id="customCheck1" formControlName="updateAgreement">
+        <label class="custom-control-label" for="customCheck1">{{'VIEW.UPDATE_CONFORMATION' | translate}}</label>
+      </div>
+
+      <div class="mt-4">
+        <button class="btn btn-outline-secondary" type="button" (click)="modal.dismiss()" >{{'CANCEL' | translate}}</button>
+        <button class="btn btn-primary float-right" type="submit"
+                [disabled]="isUpdate && !viewsFormGroup.get('updateAgreement').value">{{'SAVE' | translate}}</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

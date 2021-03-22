@@ -1,0 +1,55 @@
+<h2 class="property-title">{{'PARAMETER_DEFINITION' | translate}}</h2>
+<div class="mb-2">
+    <label class="aql-params-label">
+      {{'ADD_NEW_PARAMETER' | translate}}
+    </label>
+  <input #paramName class="fb-input form-control" type="text" placeholder="Parameter name" (keydown.enter)="addParam(paramName.value, paramName)">
+</div>
+
+<table class="table table-bordered mt-3 parameters-table" *ngIf="editorData.viewParameters?.size">
+  <thead>
+    <tr>
+      <th scope="col">{{'NAME' | translate}}</th>
+      <th scope="col">{{'TYPE' | translate}}</th>
+      <th scope="col">{{'FORMAT' | translate}}</th>
+      <th scope="col">{{'DESCRIPTION' | translate}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let entry of editorData.viewParameters | keyvalue">
+      <td><label class="aql-params-label">{{entry.key}}</label></td>
+      <td>
+        <aql-dropdown [items]="dropdownItems"
+                         [options]="dropdownOptions"
+                         [currentValue]="editorData.viewParameters.get(entry.key).type"
+                         (selectItem)="changeViewParamValue(entry.key, $event.item.value, 'type')">
+        </aql-dropdown>
+      </td>
+      <td>
+        <input #pFormat disabled class="fb-input form-control" type="text" (change)="changeViewParamValue(entry.key, pFormat.value, 'format')" [value]="entry.value?.format || ''">
+      </td>
+      <td>
+        <input #pDescription class="fb-input form-control" type="text" (change)="changeViewParamValue(entry.key, pDescription.value, 'description')" [value]="entry.value?.description || ''">
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ng-container *ngIf="editorData.viewExecutionParameters?.size">
+  <h2 class="property-title">{{'PARAMETER_VALUES' | translate}}</h2>
+  <table class="table table-bordered mt-3 parameters-table">
+    <thead>
+    <tr>
+      <th scope="col">{{'KEY' | translate}}</th>
+      <th scope="col">{{'VALUE' | translate}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let entry of editorData.viewExecutionParameters | keyvalue; let i = index">
+      <td><label class="aql-params-label" for="viewExecParams-{{i}}">{{entry.key}}</label></td>
+      <td>
+        <input #val id="viewExecParams-{{i}}" class="form-control fb-input" type="text" (change)="changeViewExecutionParamValue(entry.key, val.value)" [value]="entry.value">
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</ng-container>

@@ -18,3 +18,5 @@ export * from './lib/aql-result-table.module';
 
 export * from './lib/models/aql-metadata.model';
 export * from './lib/enums/table-presentation.enum';
+
+export * from './lib/utils/aql/get-full-selections';

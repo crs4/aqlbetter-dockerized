@@ -1,0 +1,53 @@
+{
+  "AQL_APP_NAME": "AQL Builder",
+  "PLATFORM": "Platform",
+  "CLOSE": "Close",
+  "HISTORY": "History",
+  "USER": "User",
+  "DOMAIN":"Domain",
+  "VERSION": "Version",
+  "LOGOUT": "Logout",
+  "UPDATE": "Update",
+  "CONTACT_US": "Contact us",
+  "BACK": "Back",
+  "SESSION_EXPIRED": {
+    "TITLE": "Your session expired!",
+    "BODY": "You will be automatically logged-out in a few moments"
+  },
+  "IMPORT": {
+    "BUTTON_NAME": "Import template",
+    "IMPORT_MODAL_TITLE": "Import operational template",
+    "INSTRUCTION_PART1": "Drag a file here or",
+    "INSTRUCTION_PART2": "browse",
+    "INSTRUCTION_PART3": "to upload",
+    "FILE_TYPE_NOT_SUPPORTED": "This file type is not supported. Please select or drag .opt, .xml or .zip file",
+    "TEMPLATE": {
+      "SUCCESS": "Template was successfully imported"
+    },
+    "ERROR": "Something went wrong. Please try again",
+    "NOT_ALLOWED": "You are not allowed to import files."
+  },
+  "ERRORS": {
+    "UNKNOWN_ERROR": "Unknown error",
+    "ERROR_NOTICE": "Something went wrong...",
+    "OFFLINE": "You appear to be offline.",
+    "AUTHENTICATION": "There was a problem with authentication: ",
+    "INTERNAL": "Internal server error",
+    "TEMPLATE_NOT_EXISTS": "The template referenced by this form does not exist.",
+    "ITEM_NOT_EXIST": "Selected item could not be opened. Most likely template does not exist or has been deleted.",
+    "MINLENGTH": "Name has to be longer than {{minlength}} characters/digits",
+    "INVALID_CHARACTERS": "Name contains invalid characters ({{specialCharacters}})",
+    "SERVER_ERROR": "Service is currently unavailable",
+    "UNAUTHORIZED": "Username or password invalid",
+    "ACTION_NOT_ALLOWED": "Action not allowed",
+    "FATAL_ERROR": "Fatal error occurred. Please contact support.",
+    "SERVER_COMMUNICATION_ERROR": "Error occurred during contacting the server.",
+    "PATH_ALREADY_EXISTS": "The suggested path already exists on this template. Please choose another.",
+    "PATH_NOT_VALID": "The entered path is not valid. Please correct the path and try again.",
+    "DOMAIN_ALREADY_EXISTS": "Domain already exists",
+    "OUT_OF_BOUNDS": "Please enter value between",
+    "FORBIDDEN": "You do not have permission to save/edit the form on the server. Export the form in zip to preserve progress and contact your administrator to give you right permissions.",
+    "DELETE_VIEW_ERROR": "Error deleting AQL View",
+    "SIMPLE_EXPRESSION_EVAL": "Cannot evaluate expression! Please provide testing values manually"
+  }
+}

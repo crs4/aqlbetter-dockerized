@@ -1,0 +1,21 @@
+<div class="dropdown {{customClass}}" buiDropdown #dropDown="buiDropdown"
+     [id]="dropdownId"
+     [options]="options"
+     [ngClass]="{'disabled': disabled}">
+    <button class="btn fb-input dropdown-toggle"
+            type="button"
+            (click)="dropDown.toggle()">
+        {{(selectedItem ? (selectedItem|applyDropdownOptions:options)?.label : 'SELECT_VALUE') | translate }}
+    </button>
+    <div class="dropdown-menu container-fluid"
+         [ngClass]="classes"
+         (clickOutside)="dropDown.close()">
+        <button *ngFor="let item of (items|applyDropdownOptions:options); let i = index"
+                class="dropdown-item"
+                type="button"
+                [disabled]="item.disabled"
+                (click)="onSelect(item, i); dropDown.close()">
+            {{ item.label | translate }}
+        </button>
+    </div>
+</div>

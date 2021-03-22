@@ -1,0 +1,31 @@
+  <div class="tab-group" #tabGroup>
+    <div *ngFor="let tab of tabs; let i = index"
+         class="editor-tab--item"
+         [class.active]="activeTabId === i"
+         (click)="selectTab(i)"
+         (dblclick)="showRenameInput(i)">
+      <span [title]="tab.name" *ngIf="!(renameInputId === i)">{{(tab.name || (tab.timestamp | date:'dd.MM.yyyy @ HH:mm')) | truncate: 20}}</span>
+      <input #renameTabInput type="text" class="form-control fb-input editor-tab--input"
+             [id]="'rename-tab-input-' + i"
+             [placeholder]="tab.name || (tab.timestamp | date:'dd.MM.yyyy @ HH:mm')"
+             (keyup.enter)="renameTab(i, renameTabInput.value)"
+             (blur)="renameTab(i, renameTabInput.value)"
+             *ngIf="renameInputId === i">
+      <span class="editor-tab--remove-btn ml-2" (click)="removeTab(i)" *ngIf="(tabs.length > 1) && !(renameInputId === i)">&times;</span>
+    </div>
+    <div class="d-inline-flex align-items-center h-100 ">
+      <button class="btn btn-sm p-0 m-0 editor-tab--action-btn" (click)="newTab()">
+        <i class="fas fa-plus"></i>
+      </button>
+      <div class="vertical-ruler mx-1"></div>
+      <div class="btn-group" ngbDropdown [container]="'body'" role="group" aria-label="">
+            <button class="btn btn-link editor-tab--action-btn p-0 m-0" ngbDropdownToggle>
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <div class="dropdown-menu" ngbDropdownMenu>
+                <button ngbDropdownItem (click)="newTab(EhrViewType.JSON_AQL)">{{'CREATE_NEW_AQL_VIEW' | translate}}</button>
+                <button ngbDropdownItem (click)="newTab(EhrViewType.JS)">{{'CREATE_NEW_JS_VIEW' | translate}}</button>
+            </div>
+        </div>
+    </div>
+  </div>

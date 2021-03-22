@@ -1,0 +1,10 @@
+<svg id="nav-views" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
+    <g fill="none" fill-rule="evenodd" stroke-width="2">
+        <rect width="26" height="26" x="1" y="1" stroke="currentColor" rx="5"/>
+        <rect width="11" height="15" x="5" y="5" stroke="currentColor" rx="2" opacity=".521"
+                transform="rotate(5 10.5 12.5)"/>
+        <rect width="11" height="15" x="8" y="6" fill="#FFF" stroke="currentColor" opacity=".721" rx="2"
+                transform="rotate(10 13.5 13.5)"/>
+        <rect width="11" height="15" x="11" y="8" fill="#FFF" stroke="currentColor" rx="2" transform="rotate(15 16.5 15.5)"/>
+    </g>
+</svg>

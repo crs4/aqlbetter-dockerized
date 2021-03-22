@@ -1,0 +1,3 @@
+<button aria-label="Close" class="toast-close-button ng-star-inserted" style=""><span aria-hidden="true" (click)="dismiss($event)">×</span></button>
+<div class="toast-title" *ngIf="toastPackage?.title">{{toastPackage.title}}</div>
+<div aria-live="polite" role="alertdialog" class="toast-message ng-star-inserted" style="" [innerHTML]="toastPackage.message"></div>

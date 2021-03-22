@@ -1,0 +1,47 @@
+<div class="table-options d-flex flex-row-reverse justify-content-between align-items-center mt-1 mb-1 w-100">
+    <div class="d-flex justify-content-start align-items-center h-100">
+        <button class="btn text-btn dark m-0 mr-1 p-0" type="button"
+                (click)="exportCsv()"
+                [disabled]="(!tab?.result && !tab?.result?.resultSet.length) || currentTablePresentation === TablePresentation.RAW">
+            <i class="fas fa-file-download"></i> {{'EXPORT' | translate}}
+        </button>
+        <button class="btn text-btn dark m-0 ml-2 p-0" type="button" (click)="toggleHideEditor()" [disabled]="!(tab?.result) && !(tab?.result?.resultSet.length)">
+            <ng-container *ngIf="showEditor; then contractedTable; else expandedTable"></ng-container>
+            <ng-template #contractedTable>
+                <i class="fas fa-expand-alt"></i> {{ 'EXPAND_TABLE' | translate}}
+            </ng-template>
+            <ng-template #expandedTable>
+                <i class="fas fa-compress-alt"></i> {{ 'COLLAPSE_TABLE' | translate}}
+            </ng-template>
+        </button>
+        <div class="d-inline-flex align-items-center switch">
+            <button class="btn switch-btn m-0" (click)="toggleView(TablePresentation.COMPACT)"
+                    [disabled]="!(tab?.result) || !(tab?.result?.resultSet.length)"
+                    [ngClass]="{'checked': currentTablePresentation === TablePresentation.COMPACT }">{{ 'COMPACT_VIEW' | translate}}</button>
+            <div class="vertical-ruler mx-1 flex-shrink-0"></div>
+            <button class="btn switch-btn m-0" (click)="toggleView(TablePresentation.DETAILED)"
+                    [disabled]="!(tab?.result) || !(tab?.result?.resultSet.length)"
+                    [ngClass]="{'checked': currentTablePresentation === TablePresentation.DETAILED }">{{ 'DETAILED' | translate}}</button>
+            <div class="vertical-ruler mx-1 flex-shrink-0"></div>
+            <button class="btn switch-btn m-0" (click)="toggleView(TablePresentation.RAW)"
+                    [disabled]="!(tab?.result) || !(tab?.result?.resultSet.length)"
+                    [ngClass]="{'checked': currentTablePresentation === TablePresentation.RAW }">{{ 'RAW_VIEW' | translate }}</button>
+        </div>
+    </div>
+    <div *ngIf="tab?.executionDetails" class="text-small d-inline details">
+        <strong>{{'NUM_OF_RESULTS' | translate}}: </strong>{{tab.executionDetails.numOfRows}}
+    </div>
+    <ng-container *ngIf="tab?.view?.type === EhrViewType.JS">
+        <div class="text-small d-inline disclaimer" id="disclaimer">
+            <i>
+                <strong>
+                    {{'DEBUGGER_DISCLAIMER' | translate}}
+                    (<a class="text-small text-primary m-0 align-self-center"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        href="https://www.lifewire.com/web-browser-developer-tools-3988965">{{'INSTRUCTIONS' | translate }}</a>)
+                </strong>
+            </i>
+        </div>
+    </ng-container>
+</div>

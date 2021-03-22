@@ -9,6 +9,12 @@ It is based on Angular(10+) framework.
 
 ## Using the libraries
 
+### AQL Builder
+
+AQL builder is standalone full-featured application written in Angular (10+) for writing, executing [AQL queries](https://specifications.openehr.org/releases/QUERY/latest/AQL.html) for clinical data and outputting results.
+
+For detailed instructions on setting up and using the application see the AQL Builder [README.md](/projects/aql-builder/README.md)
+
 ### AQL result table
 
 To install this library run:

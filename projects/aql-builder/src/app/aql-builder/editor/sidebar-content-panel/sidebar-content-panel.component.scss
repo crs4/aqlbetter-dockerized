@@ -1,0 +1,154 @@
+/* Copyright 2021 Better Ltd (www.better.care)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+@import "../../../../styles/variables";
+
+$background-color: $secondary-blue;
+
+.sidebar-content-wrapper {
+  position: relative;
+  width: inherit;
+  height: 100vh;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+
+  .row {
+    flex: 0 0 auto;
+  }
+
+  .panel-header {
+    padding: 18px 0 0 10px;
+  }
+
+  .panel-title {
+    float: left;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.26px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-shrink: 0;
+    width: 90%;
+  }
+
+
+  .panel-close-open {
+    i, i:hover {
+      float: right;
+      display: none;
+      font-size: 1.2rem;
+      color: #7b8993 !important;
+      opacity: 1;
+      text-shadow: 0 1px 0 #fff;
+      cursor: pointer;
+    }
+  }
+
+
+
+  .back-btn {
+    font-size: 0.9rem;
+    margin-right: 0.375rem;
+
+    &:hover {
+      color: $primary;
+      cursor: pointer;
+    }
+  }
+
+  .panel-content {
+    overflow: auto;
+  }
+
+  .history-title {
+    font-size: 12px;
+    padding-left: 10px;
+    letter-spacing: 1px;
+    color: $dark-gray;
+  }
+
+  .history-item {
+
+    position: relative;
+    font-size: 14px;
+    padding: 0.375rem 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $black;
+    cursor: pointer;
+
+    .history-item-action--remove {
+      display: none;
+      background-color: $background-color;
+      padding-left: 16px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0;
+      width: 40px;
+      color: $primary-red;
+    }
+
+    &:hover {
+      background-color: $background-color;
+      .history-item-action--remove {
+        display: block;
+      }
+    }
+  }
+
+  .presentation {
+    &.active {
+      color: $primary;
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: $primary;
+    }
+  }
+
+  .bottom-margin {
+    margin-bottom: 55px; // adds a margin when Show detailed view checkbox is visible
+  }
+
+  .bottom-fixed {
+    position: fixed;
+    bottom: 5px;
+  }
+
+  .language-container {
+    margin-bottom: 8px;
+
+    label {
+      font-size: 12px;
+      font-weight: 600;
+      color: $charcoal-grey-two;
+      padding-left: 2px; // Because input above has 2px border
+      margin-right: 8px;
+    }
+
+    ::ng-deep aql-dropdown {
+      button {
+        background-color: white;
+      }
+    }
+  }
+
+}
