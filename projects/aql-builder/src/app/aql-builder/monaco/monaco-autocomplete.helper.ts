@@ -23,7 +23,8 @@ export class MonacoAutocompleteHelper {
 
   static readonly nameAutocompleteCharacter = '#';
   static readonly propertyAutocompleteCharacter = '/';
-  static readonly variableNameRegex = /\s|\'|\-|\+|\<|\>|\!|\"|\,|\.|\(|\)|\*|\?|:|\[|\]|\//g;
+ // static readonly variableNameRegex = /\s|\'|\-|\+|\<|\>|\!|\"|\,|\.|\(|\)|\*|\?|:|\[|\]|\//g;
+  static readonly variableNameRegex = /\$|\s|\'|\-|\+|\<|\>|\!|\"|\,|\.|\(|\)|\*|\?|:|\[|\]|\//g;
   static readonly nameAndPathDelimiter = '···';
   static readonly commentPattern = '--';
   static readonly escapedSelections = [

@@ -96,7 +96,7 @@ export class EditorTabsComponent implements OnInit, OnChanges, OnDestroy {
         tab.name = `${this.tabService.DEFAULT_VIEW_TAB_NAME} (${viewType})`;
         tab.editor.code = EditorData.jsViewTemplate;
       }
-      tab.view = new EhrView(null, null, new EhrViewSteps('', viewType));
+      tab.view = new EhrView(null, null, viewType, null, new EhrViewSteps('', viewType));
     }
 
     this.tabService.createTab(tab);

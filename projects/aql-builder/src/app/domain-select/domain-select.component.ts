@@ -70,7 +70,11 @@ export class DomainSelectComponent implements OnInit {
 
   private initBasicAuth() {
     const {username, password} = this.appContextService.getCredentials();
+    console.log('initbasicAuth');
+    console.log(username);
+    console.log(password);
     const resourceUrl = this.appContextService.getResourceUrl() ?? null;
+    console.log(resourceUrl);
     if (!resourceUrl && !username && !password) {
       return;
     }
@@ -82,7 +86,8 @@ export class DomainSelectComponent implements OnInit {
   }
 
   private initOauth() {
-    this.showClientSecret = environment.auth?.grant_type === GrantType.clientSecret;
+    //this.showClientSecret = environment.auth?.grant_type === GrantType.clientSecret;
+    this.showClientSecret = environment.auth?.grant_type === GrantType.password;
   }
 
   private setOauthContext(): Observable<unknown> {
@@ -90,7 +95,8 @@ export class DomainSelectComponent implements OnInit {
     const {authorizationUrl, client_id, grant_type} = environment.auth;
 
     const payload: any = {client_id, grant_type, password, username};
-    if (grant_type === GrantType.clientSecret) {
+    //if (grant_type === GrantType.clientSecret) {
+    if (grant_type === GrantType.password) {
       payload.client_secret = clientSecret;
     }
 
@@ -100,7 +106,7 @@ export class DomainSelectComponent implements OnInit {
     return this.authHelperService.getHttpClient()
       .post(authorizationUrl, body, {headers})
       .pipe(
-        take(1),
+        //take(1),
         tap((res: any) => this.appContextService.setContext(resourceUrl, res?.access_token, res?.refresh_token)),
         catchError(e => this.handleErrorResponse(e)),
         finalize(() => {
@@ -110,13 +116,31 @@ export class DomainSelectComponent implements OnInit {
       );
   }
 
+  // private setBasicContext(): Observable<unknown> {
+  //   const {resourceUrl, username, password} = this.contextGroup.getRawValue();
+  //   const token = btoa(username + ':' + password);
+  //   let headers = new HttpHeaders();
+  //   headers = headers.append('Authorization', `Basic ${token}`);
+  //   return this.authHelperService.getHttpClient()
+  //     .head(`${this.sanitizeUrl(resourceUrl)}/rest/openehr/v1/definition/template/adl1.4`, {headers})
+  //     .pipe(
+  //       take(1),
+  //       tap(() => this.appContextService.setContext(resourceUrl, token)),
+  //       catchError(e => this.handleErrorResponse(e)),
+  //       finalize(() => {
+  //         this.requestInProgress = false;
+  //         this.cd.detectChanges();
+  //       })
+  //     );
+  // }
+
   private setBasicContext(): Observable<unknown> {
     const {resourceUrl, username, password} = this.contextGroup.getRawValue();
     const token = btoa(username + ':' + password);
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', `Basic ${token}`);
     return this.authHelperService.getHttpClient()
-      .head(`${this.sanitizeUrl(resourceUrl)}/rest/v1/template`, {headers})
+      .head(`${this.sanitizeUrl(resourceUrl)}/rest/openehr/v1/definition/template/adl1.4`, {headers})
       .pipe(
         take(1),
         tap(() => this.appContextService.setContext(resourceUrl, token)),
@@ -126,7 +150,22 @@ export class DomainSelectComponent implements OnInit {
           this.cd.detectChanges();
         })
       );
+
+      // return this.authHelperService.getHttpClient()
+      // .head(`/api/ehrbase/rest/openehr/v1/definition/template/adl1.4`, {headers})
+      // .pipe(
+      //   take(1),
+      //   tap(() => this.appContextService.setContext(resourceUrl, token)),
+      //   catchError(e => this.handleErrorResponse(e)),
+      //   finalize(() => {
+      //     this.requestInProgress = false;
+      //     this.cd.detectChanges();
+      //   })
+      // );
+
+
   }
+
 
   private sanitizeUrl(url: string): string {
     return url.replace(/(?:(?:\/admin)(?:\/rest)?( ?:\/v1)?|(?:\/adminconsole)(?:\/stats)?)(?:\/)?$/, '');

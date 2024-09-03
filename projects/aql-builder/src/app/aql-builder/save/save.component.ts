@@ -61,6 +61,7 @@ export class SaveComponent implements OnChanges, OnDestroy {
   viewsFormGroup = new FormGroup({
     name: new FormControl('', {validators: [Validators.required, Validators.minLength(3)]}),
     description: new FormControl(),
+    version: new FormControl(),
     paramsTypes: new FormControl(),
     updateAgreement: new FormControl(false)
   });
@@ -143,21 +144,52 @@ export class SaveComponent implements OnChanges, OnDestroy {
   }
 
   /**
+   * 
    * Check if view with predefined name already exist and save it only if it doesn't
    */
   private saveView(): void {
     const name: string = this.viewsFormGroup.get('name').value;
     const description: string = this.viewsFormGroup.get('description').value;
+    let version: string = this.viewsFormGroup.get('version').value;
     const data = this.tab.view?.type === EhrViewType.JS ? this.tab.editor.viewParameters : this.tab.editor.aqlParameters;
     const params: EhrViewMetaData = this.handleViewMetadata(data);
     const code =  this.monacoService.replaceWithPaths(this.tab.editor.code); // `this` is not a scope of the component inside second subscribe
 
-    this.ehrApiService.getView(name)
-      .subscribe(
-        () => this.toastrWrapperService.handleToast(ToastType.ERROR, new ToastContent('ERRORS.VIEW_ALREADY_EXIST')),
-        (error) => {
-          if (error.status && error.status === 404) {
-            const view: EhrView = new EhrView(name, description, new EhrViewSteps(code, this.tab.view?.type || EhrViewType.JSON_AQL), JSON.stringify(params, null, 4));
+    // console.log('saveView name',name);
+    // console.log('saveView version',version);
+    // if (!version){
+    //   version='1.0.0';
+    // }
+
+    // this.ehrApiService.getView(name,version)
+    //   .subscribe(
+    //     () => this.toastrWrapperService.handleToast(ToastType.ERROR, new ToastContent('ERRORS.VIEW_ALREADY_EXIST')),
+    //     (error) => {
+    //       if (error.status && error.status === 400) {
+    //         const view: EhrView = new EhrView(name, version, EhrViewType.JSON_AQL, new Date(new Date().toJSON()), new EhrViewSteps(code, this.tab.view?.type || EhrViewType.JSON_AQL), JSON.stringify(params, null, 4),description);
+    //         this.ehrApiService.saveView(view)
+    //           .subscribe(
+    //             () => this.handleSuccessResponse('VIEW.SAVED'),
+    //             (err) => {
+    //               this.toastrWrapperService.handleToast(ToastType.ERROR, new ToastContent('ERRORS.GENERAL'), `[Error] Saving view failed (raw payload: ${JSON.stringify(err.error)})`);
+    //             },
+    //             () => {
+    //               this.tab.view = view;
+    //               this.tab.name = name;
+    //               this.emitViewUpdate();
+    //             }
+    //           );
+    //       }
+    //     }
+    //   );
+
+
+      // this.ehrApiService.getView(name,version)
+      // .subscribe(
+      //   () => this.toastrWrapperService.handleToast(ToastType.ERROR, new ToastContent('ERRORS.VIEW_ALREADY_EXIST')),
+      //   (error) => {
+      //     if (error.status && error.status === 400) {
+            const view: EhrView = new EhrView(name, version, EhrViewType.JSON_AQL, new Date(new Date().toJSON()), new EhrViewSteps(code, this.tab.view?.type || EhrViewType.JSON_AQL), JSON.stringify(params, null, 4),description);
             this.ehrApiService.saveView(view)
               .subscribe(
                 () => this.handleSuccessResponse('VIEW.SAVED'),
@@ -170,17 +202,22 @@ export class SaveComponent implements OnChanges, OnDestroy {
                   this.emitViewUpdate();
                 }
               );
-          }
-        }
-      );
+      //     }
+      //   }
+      // );
+
+
   }
 
   private updateView(): void {
+    console.log('bbbbbbbbbbbUPDATEVIEWbbbbbbbbbbbbbbbbb');
     const description: string = this.viewsFormGroup.get('description').value;
+    const version = this.viewsFormGroup.get('version').value;
     const view = this.tab.view;
     const previousCode = Object.assign({}, view.steps.processorData);
     const data = this.tab.view?.type === EhrViewType.JS ? this.tab.editor.viewParameters : this.tab.editor.aqlParameters;
     view.description = description;
+    view.version = version;
 
     if (view.metaData) {
       view.metaData = typeof view.metaData === 'string' ? JSON.parse(view.metaData) : view.metaData;
@@ -209,9 +246,9 @@ export class SaveComponent implements OnChanges, OnDestroy {
    */
   private prefillSaveForm(): void {
     if (this.isUpdate) {
-      this.viewsFormGroup.patchValue({name: this.tab.name, description: this.tab.view.description});
+      this.viewsFormGroup.patchValue({name: this.tab.name, description: this.tab.view.description,version: this.tab.view.version});
     } else {
-      this.viewsFormGroup.patchValue({name: '', description: ''});
+      this.viewsFormGroup.patchValue({name: '', description: '', version: ''});
     }
   }
 

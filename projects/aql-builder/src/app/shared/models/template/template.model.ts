@@ -20,14 +20,22 @@ export class TemplateIDList {
   templates: TemplateID[];
 }
 
+// export class TemplateID {
+//   templateId: string;
+//   createdOn: string;
+// }
+
 export class TemplateID {
-  templateId: string;
-  createdOn: string;
+  template_id: string;
+  created_timestamp: string;
+  concept: string;
+  archetype_id: string;
 }
 
 export interface Template {
   meta: MetaData;
   webTemplate: WebTemplate;
+  action: string;
 }
 
 interface MetaData {

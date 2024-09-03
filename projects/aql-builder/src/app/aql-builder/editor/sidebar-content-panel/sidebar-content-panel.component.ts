@@ -80,6 +80,7 @@ export class SidebarContentPanelComponent implements OnInit, OnDestroy {
   deleteViewForm: FormGroup = this.fb.group({
     name: null,
     description: null,
+    version: null,
     confirm: [false, [Validators.requiredTrue]]
   });
 
@@ -128,6 +129,10 @@ export class SidebarContentPanelComponent implements OnInit, OnDestroy {
       .subscribe( (data: any[]) => {
         this.codeSnippetService.setViewItems(data);
         this.views$ = this.codeSnippetService.views$;
+        console.log('vview',this.views$);
+        this.views$.subscribe(data => {
+        console.log('Dataaaa:', data);
+        });
         this.updateViews();
         this.cd.detectChanges();
       });
@@ -249,9 +254,10 @@ export class SidebarContentPanelComponent implements OnInit, OnDestroy {
   }
 
   loadViewItem(view: EhrView): void {
+      console.log('loadviewitem',view);
       const tabIndex = this.tabService.tabs.findIndex(existingTab => {
         const tabView = existingTab.view;
-        return tabView?.description === view.description && tabView?.name === view.name && tabView?.type === view.type;
+        return tabView?.version === view.version && tabView?.name === view.name && tabView?.type === view.type;
       });
 
       if (tabIndex > -1) {
@@ -282,6 +288,7 @@ export class SidebarContentPanelComponent implements OnInit, OnDestroy {
 
   loadTemplate(templateId: string): void {
     this.showSpinner();
+    //templateId='BBMRI-ERIC_Colorectal_Cancer_Cohort_Report';
     this.ehrApiService.getTemplate(templateId)
       .subscribe(t => {
         this.templateLanguages = t.webTemplate.languages.map(l => ({value: l, label: l, disabled: false}) as DropdownItem<unknown>);
@@ -374,6 +381,12 @@ export class SidebarContentPanelComponent implements OnInit, OnDestroy {
 
   private updateTemplates() {
     const templates = this.ehrApiService.getTemplateIDs();
+
+    // templates.subscribe(data => {
+    //   console.log('Templates Data:', data);
+    //   console.log(data[0].template_id)
+    // });
+  
     const filterInput = this.searchTemplate
       .valueChanges
       .pipe(
@@ -384,7 +397,7 @@ export class SidebarContentPanelComponent implements OnInit, OnDestroy {
       .pipe(
         map((templateRes: [TemplateID[], string]) => {
           return templateRes[0].filter(
-            templateID => templateID.templateId.toLowerCase().indexOf(templateRes[1].toLowerCase()) > -1
+            templateID => templateID.template_id.toLowerCase().indexOf(templateRes[1].toLowerCase()) > -1
           );
         })
       );
@@ -394,6 +407,13 @@ export class SidebarContentPanelComponent implements OnInit, OnDestroy {
     const filterInput = this.searchViews
       .valueChanges
       .pipe(startWith(''), debounceTime(250));
+
+  //  this.views$.subscribe(data => {
+  //     console.log('Views Data:', data);
+  //     console.log(data)
+  //   });
+
+    //this.views$ = this.ehrApiService.getViews();
 
     this.views = combineLatest([this.views$, filterInput])
       .pipe(
@@ -409,6 +429,9 @@ export class SidebarContentPanelComponent implements OnInit, OnDestroy {
   openDeletePrompt($event: Event, view: EhrView, modal: TemplateRef<any>) {
     $event.preventDefault();
     this.deleteViewForm.patchValue(view);
+    console.log('odd',this.deleteViewForm);
+    console.log(this.deleteViewForm.get('name').value);
+    console.log(this.deleteViewForm.get('version').value);
     this.deletePrompt = this.ngbModal.open(modal, {backdrop: 'static'});
   }
 
@@ -419,7 +442,7 @@ export class SidebarContentPanelComponent implements OnInit, OnDestroy {
 
   deleteView() {
     this.spinnerService.showSidebarSpinner();
-    this.ehrApiService.deleteView(this.deleteViewForm.get('name').value)
+    this.ehrApiService.deleteView(this.deleteViewForm.get('name').value,this.deleteViewForm.get('version').value)
       .pipe(
         take(1),
         finalize(() => {

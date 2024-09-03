@@ -39,6 +39,8 @@ export class TokenInterceptor implements HttpInterceptor {
       return next.handle(this.updateHeaders(req))
         .pipe(catchError((e) => {
             if (this.isBasicAuth()) {
+              console.log('inside intercept');
+              console.log('req',req);
               return throwError(e);
             }
 
@@ -51,8 +53,10 @@ export class TokenInterceptor implements HttpInterceptor {
   private updateHeaders(req: HttpRequest<any>): HttpRequest<any> {
     const token = this.appContextService.getToken();
     let auth;
+    console.log('inside updateHeaders',token)
     if (this.authType === AuthType.BASIC) {
       auth = `Basic ${token}`;
+      console.log('auth',auth);
     } else {
       auth = `Bearer ${token}`;
     }

@@ -113,6 +113,7 @@
   "DELETE_VIEW": {
     "VIEW": "View",
     "DESCRIPTION": "Description",
+    "VERSION":"Version",
     "DELETE_PROMPT": "Delete AQL View",
     "NOTIFICATION": "Warning! This action will delete the AQL View from the server and it cannot be undone.",
     "CONFIRM": "I understand",

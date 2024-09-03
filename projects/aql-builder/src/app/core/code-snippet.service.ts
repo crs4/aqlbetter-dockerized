@@ -17,8 +17,9 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {HistoryItem, SnippetItem} from '../shared/models/code-snippet-model';
 import {AutocompleteObjectsStore} from './autocomplete-objects.store';
-import {EhrView} from '../shared/models/ehr-view.model';
+import {EhrView, EhrViewSteps} from '../shared/models/ehr-view.model';
 import {StorageService} from './storage.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable()
 export class CodeSnippetService {
@@ -121,8 +122,26 @@ export class CodeSnippetService {
     return !!this.snippetItems.find( item => item.name === name);
   }
 
+  compareVersions(x: string, y: string): boolean {
+    let xsplitted=x.split('.');
+    let ysplitted=y.split('.');
+    xsplitted.forEach((xs,index ) => {
+      const ys = ysplitted[index];
+      if (Number(xs)>Number(ys)){
+        return true;
+      } else if(Number(xs)<Number(ys))
+      {
+        return false;
+      }
+    });
+    return false;
+  }
+
+
   setViewItems(rawData: any[]): void {
+    console.log('rawData',rawData);
     this.viewItems.clear();
+    let alreadydone={};
     rawData.forEach( view => {
       let metaData = view.metaData;
       if (metaData) {
@@ -133,9 +152,30 @@ export class CodeSnippetService {
           metaData = undefined;
         }
       }
-      this.viewItems.set(view.name, new EhrView(view.name, view.description, view.steps, metaData));
+      console.log('view after raw',view);
+      console.log('ad',alreadydone);
+//      this.viewItems.set(view.name, new EhrView(view.name, view.description, view.steps, metaData));
+      if (view.name in alreadydone){
+        if (this.compareVersions(view.version,alreadydone[view.name])){
+          this.viewItems.delete(view.name);
+          this.viewItems.set(view.name, new EhrView(view.name, view.version, view.type, view.saved, view.steps));
+          alreadydone[view.name]=view.version;
+        }
+        console.log('ad1',alreadydone);
+      } else{
+        
+        this.viewItems.set(view.name, new EhrView(view.name, view.version, view.type, view.saved, view.steps));
+        alreadydone[view.name]=view.version;
+        console.log('ad2',alreadydone);
+      }
     });
+    
+    console.log('viewItemsssss',this.viewItems);
     this.views.next(this.viewItems);
+    console.log('this.views$',this.views$);
+    this.views$.subscribe(data => {
+      console.log('Data this views$:', data);
+      });
   }
 
 }

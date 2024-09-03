@@ -24,17 +24,29 @@ export class EhrView {
   steps: EhrViewSteps;
   metaData: EhrViewMetaData | string;
   unsaved = false;
+  saved: Date;
+  version: string;
 
-  constructor(name: string, description: string, steps: EhrViewSteps, metadata?: EhrViewMetaData | string) {
+  constructor(name: string, version: string, type: EhrViewType, saved: Date,steps: EhrViewSteps, metadata?: EhrViewMetaData | string, description?) {
     this.name = name;
-    this.type = Array.isArray(steps) ? steps[0].processorName : steps.processorName;
-    this.description = description;
-    this.metaData = metadata;
-    /**
-     * This check if it is array can be removed once platform drops support for multi steps
-     */
+    this.type = type;
+    this.version = version;
+    this.saved = saved;
     this.steps = Array.isArray(steps) ? new EhrViewSteps(steps[0].processorData, this.type) : steps;
+    this.description=description;
+    //this.metaData = {'name':name,'version':version,'steps':steps};
   }
+
+  // constructor(name: string, description: string, steps: EhrViewSteps, metadata?: EhrViewMetaData | string) {
+  //   this.name = name;
+  //   this.type = Array.isArray(steps) ? steps[0].processorName : steps.processorName;
+  //   this.description = description;
+  //   this.metaData = metadata;
+  //   /**
+  //    * This check if it is array can be removed once platform drops support for multi steps
+  //    */
+  //   this.steps = Array.isArray(steps) ? new EhrViewSteps(steps[0].processorData, this.type) : steps;
+  // }
 }
 
 export class EhrViewSteps {
@@ -57,7 +69,7 @@ export class EhrViewMetaData {
 }
 
 export enum EhrViewType {
-  JSON_AQL = 'jsonAql',
+  JSON_AQL = 'AQL',
   JSON_FTL_AQL = 'jsonFtlAql',
   JS = 'js'
 }

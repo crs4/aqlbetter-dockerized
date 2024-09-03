@@ -33,12 +33,21 @@ export class AppContextService {
     return this.resourceUrl;
   }
 
+  getServerUrl(): string {
+    return CommonUtil.removeTrailingSlash(this.resourceUrl);
+  }
+
+
   getRestUrl(): string {
-    return CommonUtil.removeTrailingSlash(this.resourceUrl) + '/rest/v1';
+    return CommonUtil.removeTrailingSlash(this.resourceUrl) + '/rest/openehr/v1';
+  }
+
+  getRestUrlwt(): string {
+    return CommonUtil.removeTrailingSlash(this.resourceUrl) + '/rest/ecis/v1';
   }
 
   getAdminRestUrl(): string {
-    return CommonUtil.removeTrailingSlash(this.resourceUrl) + '/admin/rest/v1';
+    return CommonUtil.removeTrailingSlash(this.resourceUrl) + '/rest/admin';
   }
 
   getToken(): string {

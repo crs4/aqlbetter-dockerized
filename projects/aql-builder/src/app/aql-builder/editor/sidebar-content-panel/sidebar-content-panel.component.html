@@ -54,7 +54,7 @@
       </div>
       <div class="panel-content">
         <div *ngFor="let view of views|async; let i = index" class="history-item d-flex justify-content-between" (click)="loadViewItem(view)">
-          <span>{{view.name}}</span>
+          <span>{{view.name}} v{{view.version}}</span>
           <div class="history-item-action--remove">
             <i class="fa fa-trash-alt pointer" (click)="openDeletePrompt($event, view, deleteViewModal)"></i>
           </div>
@@ -106,9 +106,9 @@
           </div>
           <div class="panel-content">
             <div *ngFor="let template of templates | async" class="history-item"
-                 (click)="loadTemplate(template.templateId)"
-                 [attr.title]="template.templateId">
-              {{template.templateId}}
+                 (click)="loadTemplate(template.template_id)"
+                 [attr.title]="template.template_id">
+              {{template.template_id}}
             </div>
           </div>
         </ng-container>
@@ -178,6 +178,9 @@
     </div>
     <div class="row">
       <div class="col-12">{{'DELETE_VIEW.DESCRIPTION'|translate}}: <strong>{{deleteViewForm.get('description')?.value}}</strong></div>
+    </div>
+    <div class="row">
+      <div class="col-12">{{'DELETE_VIEW.VERSION'|translate}}: <strong>{{deleteViewForm.get('version')?.value}}</strong></div>
     </div>
     <div class="row mt-4">
       <div class="col-12">{{'DELETE_VIEW.NOTIFICATION'|translate}}</div>
