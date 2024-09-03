@@ -50,7 +50,7 @@ export class ImportComponent implements OnInit, OnDestroy {
   }
 
   openModal(element) {
-    console.log('Header: Import template or form');
+    //console.log('Header: Import template or form');
     this.fileTypeError = false;
     this.activeModal = this.modalService.open(element);
   }

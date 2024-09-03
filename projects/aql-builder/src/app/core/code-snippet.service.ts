@@ -139,7 +139,7 @@ export class CodeSnippetService {
 
 
   setViewItems(rawData: any[]): void {
-    console.log('rawData',rawData);
+    //console.log('rawData',rawData);
     this.viewItems.clear();
     let alreadydone={};
     rawData.forEach( view => {
@@ -152,8 +152,8 @@ export class CodeSnippetService {
           metaData = undefined;
         }
       }
-      console.log('view after raw',view);
-      console.log('ad',alreadydone);
+      //console.log('view after raw',view);
+      //console.log('ad',alreadydone);
 //      this.viewItems.set(view.name, new EhrView(view.name, view.description, view.steps, metaData));
       if (view.name in alreadydone){
         if (this.compareVersions(view.version,alreadydone[view.name])){
@@ -161,21 +161,21 @@ export class CodeSnippetService {
           this.viewItems.set(view.name, new EhrView(view.name, view.version, view.type, view.saved, view.steps));
           alreadydone[view.name]=view.version;
         }
-        console.log('ad1',alreadydone);
+        //console.log('ad1',alreadydone);
       } else{
         
         this.viewItems.set(view.name, new EhrView(view.name, view.version, view.type, view.saved, view.steps));
         alreadydone[view.name]=view.version;
-        console.log('ad2',alreadydone);
+        //console.log('ad2',alreadydone);
       }
     });
     
-    console.log('viewItemsssss',this.viewItems);
+    //console.log('viewItemsssss',this.viewItems);
     this.views.next(this.viewItems);
-    console.log('this.views$',this.views$);
-    this.views$.subscribe(data => {
-      console.log('Data this views$:', data);
-      });
+    //console.log('this.views$',this.views$);
+    //this.views$.subscribe(data => {
+    //  console.log('Data this views$:', data);
+    //  });
   }
 
 }

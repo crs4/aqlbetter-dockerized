@@ -129,10 +129,10 @@ export class SidebarContentPanelComponent implements OnInit, OnDestroy {
       .subscribe( (data: any[]) => {
         this.codeSnippetService.setViewItems(data);
         this.views$ = this.codeSnippetService.views$;
-        console.log('vview',this.views$);
-        this.views$.subscribe(data => {
-        console.log('Dataaaa:', data);
-        });
+        //console.log('vview',this.views$);
+        //this.views$.subscribe(data => {
+        //console.log('Dataaaa:', data);
+        //});
         this.updateViews();
         this.cd.detectChanges();
       });
@@ -254,7 +254,7 @@ export class SidebarContentPanelComponent implements OnInit, OnDestroy {
   }
 
   loadViewItem(view: EhrView): void {
-      console.log('loadviewitem',view);
+      //console.log('loadviewitem',view);
       const tabIndex = this.tabService.tabs.findIndex(existingTab => {
         const tabView = existingTab.view;
         return tabView?.version === view.version && tabView?.name === view.name && tabView?.type === view.type;
@@ -429,9 +429,9 @@ export class SidebarContentPanelComponent implements OnInit, OnDestroy {
   openDeletePrompt($event: Event, view: EhrView, modal: TemplateRef<any>) {
     $event.preventDefault();
     this.deleteViewForm.patchValue(view);
-    console.log('odd',this.deleteViewForm);
-    console.log(this.deleteViewForm.get('name').value);
-    console.log(this.deleteViewForm.get('version').value);
+    //console.log('odd',this.deleteViewForm);
+    //console.log(this.deleteViewForm.get('name').value);
+    //console.log(this.deleteViewForm.get('version').value);
     this.deletePrompt = this.ngbModal.open(modal, {backdrop: 'static'});
   }
 

@@ -70,11 +70,11 @@ export class DomainSelectComponent implements OnInit {
 
   private initBasicAuth() {
     const {username, password} = this.appContextService.getCredentials();
-    console.log('initbasicAuth');
-    console.log(username);
-    console.log(password);
+    //console.log('initbasicAuth');
+    //console.log(username);
+    //console.log(password);
     const resourceUrl = this.appContextService.getResourceUrl() ?? null;
-    console.log(resourceUrl);
+    //console.log(resourceUrl);
     if (!resourceUrl && !username && !password) {
       return;
     }

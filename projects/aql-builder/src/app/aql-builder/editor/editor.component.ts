@@ -197,7 +197,7 @@ export class EditorComponent implements OnInit, OnChanges, OnDestroy {
           this.editorOptions = cloneDeep(this.editorOptions);
         }
         this.editorData = tab.editor;
-        console.log('editorData',this.editorData);
+        //console.log('editorData',this.editorData);
         this.codePresentation = tab.editor.codePresentation;
         this.activeTabId = this.tabService.activeTabId;
         if (manuallyUpdateCode) {
@@ -223,7 +223,7 @@ export class EditorComponent implements OnInit, OnChanges, OnDestroy {
       const activeTab = this.tabService.getActiveTab();
       activeTab.editor.code = this.code;
       this.editorData = activeTab.editor;
-      console.log('editorData2',this.editorData);
+      //console.log('editorData2',this.editorData);
     } else {
       this.tabService.setActiveTab(this.tabService.activeTabId);
       this.tabService.dispatchTabListChange();
@@ -265,7 +265,7 @@ export class EditorComponent implements OnInit, OnChanges, OnDestroy {
       this.editorData.aqlParameters = this.editorData.viewExecutionParameters;
       
     }
-    console.log('aqlparameters',this.editorData.aqlParameters);
+    //console.log('aqlparameters',this.editorData.aqlParameters);
     this.tabService.setResult(new AqlResultSet());
     this.toggleSpinner(true);
     const runCode = code || this.code;
@@ -344,13 +344,13 @@ export class EditorComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   changeValue(key: string, $event: string) {
-    console.log('in changeValue',this.editorData);
+    //console.log('in changeValue',this.editorData);
     if (CommonUtil.isBlank($event) || isNaN(+$event)) {
       this.editorData.aqlParameters.set(key, $event);
     } else {
       this.editorData.aqlParameters.set(key, +$event);
     }
-    console.log('in changeValue aqlparameters',this.editorData.aqlParameters);
+    //console.log('in changeValue aqlparameters',this.editorData.aqlParameters);
   }
 
   validateInput(element: HTMLInputElement) {
@@ -419,7 +419,7 @@ export class EditorComponent implements OnInit, OnChanges, OnDestroy {
 
   private handleParameters() {
     let params = this.code.match(this.variableRegex);
-    console.log('params',params);
+    //console.log('params',params);
 
     if (!params) {
       this.editorData.aqlParameters.clear();
@@ -429,21 +429,21 @@ export class EditorComponent implements OnInit, OnChanges, OnDestroy {
     params = this.filterCommentedParams(params);
     //params = params.map(value => `:${value.split(':')[1]}`); //for colon
     params = params.map(value => `$${value.split('$')[1]}`);//for dollar
-    console.log('params',params);
+    //console.log('params',params);
     params.forEach((param) => {
       //const key = param.split(':')[1]; //for colon
        const key = param.split('$')[1];//for dollar
-      console.log('keysplit',key);
+      //console.log('keysplit',key);
       const isCommented = this.monacoService.isWordCommented(this.code, key);
-      console.log('isCommented',isCommented);
-      console.log(this.editorData.aqlParameters.has(key));
-      console.log(key.length);
+      //console.log('isCommented',isCommented);
+      //console.log(this.editorData.aqlParameters.has(key));
+      //console.log(key.length);
       if (!this.editorData.aqlParameters.has(key) && key.length > 0 && !isCommented) {
-        console.log('key',key);
+        //console.log('key',key);
         this.editorData.aqlParameters.set(key, '');
-        console.log(this.editorData.aqlParameters.get(key));
+        //console.log(this.editorData.aqlParameters.get(key));
       }
-      console.log('size',this.editorData.aqlParameters.size);
+      //console.log('size',this.editorData.aqlParameters.size);
     });
 
 

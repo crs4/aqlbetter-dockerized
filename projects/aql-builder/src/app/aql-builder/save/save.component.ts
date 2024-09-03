@@ -210,7 +210,7 @@ export class SaveComponent implements OnChanges, OnDestroy {
   }
 
   private updateView(): void {
-    console.log('bbbbbbbbbbbUPDATEVIEWbbbbbbbbbbbbbbbbb');
+    //console.log('bbbbbbbbbbbUPDATEVIEWbbbbbbbbbbbbbbbbb');
     const description: string = this.viewsFormGroup.get('description').value;
     const version = this.viewsFormGroup.get('version').value;
     const view = this.tab.view;
@@ -291,7 +291,7 @@ export class SaveComponent implements OnChanges, OnDestroy {
    */
   private handleSuccessResponse(message: string): void {
     this.toastrWrapperService.handleToast(ToastType.SUCCESS, new ToastContent(message));
-    console.log(message);
+    //console.log(message);
     this.closeActiveModal();
   }
 

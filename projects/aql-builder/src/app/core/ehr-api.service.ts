@@ -70,7 +70,7 @@ export class EhrApiService {
 
 
   getTemplate(templateId: string): Observable<Template> {
-    console.log('gettemplate',templateId)
+    //console.log('gettemplate',templateId)
     //templateId='BBMRI-ERIC_Colorectal_Cancer_Cohort_Report'
     return this.http.get<Template>(`${this.getApiUrlwt()}/template/${encodeURIComponent(templateId)}`)
       .pipe(
@@ -91,8 +91,8 @@ export class EhrApiService {
 
   importTemplate(payload: File): Observable<Template> {
     let pippo = this.getHeaders();
-    console.log('type headers',typeof(pippo));
-    console.log('headers importtemplate',pippo);
+    //console.log('type headers',typeof(pippo));
+    //console.log('headers importtemplate',pippo);
     // return this.http.post<Template>(`${this.getApiUrl()}/definition/template/adl1.4/`, payload, {headers: this.getHeaders()});
     return this.http.post<Template>(`${this.getApiUrl()}/definition/template/adl1.4/`, payload, {headers: {'Content-Type':'application/XML'}});
   }
@@ -122,7 +122,7 @@ export class EhrApiService {
     //   map(view => view ),
     //   switchMap((data) => data ? of(data) : of([]))
     // );
-    console.log('pluto',pluto);
+    //console.log('pluto',pluto);
     // pluto.subscribe(data2 => {
     // console.log('Data2:', data2);
      
@@ -195,7 +195,7 @@ return pluto.pipe(
 
   saveView(payload: EhrView): Observable<any> {
     const body: any = Object.assign({}, payload);
-    console.log('body_in',body);
+    //console.log('body_in',body);
     // Convert steps from object to array -- Remove this once platform drops support for multiple steps in one view
     body.steps = [payload.steps];
     if (body.version){
@@ -207,9 +207,9 @@ return pluto.pipe(
       body.version='1.0.0';
     }
     //body.saved=new Date().toJSON();
-    console.log('body_out',body)
+    //console.log('body_out',body)
     let aqltext = body.steps[0].processorData;
-    console.log('aqltext before calls',aqltext);
+    //console.log('aqltext before calls',aqltext);
     // let aqlstring = {};
     // aqlstring['q']=aqltext;
   //  const myquery = JSON.stringify(aqlstring);
@@ -223,8 +223,8 @@ return pluto.pipe(
   //   type: 'AQL', format: 'RAW'}), myquery,{headers: {'Content-Type':'application/json'}});
     return this.http.get<SrvrResponse>('/api/ehrbase/management/info',{headers: {'Content-Type':'text/plain'}}).pipe(
         switchMap(firstData => {
-          console.log(firstData.build.group);
-          console.log('this way. no error',firstData.build.group);
+          //console.log(firstData.build.group);
+          //console.log('this way. no error',firstData.build.group);
           const server = firstData?.build.group || 'org.ehrbase.local';
           let fullname = server + '::' + body.name;
           return this.http.put<any>(`${this.getApiUrl()}/definition/query/${fullname}/${body.version}?`+ new URLSearchParams({
@@ -232,7 +232,7 @@ return pluto.pipe(
         })
         ,
         catchError(error => {
-          console.error('Error in the first HTTP call:', error);
+          //console.error('Error in the first HTTP call:', error);
           const server = 'org.ehrbase.local';
           let fullname = server + '::' + body.name;
           return this.http.put<any>(`${this.getApiUrl()}/definition/query/${fullname}/${body.version}?`+ new URLSearchParams({
@@ -255,7 +255,7 @@ return pluto.pipe(
   
 
   updateView(payload: EhrView): Observable<any> {
-    console.log('updateView---------------------');
+    //console.log('updateView---------------------');
     const body: any = Object.assign({}, payload);
 
     // Convert steps from object to array -- Remove this once platform drops support for multiple steps in one view
@@ -269,9 +269,9 @@ return pluto.pipe(
       console.error('no version included');
     }
     //body.saved=new Date().toJSON();
-    console.log('body_out',body)
+    //console.log('body_out',body)
     let aqltext = body.steps[0].processorData;
-    console.log('aqltext before calls',aqltext);
+    //console.log('aqltext before calls',aqltext);
 
     return this.http.put<any>(`${this.getApiUrl()}/definition/query/${body.name}/${body.version}?`+ new URLSearchParams({
       type: 'AQL', format: 'RAW'}),aqltext,{headers: {'Content-Type':'text/plain'}});
@@ -279,13 +279,13 @@ return pluto.pipe(
   }
 
   deleteView(viewName: string,version: string): Observable<any> {
-    console.log('deleteview',viewName);
-    console.log('version',version);
+    //console.log('deleteview',viewName);
+    //console.log('version',version);
     return this.http.delete(`${this.getAdminApiUrl()}/query/${viewName}/${version}`);
   }
 
   getAqlQueryResultWithParameters(aql: string, params?: Map<string, string | number>): Observable<AqlResultSet> {
-    console.log('aql',aql);
+    //console.log('aql',aql);
     let aqlnew=aql.replace(/\n/g, " ")
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
@@ -293,9 +293,9 @@ return pluto.pipe(
       'q':aqlnew,
       'query_parameters': params ? this.createAqlParamsObject(params) : {}
     };
-    console.log('aqlrequest',aqlRequest)
-    console.log(`${this.getApiUrl()}/query/aql`)
-    console.log(headers)
+    //console.log('aqlrequest',aqlRequest)
+    //console.log(`${this.getApiUrl()}/query/aql`)
+    //console.log(headers)
 
     // let pippo=this.http.post(`${this.getApiUrl()}/query/aql`, aqlRequest,{headers: headers});
     // // .pipe(
