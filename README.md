@@ -10,6 +10,7 @@ Username: ehrbase-admin
 Password: EvenMoreSecretPassword
 Platform URL: http://localhost:8080/ehrbase
 
+
 ## INSTALL LOCALLY 
 Conda is optional. You can install with or without it.
 
@@ -30,7 +31,9 @@ export NODE_OPTIONS=--openssl-legacy-provider
 ng build aql-builder --prod
 ```
 
-
+## COMMON CONFIGURATION
+Modify 'localhost:8080' in projects/aql-builder/src/proxy.conf.json with {youehrbaseservername}:{yourehrbaseserverport}. 
+This step, though optional, ensures that the app uses the EHRBase nodename, e.g., local.ehrbase.org, to create the full name for the queries. If the server in proxy is not recognized a default nodename will be used instead. 
 
 ## RUN WITH BASIC AUTH
 
@@ -74,7 +77,10 @@ From the dir aqlbuilder:
 cp ./src/environments/environment.prod.ts.BASICAUTH ./src/environments/environment.prod.ts
 
 ```
-
+Remember to rerun the build step:
+```
+ng build aql-builder --prod
+```
 ### RUN
 Run with:
 ```
@@ -202,7 +208,10 @@ Modify the SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUERURI server and port w
 
 ### AQLBETTER CONFIGURATION
 Use {aqlbetter_dir}/projects/aql-builder/src/environments/environment.prod.ts.OAUTH2 and modify the authorizationUrl according to your installation of keycloak. Remember that the address (server:port) must be the same as the one given in SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUERURI in the EHRBase settings (172.31.0.2:8080 in the example).
-
+Rerun the build step:
+```
+ng build aql-builder --prod
+```
 ### KEYCLOAK
 Bring up the docker compose:
 ```
