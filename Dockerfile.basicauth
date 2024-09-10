@@ -1,0 +1,40 @@
+FROM node:20 AS build-stage
+
+WORKDIR /app
+
+COPY package*.json /app/
+
+
+
+COPY ./ /app/
+COPY ./projects/aql-builder/src/environments/environment.prod.ts.BASICAUTH ./projects/aql-builder/src/environments/environment.prod.ts
+COPY ./nginx/nginx.conf.BASICAUTH ./nginx.conf
+
+ENV NODE_OPTIONS=--openssl-legacy-provider
+RUN npm install -g --unsafe-perm @angular/cli@10.1.0 &&\
+    cd projects/aql-builder &&\
+    npm install --save-dev @angular-devkit/build-angular --force &&\
+    ng build aql-builder --prod 
+
+
+FROM nginx:1.27.1
+
+# Add application files
+COPY --from=build-stage /app/dist/aql-builder/ /var/www/html
+COPY --from=build-stage /app/nginx/nginx.conf /etc/nginx/nginx.conf
+
+RUN touch /var/run/nginx.pid && \
+    chown -R www-data: /etc/nginx/ && \
+    chown -R www-data: /var/run/nginx.pid && \
+    chown -R www-data: /var/cache/nginx && \
+    chown -R www-data: /var/www/html
+
+USER www-data
+
+
+# Expose the port
+EXPOSE 80
+
+STOPSIGNAL SIGTERM
+
+CMD ["nginx", "-g", "daemon off;"]

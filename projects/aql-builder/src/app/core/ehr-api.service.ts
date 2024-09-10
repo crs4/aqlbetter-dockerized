@@ -58,7 +58,7 @@ export class EhrApiService {
 
 
   getTemplateIDs(): Observable<TemplateID[]> {
-    return this.http.get<TemplateID[]>(`${this.getApiUrl()}/definition/template/adl1.4`, {headers: this.getHeaders()})
+    return this.http.get<TemplateID[]>(`${this.getProxyUrl()}/ehrbase/rest/openehr/v1/definition/template/adl1.4`, {headers: this.getHeaders()})
       .pipe(
         map(item => item ? item : [] ),
         catchError(() => {
@@ -72,7 +72,7 @@ export class EhrApiService {
   getTemplate(templateId: string): Observable<Template> {
     //console.log('gettemplate',templateId)
     //templateId='BBMRI-ERIC_Colorectal_Cancer_Cohort_Report'
-    return this.http.get<Template>(`${this.getApiUrlwt()}/template/${encodeURIComponent(templateId)}`)
+    return this.http.get<Template>(`${this.getProxyUrl()}/ehrbase/rest/ecis/v1/template/${encodeURIComponent(templateId)}`)
       .pipe(
         map(template => {
           this.addParents(template.webTemplate.tree);
@@ -82,19 +82,19 @@ export class EhrApiService {
   }
 
   getWebTemplate(templateId: string): Observable<Template> {
-    return this.http.get<Template>(`${this.getApiUrlwt()}/template/${encodeURIComponent(templateId)}`, {headers: this.getHeaders()});
+    return this.http.get<Template>(`${this.getProxyUrl()}/ehrbase/rest/ecis/v1/template/${encodeURIComponent(templateId)}`, {headers: this.getHeaders()});
   }
 
   deleteTemplate(templateId: string): Observable<any> {
-    return this.http.delete(`${this.getAdminApiUrl()}/templates/${templateId}`, {headers: this.getHeaders()});
+    return this.http.delete(`${this.getProxyUrl()}/ehrbase/rest/admin/templates/${templateId}`, {headers: this.getHeaders()});
   }
 
   importTemplate(payload: File): Observable<Template> {
-    let pippo = this.getHeaders();
-    //console.log('type headers',typeof(pippo));
-    //console.log('headers importtemplate',pippo);
+    // let pippo = this.getHeaders();
+    // console.log('type headers',typeof(pippo));
+    // console.log('headers importtemplate',pippo);
     // return this.http.post<Template>(`${this.getApiUrl()}/definition/template/adl1.4/`, payload, {headers: this.getHeaders()});
-    return this.http.post<Template>(`${this.getApiUrl()}/definition/template/adl1.4/`, payload, {headers: {'Content-Type':'application/XML'}});
+    return this.http.post<Template>(`${this.getProxyUrl()}/ehrbase/rest/openehr/v1/definition/template/adl1.4/`, payload, {headers: {'Content-Type':'application/XML'}});
   }
 
   // getViews(allowedFormats = [EhrViewType.JSON_AQL, EhrViewType.JS]): Observable<any[]> {
@@ -117,12 +117,12 @@ export class EhrApiService {
     // });
 
 //    let pluto = this.http.get<any[]>(`${this.getApiUrl()}/definition/query`); 
-    let pluto = this.http.get<PlutoResponse>(`${this.getApiUrl()}/definition/query`);   
-    // .pipe(
-    //   map(view => view ),
-    //   switchMap((data) => data ? of(data) : of([]))
-    // );
-    //console.log('pluto',pluto);
+   let pluto = this.http.get<PlutoResponse>(`${this.getProxyUrl()}/ehrbase/rest/openehr/v1/definition/query`);   
+    // // .pipe(
+    // //   map(view => view ),
+    // //   switchMap((data) => data ? of(data) : of([]))
+    // // );
+    // console.log('pluto',pluto);
     // pluto.subscribe(data2 => {
     // console.log('Data2:', data2);
      
@@ -152,7 +152,7 @@ return pluto.pipe(
     return from(array1.versions).pipe(
       // For each item, fetch additional data based on the name
       mergeMap(item1 => {
-        return this.http.get<VersionedItem>(`${this.getApiUrl()}/definition/query/${item1.name}/${item1.version}`).pipe(
+        return this.http.get<VersionedItem>(`${this.getProxyUrl()}/ehrbase/rest/openehr/v1/definition/query/${item1.name}/${item1.version}`).pipe(
           map(additionalData => {
             const ehrviewstep = new EhrViewSteps(additionalData.q,item1.type);
             // Combine the item with the additional data if found
@@ -190,7 +190,7 @@ return pluto.pipe(
 
 
   getView(name: string, version: string): Observable<any> {
-    return this.http.get<any[]>(`${this.getApiUrl()}/definition/query/${name}/${version}`);
+    return this.http.get<any[]>(`${this.getProxyUrl()}/ehrbase/rest/openehr/v1/definition/query/${name}/${version}`);
   }
 
   saveView(payload: EhrView): Observable<any> {
@@ -221,13 +221,13 @@ return pluto.pipe(
   //const myquery="{\"q\":\"SELECT c/uid/value FROM EHR e CONTAINS COMPOSITION c\"}"
   // return this.http.put<any>('/api/ehrbase/rest/openehr/v1/definition/query/'+`${fullname}/${body.version}?`+ new URLSearchParams({
   //   type: 'AQL', format: 'RAW'}), myquery,{headers: {'Content-Type':'application/json'}});
-    return this.http.get<SrvrResponse>('/api/ehrbase/management/info',{headers: {'Content-Type':'text/plain'}}).pipe(
+    return this.http.get<SrvrResponse>(`${this.getProxyUrl()}/ehrbase/management/info`,{headers: {'Content-Type':'text/plain'}}).pipe(
         switchMap(firstData => {
           //console.log(firstData.build.group);
           //console.log('this way. no error',firstData.build.group);
           const server = firstData?.build.group || 'org.ehrbase.local';
           let fullname = server + '::' + body.name;
-          return this.http.put<any>(`${this.getApiUrl()}/definition/query/${fullname}/${body.version}?`+ new URLSearchParams({
+          return this.http.put<any>(`${this.getProxyUrl()}/ehrbase/rest/openehr/v1/definition/query/${fullname}/${body.version}?`+ new URLSearchParams({
               type: 'AQL', format: 'RAW'}),aqltext,{headers: {'Content-Type':'text/plain'}});
         })
         ,
@@ -235,7 +235,7 @@ return pluto.pipe(
           //console.error('Error in the first HTTP call:', error);
           const server = 'org.ehrbase.local';
           let fullname = server + '::' + body.name;
-          return this.http.put<any>(`${this.getApiUrl()}/definition/query/${fullname}/${body.version}?`+ new URLSearchParams({
+          return this.http.put<any>(`${this.getProxyUrl()}/ehrbase/rest/openehr/v1/definition/query/${fullname}/${body.version}?`+ new URLSearchParams({
             type: 'AQL', format: 'RAW'}), aqltext,{headers:{'Content-Type':'text/plain'}});              
         })
       );
@@ -273,7 +273,7 @@ return pluto.pipe(
     let aqltext = body.steps[0].processorData;
     //console.log('aqltext before calls',aqltext);
 
-    return this.http.put<any>(`${this.getApiUrl()}/definition/query/${body.name}/${body.version}?`+ new URLSearchParams({
+    return this.http.put<any>(`${this.getProxyUrl()}/ehrbase/rest/openehr/v1/definition/query/${body.name}/${body.version}?`+ new URLSearchParams({
       type: 'AQL', format: 'RAW'}),aqltext,{headers: {'Content-Type':'text/plain'}});
     // return this.http.put<any>(`${this.getAdminApiUrl()}/views/${payload.name}`, body);
   }
@@ -281,7 +281,7 @@ return pluto.pipe(
   deleteView(viewName: string,version: string): Observable<any> {
     //console.log('deleteview',viewName);
     //console.log('version',version);
-    return this.http.delete(`${this.getAdminApiUrl()}/query/${viewName}/${version}`);
+    return this.http.delete(`${this.getProxyUrl()}/ehrbase/rest/admin/query/${viewName}/${version}`);
   }
 
   getAqlQueryResultWithParameters(aql: string, params?: Map<string, string | number>): Observable<AqlResultSet> {
@@ -293,9 +293,7 @@ return pluto.pipe(
       'q':aqlnew,
       'query_parameters': params ? this.createAqlParamsObject(params) : {}
     };
-    //console.log('aqlrequest',aqlRequest)
-    //console.log(`${this.getApiUrl()}/query/aql`)
-    //console.log(headers)
+
 
     // let pippo=this.http.post(`${this.getApiUrl()}/query/aql`, aqlRequest,{headers: headers});
     // // .pipe(
@@ -314,7 +312,7 @@ return pluto.pipe(
     // pippo.subscribe(data => {
     //   console.log('Data:', data);
     // });
-    return this.http.post(`${this.getApiUrl()}/query/aql`, aqlRequest)
+    return this.http.post(`${this.getProxyUrl()}/ehrbase/rest/openehr/v1/query/aql`, aqlRequest)
       .pipe(
         map((resultSet: any) => {
           if (resultSet) {
@@ -331,11 +329,15 @@ return pluto.pipe(
   }
 
   getAqlCsv(aql: string, params?: Map<string, string |number>): Observable<any> {
+    //it's not called
+    let aqlnew=aql.replace(/\n/g, " ")
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
     const aqlRequest = {
-      aql,
-      aqlParameters: params ? this.createAqlParamsObject(params) : {}
+      'q':aqlnew,
+      'query_parameters': params ? this.createAqlParamsObject(params) : {}
     };
-    return this.http.post(`${this.getApiUrl()}/query/csv`, aqlRequest, {headers: this.getHeaders(), responseType: 'blob' as 'json'});
+    return this.http.post(`/rest/openehr/v1/query/aql`, aqlRequest, {headers: this.getHeaders(), responseType: 'blob' as 'json'});
   }
 
   getAqlQueryResultWithParametersAsXml(aql: string, params?: Map<string, string |number>): Observable<string> {
@@ -345,15 +347,16 @@ return pluto.pipe(
       aql,
       aqlParameters: params ? this.createAqlParamsObject(params) : {}
     };
-    return this.http.post(`${this.getApiUrl()}/query`, aqlRequest, {headers, responseType: 'text'});
+    return this.http.post(`${this.getProxyUrl()}/ehrbase/rest/openehr/v1/query`, aqlRequest, {headers, responseType: 'text'});
   }
 
   getArchetypes(archetypes: string[]): Promise<any> {
-    return this.http.get<any>(`${this.getApiUrl()}/archetype/flat?type=${archetypes.join('&type=')}`).toPromise();
+    //called but I don't know what it does so I can't "translate" it
+    return this.http.get<any>(`${this.getProxyUrl()}/ehrbase/rest/openehr/v1/archetype/flat?type=${archetypes.join('&type=')}`).toPromise();
   }
 
   getArchetypeDescription(archetypeId: string): Promise<any> {
-    return this.http.get<any>(`${this.getApiUrl()}/archetype/flat/${archetypeId}?includeTemplates=true`).toPromise();
+    return this.http.get<any>(`${this.getProxyUrl()}/ehrbase/rest/openehr/v1/archetype/flat/${archetypeId}?includeTemplates=true`).toPromise();
   }
 
   private createAqlParamsObject(params: Map<string, string | number>): any {
@@ -371,6 +374,11 @@ return pluto.pipe(
     //headers = headers.append('Cache-Control', 'no-cache');
     //headers = headers.append('Pragma', 'no-cache');
     return headers;
+  }
+
+
+  getProxyUrl(): string{
+    return this.appContextService.getProxyUrl();
   }
 
   getServerUrl(): string{

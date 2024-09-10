@@ -274,8 +274,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "aql-builder:build",
-	    "proxyConfig": "projects/aql-builder/src/proxy.conf.json"
+            "browserTarget": "aql-builder:build"
           },
           "configurations": {
             "production": {

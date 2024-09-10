@@ -29,6 +29,10 @@ export class AppContextService {
     this.initialize();
   }
 
+  getProxyUrl(): string{
+    return "http://localhost";
+  }
+
   getResourceUrl(): string {
     return this.resourceUrl;
   }
