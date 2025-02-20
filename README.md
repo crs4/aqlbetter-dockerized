@@ -1,4 +1,4 @@
-# AQL BUILDER WRITTEN BY BETTER AND ADAPTED BY SASURFER (@GITHUB). DOCKERIZED VERSION
+Y7# AQL BUILDER WRITTEN BY BETTER AND ADAPTED BY SASURFER (@GITHUB). DOCKERIZED VERSION
  This sofware helps in building openEHR aql queries. It needs a running instance of EHRBase in order to work. Its main capabilities are: creating the query with autocompletion and template visualization, saving queries on the running instance of EHRBase (called views) or locally (called snippets), performing queries, retrieving and showing the results, importing (writing into EHRBase) templates. More info at [aql builder site]( https://docs.better.care/studio/aql-builder/overview ).
 
 At login are asked: Username, Password. If oauth is configured (see below on how to do it) then the client_secret is also requested. 
@@ -416,6 +416,8 @@ All Better UI component packages are covered by [Apache 2.0](/LICENSE)
 Read more about this license [here](https://choosealicense.com/licenses/apache-2.0/)
 
 # Acknowledgments
-This work has been partially funded by the “Total Patient Management” (ToPMa) project (grant by the Sardinian Regional Aut
-hority, grant number RC_CRP_077).
+This work has been partially funded by the following sources:
+<li> the “Total Patient Management” (ToPMa) project (grant by the Sardinian Regional Aut
+hority, grant number RC_CRP_077);
+<li>the “Processing, Analysis, Exploration, and Sharing of Big and/or Complex Data” (XDATA) project (grant by the Sardinian Regional Authority). 
 
