@@ -304,7 +304,12 @@ The option "--build" is needed only the first time it is created then can be omi
 
 Open a browser tab to localhost, fill the credentials and the client_secret and click "Start querying data".
 
-
+## Acknowledgments
+This work has been partially funded by the following sources:
+<li>“Total Patient Management” (ToPMa) project (grant by the Sardinian Regional Authority, grant number RC_CRP_077);</li>
+<li>the “Processing, Analysis, Exploration, and Sharing of Big and/or Complex Data” (XDATA) project (grant by the Sardinian Regional Authority). 
+</li><ul>
+  
 # ORIGINAL README FROM BETTER FOLLOWS
 
 # Better UI components
@@ -415,9 +420,5 @@ All Better UI component packages are covered by [Apache 2.0](/LICENSE)
 
 Read more about this license [here](https://choosealicense.com/licenses/apache-2.0/)
 
-# Acknowledgments
-This work has been partially funded by the following sources:
-<li> the “Total Patient Management” (ToPMa) project (grant by the Sardinian Regional Aut
-hority, grant number RC_CRP_077);
-<li>the “Processing, Analysis, Exploration, and Sharing of Big and/or Complex Data” (XDATA) project (grant by the Sardinian Regional Authority). 
+
 
