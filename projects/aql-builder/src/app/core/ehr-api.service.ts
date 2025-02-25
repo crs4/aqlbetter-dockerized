@@ -72,17 +72,17 @@ export class EhrApiService {
   getTemplate(templateId: string): Observable<Template> {
     //console.log('gettemplate',templateId)
     //templateId='BBMRI-ERIC_Colorectal_Cancer_Cohort_Report'
-    return this.http.get<Template>(`${this.getProxyUrl()}/ehrbase/rest/ecis/v1/template/${encodeURIComponent(templateId)}`)
+    return this.http.get<Template>(`${this.getProxyUrl()}/ehrbase/rest/openehr/v1/definition/template/adl1.4/${encodeURIComponent(templateId)}`)
       .pipe(
         map(template => {
-          this.addParents(template.webTemplate.tree);
+          this.addParents(template.tree);
           return template;
         })
       );
   }
 
   getWebTemplate(templateId: string): Observable<Template> {
-    return this.http.get<Template>(`${this.getProxyUrl()}/ehrbase/rest/ecis/v1/template/${encodeURIComponent(templateId)}`, {headers: this.getHeaders()});
+    return this.http.get<Template>(`${this.getProxyUrl()}/ehrbase/rest/openehr/v1/definition/template/adl1.4/${encodeURIComponent(templateId)}`, {headers: this.getHeaders()});
   }
 
   deleteTemplate(templateId: string): Observable<any> {

@@ -1,4 +1,6 @@
 # AQL BUILDER WRITTEN BY BETTER AND ADAPTED BY SASURFER (@GITHUB). DOCKERIZED VERSION
+_WARNING: for EHRBase versions < 2.5.0 use release 1.0.0. Use latest version for EHRBase version >= 2.14.0 . No version available for 2.5.0<= EHRBase version<2.14.0__
+
  This sofware helps in building openEHR aql queries. It needs a running instance of EHRBase in order to work. Its main capabilities are: creating the query with autocompletion and template visualization, saving queries on the running instance of EHRBase (called views) or locally (called snippets), performing queries, retrieving and showing the results, importing (writing into EHRBase) templates. More info at [aql builder site]( https://docs.better.care/studio/aql-builder/overview ).
 
 At login are asked: Username, Password. If oauth is configured (see below on how to do it) then the client_secret is also requested. 
@@ -59,7 +61,7 @@ services:
   # EHRBase container. see `.env.ehrbase` for configuration details.
   #
   ehrbase:
-    image: ${EHRBASE_IMAGE:-ehrbase/ehrbase:2.6.0}
+    image: ${EHRBASE_IMAGE:-ehrbase/ehrbase:2.15.0}
     env_file:
       - .env.ehrbase
     environment:
